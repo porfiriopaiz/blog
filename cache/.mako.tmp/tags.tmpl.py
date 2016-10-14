@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1476413330.8378966
+_modified_time = 1476413626.4358552
 _enable_loop = True
 _template_filename = '/home/porfirio/Documents/nikola/lib/python3.5/site-packages/nikola/data/themes/bootstrap3/templates/tags.tmpl'
 _template_uri = 'tags.tmpl'
@@ -31,12 +31,12 @@ def render_body(context,**pageargs):
         len = context.get('len', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
-        cat_items = context.get('cat_items', UNDEFINED)
-        cat_hierarchy = context.get('cat_hierarchy', UNDEFINED)
-        title = context.get('title', UNDEFINED)
         items = context.get('items', UNDEFINED)
+        cat_items = context.get('cat_items', UNDEFINED)
         range = context.get('range', UNDEFINED)
+        cat_hierarchy = context.get('cat_hierarchy', UNDEFINED)
         messages = context.get('messages', UNDEFINED)
+        title = context.get('title', UNDEFINED)
         hidden_tags = context.get('hidden_tags', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n\n')
@@ -56,12 +56,12 @@ def render_content(context,**pageargs):
         len = context.get('len', UNDEFINED)
         def content():
             return render_content(context)
-        cat_items = context.get('cat_items', UNDEFINED)
-        cat_hierarchy = context.get('cat_hierarchy', UNDEFINED)
-        title = context.get('title', UNDEFINED)
         items = context.get('items', UNDEFINED)
+        cat_items = context.get('cat_items', UNDEFINED)
         range = context.get('range', UNDEFINED)
+        cat_hierarchy = context.get('cat_hierarchy', UNDEFINED)
         messages = context.get('messages', UNDEFINED)
+        title = context.get('title', UNDEFINED)
         hidden_tags = context.get('hidden_tags', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n<h1>')
