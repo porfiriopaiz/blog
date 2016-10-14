@@ -7,56 +7,80 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https:///porfiriopaiz.github.io/blog/2015/index.html</loc>
-  <lastmod>2016-10-09T19:24:00Z</lastmod>
+  <lastmod>2016-10-14T02:16:00Z</lastmod>
  </url>
  <url>
   <loc>https:///porfiriopaiz.github.io/blog/archive.html</loc>
-  <lastmod>2016-10-09T09:02:00Z</lastmod>
+  <lastmod>2016-10-14T02:16:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https:///porfiriopaiz.github.io/blog/categories/cat_random.html</loc>
+  <lastmod>2016-10-14T02:16:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https:///porfiriopaiz.github.io/blog/categories/chess.html</loc>
+  <lastmod>2016-10-14T02:16:00Z</lastmod>
  </url>
  <url>
   <loc>https:///porfiriopaiz.github.io/blog/categories/index.html</loc>
-  <lastmod>2016-10-09T09:02:00Z</lastmod>
+  <lastmod>2016-10-14T02:16:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https:///porfiriopaiz.github.io/blog/categories/lol.html</loc>
+  <lastmod>2016-10-14T02:16:00Z</lastmod>
  </url>
  <url>
   <loc>https:///porfiriopaiz.github.io/blog/en/2015/index.html</loc>
-  <lastmod>2016-10-09T19:24:00Z</lastmod>
+  <lastmod>2016-10-14T02:16:00Z</lastmod>
  </url>
  <url>
   <loc>https:///porfiriopaiz.github.io/blog/en/archive.html</loc>
-  <lastmod>2016-10-09T09:02:00Z</lastmod>
+  <lastmod>2016-10-14T02:16:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https:///porfiriopaiz.github.io/blog/en/categories/cat_random.html</loc>
+  <lastmod>2016-10-14T02:16:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https:///porfiriopaiz.github.io/blog/en/categories/chess.html</loc>
+  <lastmod>2016-10-14T02:16:00Z</lastmod>
  </url>
  <url>
   <loc>https:///porfiriopaiz.github.io/blog/en/categories/index.html</loc>
-  <lastmod>2016-10-09T09:02:00Z</lastmod>
+  <lastmod>2016-10-14T02:16:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https:///porfiriopaiz.github.io/blog/en/categories/lol.html</loc>
+  <lastmod>2016-10-14T02:16:00Z</lastmod>
  </url>
  <url>
   <loc>https:///porfiriopaiz.github.io/blog/en/galleries/index.html</loc>
-  <lastmod>2016-10-09T09:02:00Z</lastmod>
+  <lastmod>2016-10-14T01:59:00Z</lastmod>
  </url>
  <url>
   <loc>https:///porfiriopaiz.github.io/blog/en/index.html</loc>
-  <lastmod>2016-10-09T19:24:00Z</lastmod>
+  <lastmod>2016-10-14T02:16:00Z</lastmod>
  </url>
  <url>
   <loc>https:///porfiriopaiz.github.io/blog/en/posts/hola-mundo.html</loc>
-  <lastmod>2016-10-09T19:24:00Z</lastmod>
+  <lastmod>2016-10-14T02:16:00Z</lastmod>
   <xhtml:link rel="alternate" hreflang="es" href="https:///porfiriopaiz.github.io/blog/posts/hola-mundo.html" />
  </url>
  <url>
   <loc>https:///porfiriopaiz.github.io/blog/galleries/index.html</loc>
-  <lastmod>2016-10-09T09:02:00Z</lastmod>
+  <lastmod>2016-10-14T01:59:00Z</lastmod>
  </url>
  <url>
   <loc>https:///porfiriopaiz.github.io/blog/index.html</loc>
-  <lastmod>2016-10-09T09:02:00Z</lastmod>
+  <lastmod>2016-10-14T02:16:00Z</lastmod>
  </url>
  <url>
   <loc>https:///porfiriopaiz.github.io/blog/listings/index.html</loc>
-  <lastmod>2016-10-09T09:02:00Z</lastmod>
+  <lastmod>2016-10-14T01:59:00Z</lastmod>
  </url>
  <url>
   <loc>https:///porfiriopaiz.github.io/blog/posts/hola-mundo.html</loc>
-  <lastmod>2016-10-09T19:24:00Z</lastmod>
+  <lastmod>2016-10-14T02:16:00Z</lastmod>
   <xhtml:link rel="alternate" hreflang="en" href="https:///porfiriopaiz.github.io/blog/en/posts/hola-mundo.html" />
  </url>
 </urlset>

@@ -5,12 +5,12 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1476041202.8565936
+_modified_time = 1476411416.2554736
 _enable_loop = True
 _template_filename = '/home/porfirio/Documents/nikola/lib/python3.5/site-packages/nikola/data/themes/base/templates/post_helper.tmpl'
 _template_uri = 'post_helper.tmpl'
 _source_encoding = 'utf-8'
-_exports = ['twitter_card_information', 'html_tags', 'html_pager', 'mathjax_script', 'meta_translations', 'open_graph_metadata']
+_exports = ['html_tags', 'twitter_card_information', 'open_graph_metadata', 'html_pager', 'mathjax_script', 'meta_translations']
 
 
 def render_body(context,**pageargs):
@@ -25,6 +25,28 @@ def render_body(context,**pageargs):
         __M_writer('\n\n')
         __M_writer('\n\n')
         __M_writer('\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_html_tags(context,post):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        _link = context.get('_link', UNDEFINED)
+        hidden_tags = context.get('hidden_tags', UNDEFINED)
+        __M_writer = context.writer()
+        __M_writer('\n')
+        if post.tags:
+            __M_writer('        <ul itemprop="keywords" class="tags">\n')
+            for tag in post.tags:
+                if tag not in hidden_tags:
+                    __M_writer('            <li><a class="tag p-category" href="')
+                    __M_writer(str(_link('tag', tag)))
+                    __M_writer('" rel="tag">')
+                    __M_writer(filters.html_escape(str(tag)))
+                    __M_writer('</a></li>\n')
+            __M_writer('        </ul>\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -61,23 +83,47 @@ def render_twitter_card_information(context,post):
         context.caller_stack._pop_frame()
 
 
-def render_html_tags(context,post):
+def render_open_graph_metadata(context,post):
     __M_caller = context.caller_stack._push_frame()
     try:
-        hidden_tags = context.get('hidden_tags', UNDEFINED)
-        _link = context.get('_link', UNDEFINED)
+        permalink = context.get('permalink', UNDEFINED)
+        lang = context.get('lang', UNDEFINED)
+        url_replacer = context.get('url_replacer', UNDEFINED)
+        blog_title = context.get('blog_title', UNDEFINED)
+        abs_link = context.get('abs_link', UNDEFINED)
+        use_open_graph = context.get('use_open_graph', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n')
-        if post.tags:
-            __M_writer('        <ul itemprop="keywords" class="tags">\n')
-            for tag in post.tags:
-                if tag not in hidden_tags:
-                    __M_writer('            <li><a class="tag p-category" href="')
-                    __M_writer(str(_link('tag', tag)))
-                    __M_writer('" rel="tag">')
+        if use_open_graph:
+            __M_writer('    <meta property="og:site_name" content="')
+            __M_writer(filters.html_escape(str(blog_title)))
+            __M_writer('">\n    <meta property="og:title" content="')
+            __M_writer(filters.html_escape(str(post.title()[:70])))
+            __M_writer('">\n    <meta property="og:url" content="')
+            __M_writer(str(abs_link(permalink)))
+            __M_writer('">\n')
+            if post.description():
+                __M_writer('    <meta property="og:description" content="')
+                __M_writer(filters.html_escape(str(post.description()[:200])))
+                __M_writer('">\n')
+            else:
+                __M_writer('    <meta property="og:description" content="')
+                __M_writer(filters.html_escape(str(post.text(strip_html=True)[:200])))
+                __M_writer('">\n')
+            if post.previewimage:
+                __M_writer('    <meta property="og:image" content="')
+                __M_writer(str(url_replacer(permalink, post.previewimage, lang, 'absolute')))
+                __M_writer('">\n')
+            __M_writer('    <meta property="og:type" content="article">\n')
+            if post.date.isoformat():
+                __M_writer('    <meta property="article:published_time" content="')
+                __M_writer(str(post.formatted_date('webiso')))
+                __M_writer('">\n')
+            if post.tags:
+                for tag in post.tags:
+                    __M_writer('           <meta property="article:tag" content="')
                     __M_writer(filters.html_escape(str(tag)))
-                    __M_writer('</a></li>\n')
-            __M_writer('        </ul>\n')
+                    __M_writer('">\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -116,13 +162,20 @@ def render_html_pager(context,post):
 def render_mathjax_script(context,post):
     __M_caller = context.caller_stack._push_frame()
     try:
-        use_katex = context.get('use_katex', UNDEFINED)
         mathjax_config = context.get('mathjax_config', UNDEFINED)
+        katex_auto_render = context.get('katex_auto_render', UNDEFINED)
+        use_katex = context.get('use_katex', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n')
         if post.is_mathjax:
             if use_katex:
-                __M_writer('            <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>\n            <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js"></script>\n            <script>\n                renderMathInElement(document.body);\n            </script>\n')
+                __M_writer('            <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>\n            <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script>\n')
+                if katex_auto_render:
+                    __M_writer('                <script>\n                    renderMathInElement(document.body,\n                        {\n                            ')
+                    __M_writer(str(katex_auto_render))
+                    __M_writer('\n                        }\n                    );\n                </script>\n')
+                else:
+                    __M_writer('                <script>\n                    renderMathInElement(document.body);\n                </script>\n')
             else:
                 __M_writer('            <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>\n')
                 if mathjax_config:
@@ -140,9 +193,9 @@ def render_meta_translations(context,post):
     __M_caller = context.caller_stack._push_frame()
     try:
         lang = context.get('lang', UNDEFINED)
-        translations = context.get('translations', UNDEFINED)
         sorted = context.get('sorted', UNDEFINED)
         len = context.get('len', UNDEFINED)
+        translations = context.get('translations', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n')
         if len(translations) > 1:
@@ -158,54 +211,8 @@ def render_meta_translations(context,post):
         context.caller_stack._pop_frame()
 
 
-def render_open_graph_metadata(context,post):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        permalink = context.get('permalink', UNDEFINED)
-        abs_link = context.get('abs_link', UNDEFINED)
-        url_replacer = context.get('url_replacer', UNDEFINED)
-        use_open_graph = context.get('use_open_graph', UNDEFINED)
-        lang = context.get('lang', UNDEFINED)
-        blog_title = context.get('blog_title', UNDEFINED)
-        __M_writer = context.writer()
-        __M_writer('\n')
-        if use_open_graph:
-            __M_writer('    <meta property="og:site_name" content="')
-            __M_writer(filters.html_escape(str(blog_title)))
-            __M_writer('">\n    <meta property="og:title" content="')
-            __M_writer(filters.html_escape(str(post.title()[:70])))
-            __M_writer('">\n    <meta property="og:url" content="')
-            __M_writer(str(abs_link(permalink)))
-            __M_writer('">\n')
-            if post.description():
-                __M_writer('    <meta property="og:description" content="')
-                __M_writer(filters.html_escape(str(post.description()[:200])))
-                __M_writer('">\n')
-            else:
-                __M_writer('    <meta property="og:description" content="')
-                __M_writer(filters.html_escape(str(post.text(strip_html=True)[:200])))
-                __M_writer('">\n')
-            if post.previewimage:
-                __M_writer('    <meta property="og:image" content="')
-                __M_writer(str(url_replacer(permalink, post.previewimage, lang, 'absolute')))
-                __M_writer('">\n')
-            __M_writer('    <meta property="og:type" content="article">\n')
-            if post.date.isoformat():
-                __M_writer('    <meta property="article:published_time" content="')
-                __M_writer(str(post.formatted_date('webiso')))
-                __M_writer('">\n')
-            if post.tags:
-                for tag in post.tags:
-                    __M_writer('           <meta property="article:tag" content="')
-                    __M_writer(filters.html_escape(str(tag)))
-                    __M_writer('">\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
 """
 __M_BEGIN_METADATA
-{"filename": "/home/porfirio/Documents/nikola/lib/python3.5/site-packages/nikola/data/themes/base/templates/post_helper.tmpl", "source_encoding": "utf-8", "uri": "post_helper.tmpl", "line_map": {"16": 0, "21": 2, "22": 11, "23": 23, "24": 40, "25": 69, "26": 85, "27": 106, "33": 71, "38": 71, "39": 72, "40": 73, "41": 73, "42": 73, "43": 74, "44": 75, "45": 75, "46": 75, "47": 76, "48": 77, "49": 77, "50": 77, "51": 79, "52": 80, "53": 80, "54": 80, "55": 81, "56": 82, "57": 82, "58": 82, "64": 13, "70": 13, "71": 14, "72": 15, "73": 16, "74": 17, "75": 18, "76": 18, "77": 18, "78": 18, "79": 18, "80": 21, "86": 25, "91": 25, "92": 26, "93": 27, "94": 28, "95": 29, "96": 30, "97": 30, "98": 30, "99": 30, "100": 30, "101": 30, "102": 33, "103": 34, "104": 35, "105": 35, "106": 35, "107": 35, "108": 35, "109": 35, "110": 38, "116": 87, "122": 87, "123": 88, "124": 89, "125": 90, "126": 95, "127": 96, "128": 97, "129": 98, "130": 98, "131": 98, "132": 99, "133": 100, "139": 3, "147": 3, "148": 4, "149": 5, "150": 6, "151": 7, "152": 7, "153": 7, "154": 7, "155": 7, "161": 42, "171": 42, "172": 43, "173": 44, "174": 44, "175": 44, "176": 45, "177": 45, "178": 46, "179": 46, "180": 47, "181": 48, "182": 48, "183": 48, "184": 49, "185": 50, "186": 50, "187": 50, "188": 52, "189": 53, "190": 53, "191": 53, "192": 55, "193": 60, "194": 61, "195": 61, "196": 61, "197": 63, "198": 64, "199": 65, "200": 65, "201": 65, "207": 201}}
+{"uri": "post_helper.tmpl", "source_encoding": "utf-8", "line_map": {"16": 0, "21": 2, "22": 11, "23": 23, "24": 40, "25": 69, "26": 85, "27": 116, "33": 13, "39": 13, "40": 14, "41": 15, "42": 16, "43": 17, "44": 18, "45": 18, "46": 18, "47": 18, "48": 18, "49": 21, "55": 71, "60": 71, "61": 72, "62": 73, "63": 73, "64": 73, "65": 74, "66": 75, "67": 75, "68": 75, "69": 76, "70": 77, "71": 77, "72": 77, "73": 79, "74": 80, "75": 80, "76": 80, "77": 81, "78": 82, "79": 82, "80": 82, "86": 42, "96": 42, "97": 43, "98": 44, "99": 44, "100": 44, "101": 45, "102": 45, "103": 46, "104": 46, "105": 47, "106": 48, "107": 48, "108": 48, "109": 49, "110": 50, "111": 50, "112": 50, "113": 52, "114": 53, "115": 53, "116": 53, "117": 55, "118": 60, "119": 61, "120": 61, "121": 61, "122": 63, "123": 64, "124": 65, "125": 65, "126": 65, "132": 25, "137": 25, "138": 26, "139": 27, "140": 28, "141": 29, "142": 30, "143": 30, "144": 30, "145": 30, "146": 30, "147": 30, "148": 33, "149": 34, "150": 35, "151": 35, "152": 35, "153": 35, "154": 35, "155": 35, "156": 38, "162": 87, "169": 87, "170": 88, "171": 89, "172": 90, "173": 92, "174": 93, "175": 96, "176": 96, "177": 100, "178": 101, "179": 105, "180": 106, "181": 107, "182": 108, "183": 108, "184": 108, "185": 109, "186": 110, "192": 3, "200": 3, "201": 4, "202": 5, "203": 6, "204": 7, "205": 7, "206": 7, "207": 7, "208": 7, "214": 208}, "filename": "/home/porfirio/Documents/nikola/lib/python3.5/site-packages/nikola/data/themes/base/templates/post_helper.tmpl"}
 __M_END_METADATA
 """
