@@ -1,8 +1,8 @@
 .. title: ¡Hola Mundo!
 .. slug: hola-mundo
 .. date: 2015-09-17 02:19:09 UTC-06:00
-.. tags: lol, chess
-.. category: random
+.. tags: 
+.. category: 
 .. link: 
 .. description: 
 .. type: text
