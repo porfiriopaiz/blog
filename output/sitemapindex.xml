@@ -6,79 +6,23 @@
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
-  <loc>https:///porfiriopaiz.github.io/blog/categories/cat_random.atom</loc>
-  <lastmod>2016-10-14T03:04:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https:///porfiriopaiz.github.io/blog/categories/cat_random.xml</loc>
-  <lastmod>2016-10-14T02:53:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https:///porfiriopaiz.github.io/blog/categories/chess.atom</loc>
-  <lastmod>2016-10-14T03:04:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https:///porfiriopaiz.github.io/blog/categories/chess.xml</loc>
-  <lastmod>2016-10-14T02:53:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https:///porfiriopaiz.github.io/blog/categories/lol.atom</loc>
-  <lastmod>2016-10-14T03:04:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https:///porfiriopaiz.github.io/blog/categories/lol.xml</loc>
-  <lastmod>2016-10-14T02:53:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https:///porfiriopaiz.github.io/blog/en/categories/cat_random.atom</loc>
-  <lastmod>2016-10-14T03:04:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https:///porfiriopaiz.github.io/blog/en/categories/cat_random.xml</loc>
-  <lastmod>2016-10-14T02:53:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https:///porfiriopaiz.github.io/blog/en/categories/chess.atom</loc>
-  <lastmod>2016-10-14T03:04:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https:///porfiriopaiz.github.io/blog/en/categories/chess.xml</loc>
-  <lastmod>2016-10-14T02:53:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https:///porfiriopaiz.github.io/blog/en/categories/lol.atom</loc>
-  <lastmod>2016-10-14T03:04:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https:///porfiriopaiz.github.io/blog/en/categories/lol.xml</loc>
-  <lastmod>2016-10-14T02:53:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https:///porfiriopaiz.github.io/blog/en/galleries/rss.xml</loc>
-  <lastmod>2016-10-14T01:59:00Z</lastmod>
- </sitemap>
- <sitemap>
   <loc>https:///porfiriopaiz.github.io/blog/en/index.atom</loc>
-  <lastmod>2016-10-14T03:04:00Z</lastmod>
+  <lastmod>2016-10-17T05:44:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https:///porfiriopaiz.github.io/blog/en/rss.xml</loc>
-  <lastmod>2016-10-14T03:19:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https:///porfiriopaiz.github.io/blog/galleries/rss.xml</loc>
-  <lastmod>2016-10-14T01:59:00Z</lastmod>
+  <lastmod>2016-10-17T05:44:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https:///porfiriopaiz.github.io/blog/index.atom</loc>
-  <lastmod>2016-10-14T03:04:00Z</lastmod>
+  <lastmod>2016-10-17T05:44:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https:///porfiriopaiz.github.io/blog/rss.xml</loc>
-  <lastmod>2016-10-14T03:19:00Z</lastmod>
+  <lastmod>2016-10-17T05:44:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https:///porfiriopaiz.github.io/blog/sitemap.xml</loc>
-  <lastmod>2016-10-14T03:19:00Z</lastmod>
+  <lastmod>2016-10-17T05:44:00Z</lastmod>
  </sitemap>
 </sitemapindex>
