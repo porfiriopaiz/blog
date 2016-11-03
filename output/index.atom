@@ -3,13 +3,87 @@
 <feed xml:lang="es" xmlns="http://www.w3.org/2005/Atom">
   <title>el blog de porfirio</title>
   <id>https:///porfiriopaiz.github.io/blog/index.atom</id>
-  <updated>2016-10-17T05:44:20Z</updated>
+  <updated>2016-11-03T06:17:44Z</updated>
   <author>
     <name>porfirio</name>
   </author>
   <link rel="self" type="application/atom+xml" href="https:///porfiriopaiz.github.io/blog/index.atom"/>
   <link rel="alternate" type="text/html" href="https:///porfiriopaiz.github.io/blog/index.html"/>
   <generator uri="https://getnikola.com/">Nikola</generator>
+  <entry>
+    <title>IRC con irssi</title>
+    <id>https:///porfiriopaiz.github.io/blog/posts/irc-con-irssi.html</id>
+    <updated>2016-11-02T15:26:28-06:00</updated>
+    <published>2016-11-02T15:26:28-06:00</published>
+    <author>
+      <name>porfirio</name>
+    </author>
+    <link rel="alternate" type="text/html" href="https:///porfiriopaiz.github.io/blog/posts/irc-con-irssi.html"/>
+    <summary type="html">&lt;div&gt;&lt;p&gt;Desde mis inicios en el Software Libre y GNU/Linux, una de las caracteristicas
+que atrapó mi atención es el poder que tiene la linea de comandos en este
+sistema operativo. Desde moverse entre los diferentes directorios hasta
+instalar un sistema operativo completamente desde cero, son algunas de las
+tareas rutinarias que se pueden llevar acabo desde la terminal.&lt;/p&gt;
+&lt;p&gt;En este post les mostraré como configurar irssi para automatizar algunos de los
+pasos que se deben llevar acabo para poder acceder a una sala de chat, como lo
+es conectarse al servidor, autenticarse y posteriormente ingresar a los
+diferentes canales que sean de nuestro interés.&lt;/p&gt;
+&lt;div class="section" id="instalando-irssi"&gt;
+&lt;h2&gt;Instalando irssi&lt;/h2&gt;
+&lt;p&gt;Para instalar irssi en fedora, basta con abrir una terminal y escribir el
+siguiente comando:&lt;/p&gt;
+&lt;pre class="code console"&gt;&lt;a name="rest_code_bc8ff33574934392ad324726636b41ad-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;su -c 'dnf install irssi'&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Y para instalar irssi en debian:&lt;/p&gt;
+&lt;pre class="code console"&gt;&lt;a name="rest_code_9e0fb0bba83447dcacfd7be211654b6a-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;su -c 'apt-get install irssi'&lt;/span&gt;
+&lt;/pre&gt;&lt;div class="section" id="ejecutando-irssi"&gt;
+&lt;h3&gt;Ejecutando irssi&lt;/h3&gt;
+&lt;p&gt;Para correr irssi abrimos una terminal y escribimos el siguiente comando:&lt;/p&gt;
+&lt;pre class="code console"&gt;&lt;a name="rest_code_03dd60ef53bc4f2fbe15993ac4d11fe1-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;irssi&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="configuraciones"&gt;
+&lt;h2&gt;Configuraciones&lt;/h2&gt;
+&lt;div class="section" id="configuraciones-de-servidor"&gt;
+&lt;h3&gt;Configuraciones de Servidor&lt;/h3&gt;
+&lt;p&gt;Todas estos comandos deben ser ejecutadas en una sesión de irssi.&lt;/p&gt;
+&lt;p&gt;Primero removeremos la configuracion existente del servidor que necesitamos
+automatizar. Con &lt;tt class="docutils literal"&gt;/server list&lt;/tt&gt; podremos visualizar los servidores existentes:&lt;/p&gt;
+&lt;pre class="code console"&gt;&lt;a name="rest_code_d0d2188c3e124f0bae231ff066287e21-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;/server list&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;En nuestro caso eliminaremos la configuración existente de Freenode.&lt;/p&gt;
+&lt;pre class="code console"&gt;&lt;a name="rest_code_6edf374851f947beb90c2ff0c87c0b81-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;/server remove chat.freenode.net&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Y añadiremos la nueva configuración con el siguiente comando:&lt;/p&gt;
+&lt;pre class="code console"&gt;&lt;a name="rest_code_e7b7867b22fb4e50bc20d4b369c75c61-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;/SERVER ADD -auto -network Freenode chat.freenode.net 6667 your_nick_password&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Donde &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;-auto&lt;/span&gt;&lt;/tt&gt; define la conexión al servidor de Freenode como automática y
+&lt;tt class="docutils literal"&gt;your_nick_password&lt;/tt&gt; es tu contraseña de usuario en Freenode.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="anadiendo-canales"&gt;
+&lt;h3&gt;Añadiendo Canales&lt;/h3&gt;
+&lt;p&gt;De igual manera es posible añadir a que canales de este servidor nos queremos
+conectar automáticamente en cada inicio de sesión, para ello ejecutamos el
+siguiente comando en nuestra sesión de irssi:&lt;/p&gt;
+&lt;pre class="code console"&gt;&lt;a name="rest_code_f132c74a8ca049d0b27773de85873a94-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;/channel add -auto #fedora Freenode&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Donde &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;-auto&lt;/span&gt;&lt;/tt&gt; permite que ingresemos al canal &lt;tt class="docutils literal"&gt;#fedora&lt;/tt&gt; en &lt;tt class="docutils literal"&gt;Freenode&lt;/tt&gt; de
+forma automática en cada inicio de sesión.&lt;/p&gt;
+&lt;p&gt;Para terminar, cada vez que hagamos un cambio en nuestra configuración será
+necesario salvar los cambios con el comando:&lt;/p&gt;
+&lt;pre class="code console"&gt;&lt;a name="rest_code_be3dca8da5bb4fe6addbc6b73fe9d14f-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;/save&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;irssi toma el user name de tu sesión actual como el usuario para tu sesión en
+irc, para evitar que esto suceda en caso de que el nombre de tu sesión en el
+sistema no coincida con tu usuario en Freenode, deberas ejecutar irssi con el
+siguiente parámetro:&lt;/p&gt;
+&lt;pre class="code console"&gt;&lt;a name="rest_code_f70ef3ad15d340a7a744df83a3ea7d63-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;irssi -n nick&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;Donde &lt;tt class="docutils literal"&gt;nick&lt;/tt&gt; es tu usario de IRC en Freenode.&lt;/p&gt;
+&lt;p&gt;Una vez que hayas añadido todos tus canales de interés que se encuentran en el
+servidor de Freenode y guardado los cambios, solo necesitaras ejecutar en una
+terminal el comando &lt;tt class="docutils literal"&gt;irssi&lt;/tt&gt; y automáticamente te conectarás al servidor y
+a todos los canales que hayas añadido sin necesidad de autenticarte manualmente
+y sin correr el riesgo que alguien pueda leer tu contraseña mientras la
+escribes. Todo esto desde una terminal.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;</summary>
+    <category term="cli" label="cli"/>
+    <category term="irc" label="irc"/>
+  </entry>
   <entry>
     <title>¡Hola Mundo!</title>
     <id>https:///porfiriopaiz.github.io/blog/posts/hola-mundo.html</id>

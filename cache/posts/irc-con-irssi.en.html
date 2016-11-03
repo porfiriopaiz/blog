@@ -1,0 +1,62 @@
+<p>Desde mis inicios en el Software Libre y GNU/Linux, una de las caracteristicas
+que atrapó mi atención es el poder que tiene la linea de comandos en este
+sistema operativo. Desde moverse entre los diferentes directorios hasta
+instalar un sistema operativo completamente desde cero, son algunas de las
+tareas rutinarias que se pueden llevar acabo desde la terminal.</p>
+<p>En este post les mostraré como configurar irssi para automatizar algunos de los
+pasos que se deben llevar acabo para poder acceder a una sala de chat, como lo
+es conectarse al servidor, autenticarse y posteriormente ingresar a los
+diferentes canales que sean de nuestro interés.</p>
+<div class="section" id="instalando-irssi">
+<h1>Instalando irssi</h1>
+<p>Para instalar irssi en fedora, basta con abrir una terminal y escribir el
+siguiente comando:</p>
+<pre class="code console"><a name="rest_code_6918255f80c349b691d58feda4b65175-1"></a><span class="go">su -c &#39;dnf install irssi&#39;</span>
+</pre><p>Y para instalar irssi en debian:</p>
+<pre class="code console"><a name="rest_code_a07e6ff0db524cd186a6d81a7e981caa-1"></a><span class="go">su -c &#39;apt-get install irssi&#39;</span>
+</pre><div class="section" id="ejecutando-irssi">
+<h2>Ejecutando irssi</h2>
+<p>Para correr irssi abrimos una terminal y escribimos el siguiente comando:</p>
+<pre class="code console"><a name="rest_code_4cead36e49ff4b66a572bfcec5a8bd90-1"></a><span class="go">irssi</span>
+</pre></div>
+</div>
+<div class="section" id="configuraciones">
+<h1>Configuraciones</h1>
+<div class="section" id="configuraciones-de-servidor">
+<h2>Configuraciones de Servidor</h2>
+<p>Todas estos comandos deben ser ejecutadas en una sesión de irssi.</p>
+<p>Primero removeremos la configuracion existente del servidor que necesitamos
+automatizar. Con <tt class="docutils literal">/server list</tt> podremos visualizar los servidores existentes:</p>
+<pre class="code console"><a name="rest_code_3372864f1e0a4ea2920b2969fb952982-1"></a><span class="go">/server list</span>
+</pre><p>En nuestro caso eliminaremos la configuración existente de Freenode.</p>
+<pre class="code console"><a name="rest_code_b81d676e182d4de8814d0cfb6bdca8d2-1"></a><span class="go">/server remove chat.freenode.net</span>
+</pre><p>Y añadiremos la nueva configuración con el siguiente comando:</p>
+<pre class="code console"><a name="rest_code_51d1e364bf0649be9a18884560a8f7bb-1"></a><span class="go">/SERVER ADD -auto -network Freenode chat.freenode.net 6667 your_nick_password</span>
+</pre><p>Donde <tt class="docutils literal"><span class="pre">-auto</span></tt> define la conexión al servidor de Freenode como automática y
+<tt class="docutils literal">your_nick_password</tt> es tu contraseña de usuario en Freenode.</p>
+</div>
+<div class="section" id="anadiendo-canales">
+<h2>Añadiendo Canales</h2>
+<p>De igual manera es posible añadir a que canales de este servidor nos queremos
+conectar automáticamente en cada inicio de sesión, para ello ejecutamos el
+siguiente comando en nuestra sesión de irssi:</p>
+<pre class="code console"><a name="rest_code_f9b8a024b6d5450197190c8c6f57905b-1"></a><span class="go">/channel add -auto #fedora Freenode</span>
+</pre><p>Donde <tt class="docutils literal"><span class="pre">-auto</span></tt> permite que ingresemos al canal <tt class="docutils literal">#fedora</tt> en <tt class="docutils literal">Freenode</tt> de
+forma automática en cada inicio de sesión.</p>
+<p>Para terminar, cada vez que hagamos un cambio en nuestra configuración será
+necesario salvar los cambios con el comando:</p>
+<pre class="code console"><a name="rest_code_214ffba406874f5a9ccb1ceef4de4713-1"></a><span class="go">/save</span>
+</pre><p>irssi toma el user name de tu sesión actual como el usuario para tu sesión en
+irc, para evitar que esto suceda en caso de que el nombre de tu sesión en el
+sistema no coincida con tu usuario en Freenode, deberas ejecutar irssi con el
+siguiente parámetro:</p>
+<pre class="code console"><a name="rest_code_f746f861b5924e05be0fc13cdbe1007b-1"></a><span class="go">irssi -n nick</span>
+</pre><p>Donde <tt class="docutils literal">nick</tt> es tu usario de IRC en Freenode.</p>
+<p>Una vez que hayas añadido todos tus canales de interés que se encuentran en el
+servidor de Freenode y guardado los cambios, solo necesitaras ejecutar en una
+terminal el comando <tt class="docutils literal">irssi</tt> y automáticamente te conectarás al servidor y
+a todos los canales que hayas añadido sin necesidad de autenticarte manualmente
+y sin correr el riesgo que alguien pueda leer tu contraseña mientras la
+escribes. Todo esto desde una terminal.</p>
+</div>
+</div>
