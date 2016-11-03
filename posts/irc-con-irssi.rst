@@ -14,6 +14,7 @@ instalar un sistema operativo completamente desde cero, son algunas de las
 tareas rutinarias que se pueden llevar acabo desde la terminal.
 
 .. TEASER_END
+
 En este post les mostraré como configurar irssi para automatizar algunos de los
 pasos que se deben llevar acabo para poder acceder a una sala de chat, como lo
 es conectarse al servidor, autenticarse y posteriormente ingresar a los

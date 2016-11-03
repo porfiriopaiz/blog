@@ -6,13 +6,14 @@
 .. link: 
 .. description: Automatizando la conexión a IRC con irssi.
 .. type: text
-.. TEASER_END
 
 Desde mis inicios en el Software Libre y GNU/Linux, una de las caracteristicas
 que atrapó mi atención es el poder que tiene la linea de comandos en este
 sistema operativo. Desde moverse entre los diferentes directorios hasta
 instalar un sistema operativo completamente desde cero, son algunas de las
 tareas rutinarias que se pueden llevar acabo desde la terminal.
+
+.. TEASER_END
 
 En este post les mostraré como configurar irssi para automatizar algunos de los
 pasos que se deben llevar acabo para poder acceder a una sala de chat, como lo
