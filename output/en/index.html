@@ -77,7 +77,13 @@
                 porfirio
             </span></p>
             <p class="dateline"><a href="posts/irc-con-irssi.html" rel="bookmark"><time class="published dt-published" datetime="2016-11-02T15:26:28-06:00" title="2016-11-02 15:26">2016-11-02 15:26</time></a></p>
-        </div>
+                <p class="commentline">
+        
+    <a href="posts/irc-con-irssi.html#disqus_thread" data-disqus-identifier="cache/posts/irc-con-irssi.html">Comments</a>
+
+
+        </p>
+</div>
     </header><div class="p-summary entry-summary">
     <div>
 <p>Desde mis inicios en el Software Libre y GNU/Linux, una de las caracteristicas
@@ -93,15 +99,15 @@ diferentes canales que sean de nuestro interés.</p>
 <h2>Instalando irssi</h2>
 <p>Para instalar irssi en fedora, basta con abrir una terminal y escribir el
 siguiente comando:</p>
-<pre class="code console"><a name="rest_code_5246ff03cb7e41278c1cb4c2f4515185-1"></a><span class="go">su -c 'dnf install irssi'</span>
+<pre class="code console"><a name="rest_code_09fafe8e16c24a27bebab12078110394-1"></a><span class="go">su -c 'dnf install irssi'</span>
 </pre>
 <p>Y para instalar irssi en debian:</p>
-<pre class="code console"><a name="rest_code_1e681ae7b40b456d842d36556907ff7f-1"></a><span class="go">su -c 'apt-get install irssi'</span>
+<pre class="code console"><a name="rest_code_234f082b8eba491bbe66fc72fcb700d0-1"></a><span class="go">su -c 'apt-get install irssi'</span>
 </pre>
 <div class="section" id="ejecutando-irssi">
 <h3>Ejecutando irssi</h3>
 <p>Para correr irssi abrimos una terminal y escribimos el siguiente comando:</p>
-<pre class="code console"><a name="rest_code_5ef504e339394272b06853a1ba4df6c5-1"></a><span class="go">irssi</span>
+<pre class="code console"><a name="rest_code_a6592113953f4d0d984003516a565601-1"></a><span class="go">irssi</span>
 </pre>
 </div>
 </div>
@@ -112,13 +118,13 @@ siguiente comando:</p>
 <p>Todas estos comandos deben ser ejecutadas en una sesión de irssi.</p>
 <p>Primero removeremos la configuracion existente del servidor que necesitamos
 automatizar. Con <tt class="docutils literal">/server list</tt> podremos visualizar los servidores existentes:</p>
-<pre class="code console"><a name="rest_code_8b10d9389d614a0a8207bd70dccd5df3-1"></a><span class="go">/server list</span>
+<pre class="code console"><a name="rest_code_502587e9feb44dd882feca0e3c4f9173-1"></a><span class="go">/server list</span>
 </pre>
 <p>En nuestro caso eliminaremos la configuración existente de Freenode.</p>
-<pre class="code console"><a name="rest_code_92d4270caf11468ab380d0375f09ee0f-1"></a><span class="go">/server remove chat.freenode.net</span>
+<pre class="code console"><a name="rest_code_4da1617b3942451d88e70d1b2023b6c1-1"></a><span class="go">/server remove chat.freenode.net</span>
 </pre>
 <p>Y añadiremos la nueva configuración con el siguiente comando:</p>
-<pre class="code console"><a name="rest_code_8bdf11779d7c4f3b9996003b769549ed-1"></a><span class="go">/SERVER ADD -auto -network Freenode chat.freenode.net 6667 your_nick_password</span>
+<pre class="code console"><a name="rest_code_65f00d5911bf4e40a436013801123db9-1"></a><span class="go">/SERVER ADD -auto -network Freenode chat.freenode.net 6667 your_nick_password</span>
 </pre>
 <p>Donde <tt class="docutils literal"><span class="pre">-auto</span></tt> define la conexión al servidor de Freenode como automática y
 <tt class="docutils literal">your_nick_password</tt> es tu contraseña de usuario en Freenode.</p>
@@ -128,19 +134,19 @@ automatizar. Con <tt class="docutils literal">/server list</tt> podremos visuali
 <p>De igual manera es posible añadir a que canales de este servidor nos queremos
 conectar automáticamente en cada inicio de sesión, para ello ejecutamos el
 siguiente comando en nuestra sesión de irssi:</p>
-<pre class="code console"><a name="rest_code_1d2051330fd24ade932bea541ff4bc85-1"></a><span class="go">/channel add -auto #fedora Freenode</span>
+<pre class="code console"><a name="rest_code_62fbc3ba94fc42e0909d616022b9db81-1"></a><span class="go">/channel add -auto #fedora Freenode</span>
 </pre>
 <p>Donde <tt class="docutils literal"><span class="pre">-auto</span></tt> permite que ingresemos al canal <tt class="docutils literal">#fedora</tt> en <tt class="docutils literal">Freenode</tt> de
 forma automática en cada inicio de sesión.</p>
 <p>Para terminar, cada vez que hagamos un cambio en nuestra configuración será
 necesario salvar los cambios con el comando:</p>
-<pre class="code console"><a name="rest_code_56227635c51f4d8a8b334d768b68737e-1"></a><span class="go">/save</span>
+<pre class="code console"><a name="rest_code_c2cdabbbbc514833b52241e115a52bd9-1"></a><span class="go">/save</span>
 </pre>
 <p>irssi toma el user name de tu sesión actual como el usuario para tu sesión en
 irc, para evitar que esto suceda en caso de que el nombre de tu sesión en el
 sistema no coincida con tu usuario en Freenode, deberas ejecutar irssi con el
 siguiente parámetro:</p>
-<pre class="code console"><a name="rest_code_51645929379d4cc0a81ec60d18409422-1"></a><span class="go">irssi -n nick</span>
+<pre class="code console"><a name="rest_code_89f46ff60c254058bffb20514fb4fe6b-1"></a><span class="go">irssi -n nick</span>
 </pre>
 <p>Donde <tt class="docutils literal">nick</tt> es tu usario de IRC en Freenode.</p>
 <p>Una vez que hayas añadido todos tus canales de interés que se encuentran en el
@@ -159,7 +165,13 @@ escribes. Todo esto desde una terminal.</p>
                 porfirio
             </span></p>
             <p class="dateline"><a href="posts/hola-mundo.html" rel="bookmark"><time class="published dt-published" datetime="2015-09-17T02:19:09-06:00" title="2015-09-17 02:19">2015-09-17 02:19</time></a></p>
-        </div>
+                <p class="commentline">
+        
+    <a href="posts/hola-mundo.html#disqus_thread" data-disqus-identifier="cache/posts/hola-mundo.html">Comments</a>
+
+
+        </p>
+</div>
     </header><div class="p-summary entry-summary">
     <div>
 <p>Hi!, this gonna be my blog. I hope you find useful the material I'm gonna post
@@ -173,11 +185,9 @@ here.</p>
 
 
 
-
-
-
-
-        </div>
+        
+       <script>var disqus_shortname="porfiriopaizblog";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+</div>
         <!--End of body content-->
 
         <footer id="footer">
