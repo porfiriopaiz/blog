@@ -90,14 +90,8 @@
                     porfirio
             </span></p>
             <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2016-11-02T15:26:28-06:00" itemprop="datePublished" title="2016-11-02 15:26">2016-11-02 15:26</time></a></p>
-                <p class="commentline">
-        
-    <a href="irc-con-irssi.html#disqus_thread" data-disqus-identifier="cache/posts/irc-con-irssi.html">Comments</a>
-
-
             
-        </p>
-<p class="sourceline"><a href="irc-con-irssi.rst" id="sourcelink">Código fuente</a></p>
+        <p class="sourceline"><a href="irc-con-irssi.rst" id="sourcelink">Código fuente</a></p>
 
                 <meta name="description" itemprop="description" content="Automatizando la conexión a IRC con irssi.">
 </div>
@@ -123,15 +117,15 @@ diferentes canales que sean de nuestro interés.</p>
 <h2>Instalando irssi</h2>
 <p>Para instalar irssi en fedora, basta con abrir una terminal y escribir el
 siguiente comando:</p>
-<pre class="code console"><a name="rest_code_bb6ac743ab9b49c29d3f4070e0605961-1"></a><span class="go">su -c 'dnf install irssi'</span>
+<pre class="code console"><a name="rest_code_486d6ae618624089a0027696d4f4c06e-1"></a><span class="go">su -c 'dnf install irssi'</span>
 </pre>
 <p>Y para instalar irssi en debian:</p>
-<pre class="code console"><a name="rest_code_ec34cce651d0487db61d48a8ebbfb474-1"></a><span class="go">su -c 'apt-get install irssi'</span>
+<pre class="code console"><a name="rest_code_b15872c5e2014ed6b3d1c3addff72fa0-1"></a><span class="go">su -c 'apt-get install irssi'</span>
 </pre>
 <div class="section" id="ejecutando-irssi">
 <h3>Ejecutando irssi</h3>
 <p>Para correr irssi abrimos una terminal y escribimos el siguiente comando:</p>
-<pre class="code console"><a name="rest_code_cd6afd56787d4b818494ec58f4c3775e-1"></a><span class="go">irssi</span>
+<pre class="code console"><a name="rest_code_4bb58d1480ad4e0caade381b03da3dc1-1"></a><span class="go">irssi</span>
 </pre>
 </div>
 </div>
@@ -142,13 +136,13 @@ siguiente comando:</p>
 <p>Todas estos comandos deben ser ejecutadas en una sesión de irssi.</p>
 <p>Primero removeremos la configuracion existente del servidor que necesitamos
 automatizar. Con <tt class="docutils literal">/server list</tt> podremos visualizar los servidores existentes:</p>
-<pre class="code console"><a name="rest_code_dc7ea77a2536455ab0479d04a15e2fd3-1"></a><span class="go">/server list</span>
+<pre class="code console"><a name="rest_code_2f8f4270aeb6442d8ddb9a8404ad5738-1"></a><span class="go">/server list</span>
 </pre>
 <p>En nuestro caso eliminaremos la configuración existente de Freenode.</p>
-<pre class="code console"><a name="rest_code_e6db17fa52044835859c54893c8b0f6f-1"></a><span class="go">/server remove chat.freenode.net</span>
+<pre class="code console"><a name="rest_code_a00517e727ec4e7ba408b2de28837e01-1"></a><span class="go">/server remove chat.freenode.net</span>
 </pre>
 <p>Y añadiremos la nueva configuración con el siguiente comando:</p>
-<pre class="code console"><a name="rest_code_9c4c3842d0d34fd99fb37e02a71548cc-1"></a><span class="go">/SERVER ADD -auto -network Freenode chat.freenode.net 6667 your_nick_password</span>
+<pre class="code console"><a name="rest_code_c4c83d7c71494d43afcb5cc009b67421-1"></a><span class="go">/SERVER ADD -auto -network Freenode chat.freenode.net 6667 your_nick_password</span>
 </pre>
 <p>Donde <tt class="docutils literal"><span class="pre">-auto</span></tt> define la conexión al servidor de Freenode como automática y
 <tt class="docutils literal">your_nick_password</tt> es tu contraseña de usuario en Freenode.</p>
@@ -158,19 +152,19 @@ automatizar. Con <tt class="docutils literal">/server list</tt> podremos visuali
 <p>De igual manera es posible añadir a que canales de este servidor nos queremos
 conectar automáticamente en cada inicio de sesión, para ello ejecutamos el
 siguiente comando en nuestra sesión de irssi:</p>
-<pre class="code console"><a name="rest_code_80b187bd29ce4e62b975e6e20c859bf6-1"></a><span class="go">/channel add -auto #fedora Freenode</span>
+<pre class="code console"><a name="rest_code_0e1d95d7e5614dabaf58cd14af147672-1"></a><span class="go">/channel add -auto #fedora Freenode</span>
 </pre>
 <p>Donde <tt class="docutils literal"><span class="pre">-auto</span></tt> permite que ingresemos al canal <tt class="docutils literal">#fedora</tt> en <tt class="docutils literal">Freenode</tt> de
 forma automática en cada inicio de sesión.</p>
 <p>Para terminar, cada vez que hagamos un cambio en nuestra configuración será
 necesario salvar los cambios con el comando:</p>
-<pre class="code console"><a name="rest_code_235506e6b76e4a7bb7a5998bebd37b82-1"></a><span class="go">/save</span>
+<pre class="code console"><a name="rest_code_5a31425357754988813f2e3c61422037-1"></a><span class="go">/save</span>
 </pre>
 <p>irssi toma el user name de tu sesión actual como el usuario para tu sesión en
 irc, para evitar que esto suceda en caso de que el nombre de tu sesión en el
 sistema no coincida con tu usuario en Freenode, deberas ejecutar irssi con el
 siguiente parámetro:</p>
-<pre class="code console"><a name="rest_code_a6c30c563dcd42e4a6b9e7e09c373606-1"></a><span class="go">irssi -n nick</span>
+<pre class="code console"><a name="rest_code_7e5eba20ebae48b1b499e99571f2102e-1"></a><span class="go">irssi -n nick</span>
 </pre>
 <p>Donde <tt class="docutils literal">nick</tt> es tu usario de IRC en Freenode.</p>
 <p>Una vez que hayas añadido todos tus canales de interés que se encuentran en el
@@ -191,29 +185,7 @@ escribes. Todo esto desde una terminal.</p>
 <li class="previous">
                 <a href="hola-mundo.html" rel="prev" title="¡Hola Mundo!">Publicación anterior</a>
             </li>
-        </ul></nav></aside><section class="comments hidden-print"><h2>Comentarios</h2>
-        
-        
-        <div id="disqus_thread"></div>
-        <script>
-        var disqus_shortname ="porfiriopaizblog",
-            disqus_url="https:///porfiriopaiz.github.io/blog/posts/irc-con-irssi.html",
-        disqus_title="IRC con irssi",
-        disqus_identifier="cache/posts/irc-con-irssi.html",
-        disqus_config = function () {
-            this.language = "es_ES";
-        };
-        (function() {
-            var dsq = document.createElement('script'); dsq.async = true;
-            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
-</noscript>
-    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
-
-
-        </section></article><script>var disqus_shortname="porfiriopaizblog";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+        </ul></nav></aside></article>
 </div>
         <!--End of body content-->
 
