@@ -6,6 +6,7 @@
 .. link: 
 .. description: Automatizando la conexión a IRC con irssi.
 .. type: text
+.. TEASER_END
 
 Desde mis inicios en el Software Libre y GNU/Linux, una de las caracteristicas
 que atrapó mi atención es el poder que tiene la linea de comandos en este
