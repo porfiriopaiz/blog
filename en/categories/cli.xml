@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../../../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>el blog de porfirio (cli)</title><link>https:///porfiriopaiz.github.io/blog/</link><description></description><atom:link type="application/rss+xml" href="https:///porfiriopaiz.github.io/blog/en/categories/cli.xml" rel="self"></atom:link><language>en</language><lastBuildDate>Thu, 03 Nov 2016 19:02:37 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>IRC con irssi</title><link>https:///porfiriopaiz.github.io/blog/en/posts/irc-con-irssi.html</link><dc:creator>porfirio</dc:creator><description>&lt;div&gt;&lt;p&gt;Desde mis inicios en el Software Libre y GNU/Linux, una de las caracteristicas
+<?xml-stylesheet type="text/xsl" href="../../../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>el blog de porfirio (cli)</title><link>https:///porfiriopaiz.github.io/blog/</link><description></description><atom:link rel="self" type="application/rss+xml" href="https:///porfiriopaiz.github.io/blog/en/categories/cli.xml"></atom:link><language>en</language><lastBuildDate>Fri, 04 Nov 2016 07:32:43 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>IRC con irssi</title><link>https:///porfiriopaiz.github.io/blog/en/posts/irc-con-irssi.html</link><dc:creator>porfirio</dc:creator><description>&lt;div&gt;&lt;p&gt;Desde mis inicios en el Software Libre y GNU/Linux, una de las caracteristicas
 que atrapó mi atención es el poder que tiene la linea de comandos en este
 sistema operativo. Desde moverse entre los diferentes directorios hasta
 instalar un sistema operativo completamente desde cero, son algunas de las
@@ -12,13 +12,13 @@ diferentes canales que sean de nuestro interés.&lt;/p&gt;
 &lt;h2&gt;Instalando irssi&lt;/h2&gt;
 &lt;p&gt;Para instalar irssi en fedora, basta con abrir una terminal y escribir el
 siguiente comando:&lt;/p&gt;
-&lt;pre class="code console"&gt;&lt;a name="rest_code_09fafe8e16c24a27bebab12078110394-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;su -c 'dnf install irssi'&lt;/span&gt;
+&lt;pre class="code console"&gt;&lt;a name="rest_code_5a87e54916c64d3b9d59046f9536f925-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;su -c 'dnf install irssi'&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;Y para instalar irssi en debian:&lt;/p&gt;
-&lt;pre class="code console"&gt;&lt;a name="rest_code_234f082b8eba491bbe66fc72fcb700d0-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;su -c 'apt-get install irssi'&lt;/span&gt;
+&lt;pre class="code console"&gt;&lt;a name="rest_code_c93ba9786b394c2fbfaff62fb146a97c-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;su -c 'apt-get install irssi'&lt;/span&gt;
 &lt;/pre&gt;&lt;div class="section" id="ejecutando-irssi"&gt;
 &lt;h3&gt;Ejecutando irssi&lt;/h3&gt;
 &lt;p&gt;Para correr irssi abrimos una terminal y escribimos el siguiente comando:&lt;/p&gt;
-&lt;pre class="code console"&gt;&lt;a name="rest_code_a6592113953f4d0d984003516a565601-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;irssi&lt;/span&gt;
+&lt;pre class="code console"&gt;&lt;a name="rest_code_c8a73e1aacfd4ce9a95561d931d02ce8-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;irssi&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="configuraciones"&gt;
@@ -28,11 +28,11 @@ siguiente comando:&lt;/p&gt;
 &lt;p&gt;Todas estos comandos deben ser ejecutadas en una sesión de irssi.&lt;/p&gt;
 &lt;p&gt;Primero removeremos la configuracion existente del servidor que necesitamos
 automatizar. Con &lt;tt class="docutils literal"&gt;/server list&lt;/tt&gt; podremos visualizar los servidores existentes:&lt;/p&gt;
-&lt;pre class="code console"&gt;&lt;a name="rest_code_502587e9feb44dd882feca0e3c4f9173-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;/server list&lt;/span&gt;
+&lt;pre class="code console"&gt;&lt;a name="rest_code_8e6e060271b44849b0e201921147ad57-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;/server list&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;En nuestro caso eliminaremos la configuración existente de Freenode.&lt;/p&gt;
-&lt;pre class="code console"&gt;&lt;a name="rest_code_4da1617b3942451d88e70d1b2023b6c1-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;/server remove chat.freenode.net&lt;/span&gt;
+&lt;pre class="code console"&gt;&lt;a name="rest_code_3a76d41658d44ec2ab642621cf5c9963-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;/server remove chat.freenode.net&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;Y añadiremos la nueva configuración con el siguiente comando:&lt;/p&gt;
-&lt;pre class="code console"&gt;&lt;a name="rest_code_65f00d5911bf4e40a436013801123db9-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;/SERVER ADD -auto -network Freenode chat.freenode.net 6667 your_nick_password&lt;/span&gt;
+&lt;pre class="code console"&gt;&lt;a name="rest_code_03df657e07a44250811cd04d438db632-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;/SERVER ADD -auto -network Freenode chat.freenode.net 6667 your_nick_password&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;Donde &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;-auto&lt;/span&gt;&lt;/tt&gt; define la conexión al servidor de Freenode como automática y
 &lt;tt class="docutils literal"&gt;your_nick_password&lt;/tt&gt; es tu contraseña de usuario en Freenode.&lt;/p&gt;
 &lt;/div&gt;
@@ -41,17 +41,17 @@ automatizar. Con &lt;tt class="docutils literal"&gt;/server list&lt;/tt&gt; podr
 &lt;p&gt;De igual manera es posible añadir a que canales de este servidor nos queremos
 conectar automáticamente en cada inicio de sesión, para ello ejecutamos el
 siguiente comando en nuestra sesión de irssi:&lt;/p&gt;
-&lt;pre class="code console"&gt;&lt;a name="rest_code_62fbc3ba94fc42e0909d616022b9db81-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;/channel add -auto #fedora Freenode&lt;/span&gt;
+&lt;pre class="code console"&gt;&lt;a name="rest_code_ef75d932a68f4f7eb67dda38923529d0-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;/channel add -auto #fedora Freenode&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;Donde &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;-auto&lt;/span&gt;&lt;/tt&gt; permite que ingresemos al canal &lt;tt class="docutils literal"&gt;#fedora&lt;/tt&gt; en &lt;tt class="docutils literal"&gt;Freenode&lt;/tt&gt; de
 forma automática en cada inicio de sesión.&lt;/p&gt;
 &lt;p&gt;Para terminar, cada vez que hagamos un cambio en nuestra configuración será
 necesario salvar los cambios con el comando:&lt;/p&gt;
-&lt;pre class="code console"&gt;&lt;a name="rest_code_c2cdabbbbc514833b52241e115a52bd9-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;/save&lt;/span&gt;
+&lt;pre class="code console"&gt;&lt;a name="rest_code_2f086f46769249ed800ee00003cbcaab-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;/save&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;irssi toma el user name de tu sesión actual como el usuario para tu sesión en
 irc, para evitar que esto suceda en caso de que el nombre de tu sesión en el
 sistema no coincida con tu usuario en Freenode, deberas ejecutar irssi con el
 siguiente parámetro:&lt;/p&gt;
-&lt;pre class="code console"&gt;&lt;a name="rest_code_89f46ff60c254058bffb20514fb4fe6b-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;irssi -n nick&lt;/span&gt;
+&lt;pre class="code console"&gt;&lt;a name="rest_code_990a7fe3d80f48ca9d0eddb1e33bab24-1"&gt;&lt;/a&gt;&lt;span class="go"&gt;irssi -n nick&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;Donde &lt;tt class="docutils literal"&gt;nick&lt;/tt&gt; es tu usario de IRC en Freenode.&lt;/p&gt;
 &lt;p&gt;Una vez que hayas añadido todos tus canales de interés que se encuentran en el
 servidor de Freenode y guardado los cambios, solo necesitaras ejecutar en una
