@@ -1,4 +1,4 @@
-.. title: IRC con irssi
+.. title: IRC with irssi
 .. slug: irc-con-irssi
 .. date: 2016-11-02 15:26:28 UTC-06:00
 .. tags: irc, cli
