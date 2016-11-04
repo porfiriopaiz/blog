@@ -1,4 +1,4 @@
-Sitemap: https:///porfiriopaiz.github.io/blog/sitemapindex.xml
+Sitemap: https://porfiriopaiz.github.io/blog/sitemapindex.xml
 
 User-Agent: *
-Host: 
+Host: porfiriopaiz.github.io

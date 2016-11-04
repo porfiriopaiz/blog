@@ -21,7 +21,7 @@ BLOG_AUTHOR = "porfirio"  # (translatable)
 BLOG_TITLE = "el blog de porfirio"  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
-SITE_URL = "https:/porfiriopaiz.github.io/blog/"
+SITE_URL = "https://porfiriopaiz.github.io/blog/"
 # This is the URL where Nikola's output will be deployed.
 # If not set, defaults to SITE_URL
 # BASE_URL = "https:/porfiriopaiz.github.io/blog/"
