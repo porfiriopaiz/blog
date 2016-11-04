@@ -1,4 +1,4 @@
-.. title: ¡Hola Mundo!
+.. title: Hello World!
 .. slug: hola-mundo
 .. date: 2015-09-17 02:19:09 UTC-06:00
 .. tags: 
