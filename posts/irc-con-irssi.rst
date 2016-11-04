@@ -51,9 +51,9 @@ Configuraciones
 Configuraciones de Servidor
 ---------------------------
 
-Todas estos comandos deben ser ejecutadas en una sesión de irssi.
+Todos estos comandos deben ser ejecutados en una sesión de irssi.
 
-Primero removeremos la configuracion existente del servidor que necesitamos
+Primero removeremos la configuración existente del servidor que necesitamos
 automatizar. Con ``/server list`` podremos visualizar los servidores existentes:
 
 .. code-block:: console
@@ -78,7 +78,7 @@ Donde ``-auto`` define la conexión al servidor de Freenode como automática y
 Añadiendo Canales
 -----------------
 
-De igual manera es posible añadir a que canales de este servidor nos queremos
+De igual manera es posible añadir a qué canales de este servidor nos queremos
 conectar automáticamente en cada inicio de sesión, para ello ejecutamos el
 siguiente comando en nuestra sesión de irssi:
 
@@ -97,8 +97,8 @@ necesario salvar los cambios con el comando:
     /save
 
 irssi toma el user name de tu sesión actual como el usuario para tu sesión en
-irc, para evitar que esto suceda en caso de que el nombre de tu sesión en el
-sistema no coincida con tu usuario en Freenode, deberas ejecutar irssi con el
+irc, para evitar que esto suceda en caso de que el usuario de tu sesión en el
+sistema no coincida con tu usuario en Freenode, deberás ejecutar irssi con el
 siguiente parámetro:
 
 .. code-block:: console
@@ -108,8 +108,8 @@ siguiente parámetro:
 Donde ``nick`` es tu usario de IRC en Freenode.
 
 Una vez que hayas añadido todos tus canales de interés que se encuentran en el
-servidor de Freenode y guardado los cambios, solo necesitaras ejecutar en una
+servidor de Freenode y guardado los cambios, solo necesitarás ejecutar en una
 terminal el comando ``irssi`` y automáticamente te conectarás al servidor y
-a todos los canales que hayas añadido sin necesidad de autenticarte manualmente
-y sin correr el riesgo que alguien pueda leer tu contraseña mientras la
-escribes. Todo esto desde una terminal.
+a todos los canales que hayas añadido, sin necesidad de autenticarte manualmente
+y sin correr riesgo que alguien pueda leer tu contraseña mientras la escribes.
+Todo esto desde una terminal.
