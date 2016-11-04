@@ -7,11 +7,13 @@
 .. description: Automatizando la conexión a IRC con irssi.
 .. type: text
 
-From my beginnings in the Free Software and GNU / Linux, one of the features
+From my beginnings in the Free Software and GNU/Linux, one of the features
 that caught my attention is the power of the command line in this operating
 system. From moving between different directories or installing an operating
 system completely from scratch, these are some of the routine tasks you can
 achive from the terminal.
+
+.. TEASER_END
 
 In this post I will show how to configure irssi to automate some of the steps to
 carry out in order to access a chat room, as it is connected to the server,
