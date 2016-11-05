@@ -108,5 +108,5 @@ Where ``nick`` is your user nick on Freenode IRC.
 Once you've added all your channels of interest from the Freenode server and
 saved the changes, you only need to run in a terminal the ``irssi`` command and
 automatically you will be connected to the server and all the channels you've
-added without needing to authenticate manually and without risking anyone can
-read your password while you type it. All this from a terminal.
+added without needing to authenticate manually and without risking anyone from
+reading your password while you type it. All this from a terminal.
