@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>el blog de porfirio (Publicaciones sobre lvm)</title><link>https://porfiriopaiz.github.io/blog/</link><description></description><atom:link type="application/rss+xml" href="https://porfiriopaiz.github.io/blog/categories/lvm.xml" rel="self"></atom:link><language>es</language><lastBuildDate>Sat, 04 Feb 2017 04:15:25 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Anaconda y LVM sobre LUKS</title><link>https://porfiriopaiz.github.io/blog/posts/anaconda-y-lvm-sobre-luks.html</link><dc:creator>porfirio</dc:creator><description>&lt;div&gt;&lt;p&gt;Previamente había instalado Fedora 22 en mi laptop, desde hace más de 6 meses
+Fedora 22 fue declarado &lt;a class="reference external" href="https://fedoramagazine.org/fedora-22-end-life/"&gt;EOL&lt;/a&gt;
+, algo que me preocupaba era como reutilizar las particiones creadas para fc22
+de forma que en ellas pudiera instalar la nueva versión de Fedora 25 y
+conservar todos los archivos contenedios en el Volumen Lógico que sirve como
+&lt;tt class="docutils literal"&gt;/home&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;En el siguiente post explicaré un como lograr esto sin comprometer la
+integridad de nuestra información ni los demás sistemas operativos instalados
+instalados en nuestro equipo.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://porfiriopaiz.github.io/blog/posts/anaconda-y-lvm-sobre-luks.html"&gt;Leer más…&lt;/a&gt; (quedan 1 minutos de lectura)&lt;/p&gt;&lt;/div&gt;</description><category>anaconda</category><category>fc25</category><category>fedora</category><category>luks</category><category>lvm</category><guid>https://porfiriopaiz.github.io/blog/posts/anaconda-y-lvm-sobre-luks.html</guid><pubDate>Fri, 03 Feb 2017 22:59:06 GMT</pubDate></item></channel></rss>
