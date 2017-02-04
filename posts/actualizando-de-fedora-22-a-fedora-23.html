@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Actualizar Fedora a la versión estable más reciente vía dnf.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Actualizando de Fedora 22 a Fedora 23 | el blog de porfirio</title>
+<link href="../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS (en)" href="../en/rss.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS (es)" href="../rss.xml">
+<link rel="alternate" type="application/atom+xml" title="Atom (en)" href="../en/index.atom">
+<link rel="alternate" type="application/atom+xml" title="Atom (es)" href="../index.atom">
+<link rel="canonical" href="https://porfiriopaiz.github.io/blog/posts/actualizando-de-fedora-22-a-fedora-23.html">
+<link rel="icon" href="../favicon.png" sizes="16x16">
+<!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><meta name="description" itemprop="description" content="Actualizar Fedora a la versión estable más reciente vía dnf.">
+<meta name="author" content="porfirio">
+<link rel="prev" href="irc-con-irssi.html" title="IRC con irssi" type="text/html">
+<link rel="next" href="anaconda-y-lvm-sobre-luks.html" title="Anaconda y LVM sobre LUKS" type="text/html">
+<meta property="og:site_name" content="el blog de porfirio">
+<meta property="og:title" content="Actualizando de Fedora 22 a Fedora 23">
+<meta property="og:url" content="https://porfiriopaiz.github.io/blog/posts/actualizando-de-fedora-22-a-fedora-23.html">
+<meta property="og:description" content="Actualizar Fedora a la versión estable más reciente vía dnf.">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2016-12-30T18:10:00-06:00">
+<meta property="article:tag" content="dnf">
+<meta property="article:tag" content="eol">
+<meta property="article:tag" content="fc22">
+<meta property="article:tag" content="fc23">
+<meta property="article:tag" content="fedora">
+<meta property="article:tag" content="system-upgrade">
+<link rel="alternate" hreflang="en" href="../en/posts/actualizando-de-fedora-22-a-fedora-23.html">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Ir al contenido principal</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Mostrar navegación</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://porfiriopaiz.github.io/blog/">
+
+                <span id="blog-title">el blog de porfirio</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../archive.html">Archivo</a>
+                </li>
+<li>
+<a href="../categories/index.html">Etiquetas</a>
+                </li>
+<li>
+<a href="../rss.xml">Canal RSS</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+            </li>
+<li><a href="https://porfiriopaiz.github.io/blog/en/" rel="alternate" hreflang="en">English</a></li>
+
+                
+                    
+    <li>
+    <a href="actualizando-de-fedora-22-a-fedora-23.rst" id="sourcelink">Código fuente</a>
+    </li>
+
+                
+            </ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Actualizando de Fedora 22 a Fedora 23</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">
+                    porfirio
+            </span></p>
+            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2016-12-30T18:10:00-06:00" itemprop="datePublished" title="2016-12-30 18:10">2016-12-30 18:10</time></a></p>
+                <p class="commentline">
+        
+    <a href="actualizando-de-fedora-22-a-fedora-23.html#disqus_thread" data-disqus-identifier="cache/posts/actualizando-de-fedora-22-a-fedora-23.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="actualizando-de-fedora-22-a-fedora-23.rst" id="sourcelink">Código fuente</a></p>
+
+                <meta name="description" itemprop="description" content="Actualizar Fedora a la versión estable más reciente vía dnf.">
+</div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>Desde el Martes 26 de Mayo de 2015 hasta el 22 de Noviembre de 2016 estuve
+usando Fedora 22 en mi Lenovo ThinkPad T440p, lo que es equivalente a un año y
+medio usando fc22. El 19 Julio de 2016 fc22 entró en periodo
+<a class="reference external" href="https://fedoraproject.org/wiki/End_of_life">EOL</a>, esto quiere decir que ya
+no recibirá más actulizaciones de seguridad ni mantenimiento, por lo que
+Actualizar a una versión estable más reciente era recomendable.</p>
+<p>En este post explicaré como actualizar a Fedora 23 usando del administrador
+de paquetes <strong>dnf</strong>.</p>
+<!-- TEASER_END -->
+<p>A como mencioné anteriormente, luego de usar Fedora 22 por año y medio, la
+caché de paquetes de dnf llegó a ocupar casi 10GB de espacio en mi disco duro:</p>
+<img alt="/images/screenshot_from_2016-11-22_16-05-06.png" class="align-center" src="../images/screenshot_from_2016-11-22_16-05-06.png"><p>Para indicarle a dnf que conserve la caché de paquetes es necesario añadir la
+siguiente línea al archivo de configuración de dnf que está en
+<tt class="docutils literal">/etc/dnf/dnf.conf</tt>:</p>
+<pre class="code console"><a name="rest_code_ae705f0559d64801a6c02f1984c8aae4-1"></a><span class="go">su -c "echo 'keepcache=true' &gt;&gt; /etc/dnf/dnf.conf"</span>
+</pre>
+<div class="section" id="actualizando-a-fedora-23">
+<h2>Actualizando a Fedora 23</h2>
+<div class="section" id="requisitos-previos-a-la-actulizacion">
+<h3>Requisitos previos a la actulización</h3>
+<p>Primeramente nos aseguramos de tener suficiente espacio en nuestra partición
+<tt class="docutils literal">/</tt>, ya que durante el proceso de actualización necesitaremos descargar las
+versiones más reciente de todos y cada uno de los paquetes instaldos en nuestro
+sistema. Considerando que existe la posibilidad que nuestra caché puede estar
+llena, es necesario remover los paquetes almacenados en ella para liberar
+espacio en caso de que nos haga falta:</p>
+<pre class="code console"><a name="rest_code_efce35db8d1a471f91d59f9160009873-1"></a><span class="go">su -c 'dnf clean all'</span>
+</pre>
+<p>Antes de continuar, es necesario que asegurarnos que nuestro sistema tiene
+instaladas las actualizaciones más recientes disponibles desde los diferentes
+repositorios habilitados en nuestro sistema. Para ello, debemos reconstruir la
+caché de metadatos de paquetes:</p>
+<pre class="code console"><a name="rest_code_25b5c37250ab464da9c5783fdd36f252-1"></a><span class="go">su -c 'dnf makecache'</span>
+</pre>
+<img alt="/images/screenshot_from_2016-11-22_17-23-27.png" class="align-center" src="../images/screenshot_from_2016-11-22_17-23-27.png">
+</div>
+<div class="section" id="instalar-el-plugin-dnf-plugin-system-upgrade">
+<h3>Instalar el plugin dnf-plugin-system-upgrade</h3>
+<p><strong>DNF System Upgrade</strong> puede actualizar el sistema a una versión más reciente
+de Fedora, utilizando un mecanismo similar al utilizado para las
+actualizaciones de paquetes sin conexión. Los paquetes actualizados se
+descargan mientras el sistema se ejecuta normalmente y, a continuación, el
+sistema se reinicia en un entorno especial (implementado como un systmend
+target) para instalarlos. Una vez completada la instalación de los paquetes
+actualizados, el sistema se reinicia de nuevo en la nueva versión de
+Fedora.</p>
+<p>El primer paso es instalar el plugin <tt class="docutils literal"><span class="pre">dnf-plugin-system-upgrade</span></tt>:</p>
+<pre class="code console"><a name="rest_code_b117139878b64784810fc5aa9dfb6aee-1"></a><span class="go">su -c 'dnf install dnf-plugin-system-upgrade'</span>
+</pre>
+<p>Y ahora procemos a descargar los paquetes necesarios para realizar el upgrade a
+Fedora 23.</p>
+<p>Este proceso descargará todos y cada uno de los paquetes que tenemos instalado
+en nuestro sistema, en su versión más reciente disponible para el release que
+nosotros le indiquemos, en este caso el release será <tt class="docutils literal">23</tt>.</p>
+<pre class="code console"><a name="rest_code_274d671215a243ce8f98157a1fc69fba-1"></a><span class="go">su -c 'dnf system-upgrade download --refresh --best --allowerasing --releasever=23'</span>
+</pre>
+<p>En la siguiente captura de pantalla se puede apreciar la número de paquetes a
+descargar y la cantidad datos que implica su descarga:</p>
+<img alt="/images/screenshot_from_2016-11-22_17-34-42.png" class="align-center" src="../images/screenshot_from_2016-11-22_17-34-42.png"><p>De igual manera es posible actualizar a Fedora 24, aunque no recomiendo saltar
+a una versión <tt class="docutils literal">n+2</tt> de Fedora, es decir, pasar de Fedora 22 a Fedora 24. A la
+fecha, las versiones estables más recientes de Fedora son Fedora 24 y Fedora 25
+; Fedora 26 es <a class="reference external" href="https://fedoraproject.org/wiki/Releases/Branched">Branched</a>
+y <a class="reference external" href="https://fedoraproject.org/wiki/Releases/Rawhide">Rawhide</a> la versión en
+desarrollo continuo. Para actualizar a cualquier de la versiones mencionadas,
+solo se debe editar el parámetro <tt class="docutils literal">número</tt> en la opción
+<tt class="docutils literal"><span class="pre">--releasever=número</span></tt>, 24 para fc24, 25, para fc25, 26 para Fedora Branched y
+<tt class="docutils literal">rawhide</tt> para actualizar a Rawhide. Hay que tener en cuenta que tanto
+Branched como Rawhide no son versiones estables de Fedora.</p>
+<p>Actualizando a Fedora 24:</p>
+<pre class="code console"><a name="rest_code_f6664c0b52654f19bd54b36a5ef07c92-1"></a><span class="go">su -c 'dnf system-upgrade download --refresh --best --allowerasing --releasever=24'</span>
+</pre>
+<p>Actualizando a Fedora 25:</p>
+<pre class="code console"><a name="rest_code_43c7b3ef6a36483588e7a1b3eb085a43-1"></a><span class="go">su -c 'dnf system-upgrade download --refresh --best --allowerasing --releasever=25'</span>
+</pre>
+<p>Actualizando a Fedora Rawhide:</p>
+<pre class="code console"><a name="rest_code_e33578e3135d431d83a9526bd91433cd-1"></a><span class="go">su -c 'dnf system-upgrade download --refresh --best --allowerasing --releasever=rawhide'</span>
+</pre>
+<p>Finalmente, una vez terminada la descarga de los paquetes, es necesario
+reiniciar el sistema ejecutando el siguiente comando:</p>
+<pre class="code console"><a name="rest_code_caa10c9efd804ea5ad54865f803aa3bf-1"></a><span class="go">su -c 'dnf system-upgrade reboot'</span>
+</pre>
+<p>Esto hará que la computadora reinicie. El sistema debería arrancar nuevamente
+utilizando el mismo kernel (el más reciente), pero esta vez iniciará el proceso
+de upgrade de Fedora 22 hacia Fedora 23.</p>
+</div>
+</div>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../categories/dnf.html" rel="tag">dnf</a></li>
+            <li><a class="tag p-category" href="../categories/eol.html" rel="tag">eol</a></li>
+            <li><a class="tag p-category" href="../categories/fc22.html" rel="tag">fc22</a></li>
+            <li><a class="tag p-category" href="../categories/fc23.html" rel="tag">fc23</a></li>
+            <li><a class="tag p-category" href="../categories/fedora.html" rel="tag">fedora</a></li>
+            <li><a class="tag p-category" href="../categories/system-upgrade.html" rel="tag">system-upgrade</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="irc-con-irssi.html" rel="prev" title="IRC con irssi">Publicación anterior</a>
+            </li>
+            <li class="next">
+                <a href="anaconda-y-lvm-sobre-luks.html" rel="next" title="Anaconda y LVM sobre LUKS">Siguiente publicación</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comentarios</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="porfiriopaizblog",
+            disqus_url="https://porfiriopaiz.github.io/blog/posts/actualizando-de-fedora-22-a-fedora-23.html",
+        disqus_title="Actualizando de Fedora 22 a Fedora 23",
+        disqus_identifier="cache/posts/actualizando-de-fedora-22-a-fedora-23.html",
+        disqus_config = function () {
+            this.language = "es_ES";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="porfiriopaizblog";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            Contents © 2017         <a href="mailto:porfiriopaiz@gmail.com">porfirio</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"></a>
+
+            
+        </footer>
+</div>
+</div>
+
+
+            <script src="../assets/js/all-nocdn.js"></script><script src="../assets/js/colorbox-i18n/jquery.colorbox-es.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("es");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates -->
+</body>
+</html>

@@ -6,7 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>IRC with irssi | el blog de porfirio</title>
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
-<meta content="#5670d4" name="theme-color">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS (en)" href="../rss.xml">
 <link rel="alternate" type="application/rss+xml" title="RSS (es)" href="../../rss.xml">
 <link rel="alternate" type="application/atom+xml" title="Atom (en)" href="../index.atom">
@@ -16,6 +17,7 @@
 <!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="description" itemprop="description" content="Automatizando la conexión a IRC con irssi.">
 <meta name="author" content="porfirio">
 <link rel="prev" href="hola-mundo.html" title="Hello World!" type="text/html">
+<link rel="next" href="actualizando-de-fedora-22-a-fedora-23.html" title="Actualizando de Fedora 22 a Fedora 23" type="text/html">
 <meta property="og:site_name" content="el blog de porfirio">
 <meta property="og:title" content="IRC with irssi">
 <meta property="og:url" content="https://porfiriopaiz.github.io/blog/en/posts/irc-con-irssi.html">
@@ -80,7 +82,7 @@
 </nav><!-- End of Menubar --><div class="container" id="content" role="main">
     <div class="body-content">
         <!--Body content-->
-        <div class="row" style="width: 640px;">
+        <div class="row">
             
             
 <article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">IRC with irssi</a></h1>
@@ -121,15 +123,15 @@ authenticate and then joining the differents channels that are of interest.</p>
 <div class="section" id="installing-irssi">
 <h2>Installing irssi</h2>
 <p>To install irssi in fedora, just open a terminal and type the following command:</p>
-<pre class="code console"><a name="rest_code_d1403165a46f4521876dd052b2abe95b-1"></a><span class="go">su -c 'dnf install irssi'</span>
+<pre class="code console"><a name="rest_code_c8fafb5fd072412cbbc3e6b03e81025a-1"></a><span class="go">su -c 'dnf install irssi'</span>
 </pre>
 <p>And to install irssi in debian:</p>
-<pre class="code console"><a name="rest_code_62b67607445844a7b7f540cb62f35534-1"></a><span class="go">su -c 'apt-get install irssi'</span>
+<pre class="code console"><a name="rest_code_3b33003cb55a4409b224802f38e23fce-1"></a><span class="go">su -c 'apt-get install irssi'</span>
 </pre>
 <div class="section" id="running-irssi">
 <h3>Running irssi</h3>
 <p>To run irssi, open a terminal and type the following command:</p>
-<pre class="code console"><a name="rest_code_c78f63c0b498499989af9cc4e5609c78-1"></a><span class="go">irssi</span>
+<pre class="code console"><a name="rest_code_4f4b83d0f9f84123ade59045b7c8253f-1"></a><span class="go">irssi</span>
 </pre>
 </div>
 </div>
@@ -140,13 +142,13 @@ authenticate and then joining the differents channels that are of interest.</p>
 <p>All these commands must be executed on a irssi session.</p>
 <p>First we will remove the existing server configuration that we want to automate.
 With <tt class="docutils literal">/server list</tt> we can view existing servers:</p>
-<pre class="code console"><a name="rest_code_516ab54596f74307ac6ebf0dee60b104-1"></a><span class="go">/server list</span>
+<pre class="code console"><a name="rest_code_85e17ad61fe14826ac1513573833c766-1"></a><span class="go">/server list</span>
 </pre>
 <p>In our case we will remove the existing configuration of Freenode.</p>
-<pre class="code console"><a name="rest_code_e8107df01f764a4f8be110779846bcea-1"></a><span class="go">/server remove chat.freenode.net</span>
+<pre class="code console"><a name="rest_code_8b2047313dfa4816ac753d5c43ca5761-1"></a><span class="go">/server remove chat.freenode.net</span>
 </pre>
 <p>And add the new configuration with the following command:</p>
-<pre class="code console"><a name="rest_code_81706af8846c4fbd943db561e9dbc3f6-1"></a><span class="go">/SERVER ADD -auto -network Freenode chat.freenode.net 6667 your_nick_password</span>
+<pre class="code console"><a name="rest_code_fa8fde974c5044b4ae010721fd2a4e78-1"></a><span class="go">/SERVER ADD -auto -network Freenode chat.freenode.net 6667 your_nick_password</span>
 </pre>
 <p>In which <tt class="docutils literal"><span class="pre">-auto</span></tt> defines the connection to the <tt class="docutils literal">Freenode</tt> server as
 automatic and <tt class="docutils literal">your_nick_password</tt> is your user password.</p>
@@ -156,19 +158,19 @@ automatic and <tt class="docutils literal">your_nick_password</tt> is your user 
 <p>Similarly, it is possible to add channels to this server in order to get
 connected automatically on each login, for this run the following command in our
 irssi session:</p>
-<pre class="code console"><a name="rest_code_3f04e476c7a9486286ade5c9842a5095-1"></a><span class="go">/channel add -auto #fedora Freenode</span>
+<pre class="code console"><a name="rest_code_7eb79c8779594758afa4de9c8251d006-1"></a><span class="go">/channel add -auto #fedora Freenode</span>
 </pre>
 <p>In which <tt class="docutils literal"><span class="pre">-auto</span></tt> allows us joining to <tt class="docutils literal">#fedora</tt> channel at <tt class="docutils literal">Freenode</tt>
 server automatically at each login.</p>
 <p>Finally, every time we make a change in our configuration, we must save changes
 with the command:</p>
-<pre class="code console"><a name="rest_code_9890eec1b25d48dcbd24d6d097748398-1"></a><span class="go">/save</span>
+<pre class="code console"><a name="rest_code_e1e646459f3849f983a9c4f0e0dee2f5-1"></a><span class="go">/save</span>
 </pre>
 <p>irssi takes the user name of your current session on the system as the user for
 your session in irc, to prevent this from happening if the name of your session
 in the system does not match your user at Freenode, you should run irssi with
 the following parameter:</p>
-<pre class="code console"><a name="rest_code_6a0cba7cbce84d9591537003802dc9e5-1"></a><span class="go">irssi -n nick</span>
+<pre class="code console"><a name="rest_code_0909942084e54476b93d0aae848c7ddb-1"></a><span class="go">irssi -n nick</span>
 </pre>
 <p>Where <tt class="docutils literal">nick</tt> is your user nick on Freenode IRC.</p>
 <p>Once you've added all your channels of interest from the Freenode server and
@@ -187,6 +189,9 @@ reading your password while you type it. All this from a terminal.</p>
 <ul class="pager hidden-print">
 <li class="previous">
                 <a href="hola-mundo.html" rel="prev" title="Hello World!">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="actualizando-de-fedora-22-a-fedora-23.html" rel="next" title="Actualizando de Fedora 22 a Fedora 23">Next post</a>
             </li>
         </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
         
@@ -215,7 +220,7 @@ reading your password while you type it. All this from a terminal.</p>
         <!--End of body content-->
 
         <footer id="footer">
-            Contents © 2016         <a href="mailto:porfiriopaiz@gmail.com">porfirio</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+            Contents © 2017         <a href="mailto:porfiriopaiz@gmail.com">porfirio</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
 <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"></a>
 
