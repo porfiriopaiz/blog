@@ -20,4 +20,15 @@ en nuestro equipo.
 
 .. TEASER_END
 
+También es posible hacer un upgrade como vimos en el post anterior, es genial
+poder hacer esto, pero la idea de tener que descargar tantos paquetes y
+actualizar todos y cada uno de los paquetes de una vez es algo que no sé si
+quiera hacerlo, francamente hacer fresh installs y configurar todo a como
+estaba es algo que me gusta y disfruto hacer.
+
+Considerando que todos tus sistemas y archivos contenidos en ellos cuentan con
+su debido respaldo, podemos empezar con el proceso instalación sin miedo a que
+algo salga mal en el proceso, nunca se sabe que podría salir mal hasta que sale
+mal XD.
+
 
