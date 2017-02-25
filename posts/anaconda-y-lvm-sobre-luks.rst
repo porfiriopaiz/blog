@@ -14,21 +14,23 @@ de forma que en ellas pudiera instalar la nueva versión de Fedora 25 y
 conservar todos los archivos contenidos en el Volumen Lógico que sirve como
 ``/home``.
 
-En el siguiente post explicaré un como lograr esto sin comprometer la
-integridad de nuestra información ni los demás sistemas operativos instalados
-en nuestro equipo.
+En el siguiente post explicaré como lograr esto sin comprometer la integridad
+de nuestra información ni los demás sistemas operativos instalados en nuestro
+equipo.
 
 .. TEASER_END
 
-También es posible hacer un upgrade como vimos en el post anterior, es genial
-poder hacer esto, pero la idea de tener que descargar tantos paquetes y
-actualizar todos y cada uno de los paquetes de una vez es algo que no sé si
-quiera hacerlo, francamente hacer fresh installs y configurar todo a como
-estaba es algo que me gusta y disfruto hacer.
+A como vimos en el post anterior, también es posible hacer un upgrade, es
+genial tener la posibilidad de poder hacer esto, pero la idea de descargar
+todos paquetes, para luego actualizarlos de una vez, es algo que no sé si
+quiera hacer, francamente hacer fresh installs y configurar todo a como
+estaba es algo que me gusta y disfruto hacer. También representa menor carga
+para el equipo, ya que solo descarga los paquetes mínimos para tener un
+sitema funcional, todo lo demás que eventualmente pueda necesitar lo puedo
+instalar en demanda.
 
-Considerando que todos tus sistemas y archivos contenidos en ellos cuentan con
-su debido respaldo, podemos empezar con el proceso instalación sin miedo a que
-algo salga mal en el proceso, nunca se sabe que podría salir mal hasta que sale
-mal XD.
+Considerando que todos los archivos contenidos en tus sistemas cuentan con su
+su debido respaldo, podemos empezar con el proceso de instalación sin miedo a
+que algo salga mal, nunca se sabe que podría salir mal hasta que sale mal XD.
 
 
