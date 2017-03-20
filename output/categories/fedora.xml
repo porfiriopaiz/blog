@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0"><channel><title>el blog de porfirio (Publicaciones sobre fedora)</title><link>https://porfiriopaiz.github.io/blog/</link><description></description><atom:link rel="self" href="https://porfiriopaiz.github.io/blog/categories/fedora.xml" type="application/rss+xml"></atom:link><language>es</language><lastBuildDate>Sat, 04 Feb 2017 06:30:38 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Anaconda y LVM sobre LUKS</title><link>https://porfiriopaiz.github.io/blog/posts/anaconda-y-lvm-sobre-luks.html</link><dc:creator>porfirio</dc:creator><description>&lt;div&gt;&lt;p&gt;Previamente había instalado Fedora 22 en mi laptop, desde hace más de 6 meses
-Fedora 22 fue declarado &lt;a class="reference external" href="https://fedoramagazine.org/fedora-22-end-life/"&gt;EOL&lt;/a&gt;
-, algo que me preocupaba era como reutilizar las particiones creadas para fc22
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>el blog de porfirio (Publicaciones sobre fedora)</title><link>https://porfiriopaiz.github.io/blog/</link><description></description><atom:link type="application/rss+xml" rel="self" href="https://porfiriopaiz.github.io/blog/categories/fedora.xml"></atom:link><language>es</language><lastBuildDate>Wed, 08 Mar 2017 20:00:46 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Anaconda y LVM sobre LUKS</title><link>https://porfiriopaiz.github.io/blog/posts/anaconda-y-lvm-sobre-luks.html</link><dc:creator>porfirio</dc:creator><description>&lt;div&gt;&lt;p&gt;Previamente había actualizado mi laptop de Fedora 22 a Fedora 23, desde hace
+más de 6 meses, también es posible reutilizar las particiones creadas para fc22
 de forma que en ellas pudiera instalar la nueva versión de Fedora 25 y
-conservar todos los archivos contenedios en el Volumen Lógico que sirve como
+conservar todos los archivos contenidos en el Volumen Lógico que sirve como
 &lt;tt class="docutils literal"&gt;/home&lt;/tt&gt;.&lt;/p&gt;
-&lt;p&gt;En el siguiente post explicaré un como lograr esto sin comprometer la
-integridad de nuestra información ni los demás sistemas operativos instalados
-instalados en nuestro equipo.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://porfiriopaiz.github.io/blog/posts/anaconda-y-lvm-sobre-luks.html"&gt;Leer más…&lt;/a&gt; (quedan 1 minutos de lectura)&lt;/p&gt;&lt;/div&gt;</description><category>anaconda</category><category>fc25</category><category>fedora</category><category>luks</category><category>lvm</category><guid>https://porfiriopaiz.github.io/blog/posts/anaconda-y-lvm-sobre-luks.html</guid><pubDate>Fri, 03 Feb 2017 22:59:06 GMT</pubDate></item><item><title>Actualizando de Fedora 22 a Fedora 23</title><link>https://porfiriopaiz.github.io/blog/posts/actualizando-de-fedora-22-a-fedora-23.html</link><dc:creator>porfirio</dc:creator><description>&lt;div&gt;&lt;p&gt;Desde el Martes 26 de Mayo de 2015 hasta el 22 de Noviembre de 2016 estuve
+&lt;p&gt;En el siguiente post explicaré como lograr esto sin comprometer la integridad
+de nuestra información ni los demás sistemas operativos instalados en nuestro
+equipo.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://porfiriopaiz.github.io/blog/posts/anaconda-y-lvm-sobre-luks.html"&gt;Leer más…&lt;/a&gt; (quedan 8 minutos de lectura)&lt;/p&gt;&lt;/div&gt;</description><category>anaconda</category><category>fc25</category><category>fedora</category><category>luks</category><category>lvm</category><guid>https://porfiriopaiz.github.io/blog/posts/anaconda-y-lvm-sobre-luks.html</guid><pubDate>Fri, 03 Feb 2017 22:59:06 GMT</pubDate></item><item><title>Actualizando de Fedora 22 a Fedora 23</title><link>https://porfiriopaiz.github.io/blog/posts/actualizando-de-fedora-22-a-fedora-23.html</link><dc:creator>porfirio</dc:creator><description>&lt;div&gt;&lt;p&gt;Desde el Martes 26 de Mayo de 2015 hasta el 22 de Noviembre de 2016 estuve
 usando Fedora 22 en mi Lenovo ThinkPad T440p, lo que es equivalente a un año y
 medio usando fc22. El 19 Julio de 2016 fc22 entró en periodo
 &lt;a class="reference external" href="https://fedoraproject.org/wiki/End_of_life"&gt;EOL&lt;/a&gt;, esto quiere decir que ya
 no recibirá más actulizaciones de seguridad ni mantenimiento, por lo que
-Actualizar a una versión estable más reciente era recomendable.&lt;/p&gt;
+actualizar a una versión estable más reciente era recomendable.&lt;/p&gt;
 &lt;p&gt;En este post explicaré como actualizar a Fedora 23 usando del administrador
 de paquetes &lt;strong&gt;dnf&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://porfiriopaiz.github.io/blog/posts/actualizando-de-fedora-22-a-fedora-23.html"&gt;Leer más…&lt;/a&gt; (quedan 3 minutos de lectura)&lt;/p&gt;&lt;/div&gt;</description><category>dnf</category><category>eol</category><category>fc22</category><category>fc23</category><category>fedora</category><category>system-upgrade</category><guid>https://porfiriopaiz.github.io/blog/posts/actualizando-de-fedora-22-a-fedora-23.html</guid><pubDate>Sat, 31 Dec 2016 00:10:00 GMT</pubDate></item></channel></rss>

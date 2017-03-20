@@ -12,15 +12,15 @@ usando Fedora 22 en mi Lenovo ThinkPad T440p, lo que es equivalente a un año y
 medio usando fc22. El 19 Julio de 2016 fc22 entró en periodo
 `EOL <https://fedoraproject.org/wiki/End_of_life>`_, esto quiere decir que ya
 no recibirá más actulizaciones de seguridad ni mantenimiento, por lo que
-Actualizar a una versión estable más reciente era recomendable.
+actualizar a una versión estable más reciente era recomendable.
 
 En este post explicaré como actualizar a Fedora 23 usando del administrador
 de paquetes **dnf**.
 
 .. TEASER_END
 
-A como mencioné anteriormente, luego de usar Fedora 22 por año y medio, la
-caché de paquetes de dnf llegó a ocupar casi 10GB de espacio en mi disco duro:
+Luego de usar Fedora 22 por año y medio, la caché de paquetes de dnf llegó a
+ocupar aproximadamente 10GB de espacio en mi disco duro:
 
 .. image:: /images/screenshot_from_2016-11-22_16-05-06.png
    :align: center
@@ -39,9 +39,9 @@ Actualizando a Fedora 23
 Requisitos previos a la actulización
 ------------------------------------
 
-Primeramente nos aseguramos de tener suficiente espacio en nuestra partición
-``/``, ya que durante el proceso de actualización necesitaremos descargar las
-versiones más reciente de todos y cada uno de los paquetes instaldos en nuestro
+Primero nos aseguramos de tener suficiente espacio en nuestra partición ``/``,
+ya que durante el proceso de actualización necesitaremos descargar las
+versión más reciente de todos y cada uno de los paquetes instalados en nuestro
 sistema. Considerando que existe la posibilidad que nuestra caché puede estar
 llena, es necesario remover los paquetes almacenados en ella para liberar
 espacio en caso de que nos haga falta:
@@ -62,6 +62,9 @@ caché de metadatos de paquetes:
 .. image:: /images/screenshot_from_2016-11-22_17-23-27.png
    :align: center
 
+.. code-block:: console
+
+   su -c 'dnf upgrade'
 
 Instalar el plugin dnf-plugin-system-upgrade
 --------------------------------------------
@@ -72,7 +75,7 @@ actualizaciones de paquetes sin conexión. Los paquetes actualizados se
 descargan mientras el sistema se ejecuta normalmente y, a continuación, el
 sistema se reinicia en un entorno especial (implementado como un systmend
 target) para instalarlos. Una vez completada la instalación de los paquetes
-actualizados, el sistema se reinicia de nuevo en la nueva versión de
+actualizados, el sistema se reinicia pero esta vez en la nueva versión de
 Fedora.
 
 El primer paso es instalar el plugin ``dnf-plugin-system-upgrade``:
@@ -99,15 +102,16 @@ descargar y la cantidad datos que implica su descarga:
    :align: center
 
 De igual manera es posible actualizar a Fedora 24, aunque no recomiendo saltar
-a una versión ``n+2`` de Fedora, es decir, pasar de Fedora 22 a Fedora 24. A la
-fecha, las versiones estables más recientes de Fedora son Fedora 24 y Fedora 25
-; Fedora 26 es `Branched <https://fedoraproject.org/wiki/Releases/Branched>`_
+a una versión ``n + 2`` de Fedora, es decir, pasar de Fedora 22 a Fedora 24. A
+la fecha, las versiones estables más recientes son Fedora 24 y Fedora 25;
+Fedora 26 es `Branched <https://fedoraproject.org/wiki/Releases/Branched>`_
 y `Rawhide <https://fedoraproject.org/wiki/Releases/Rawhide>`_ la versión en
-desarrollo continuo. Para actualizar a cualquier de la versiones mencionadas,
-solo se debe editar el parámetro ``número`` en la opción
-``--releasever=número``, 24 para fc24, 25, para fc25, 26 para Fedora Branched y
-``rawhide`` para actualizar a Rawhide. Hay que tener en cuenta que tanto
-Branched como Rawhide no son versiones estables de Fedora.
+desarrollo continuo. Para actualizar a cualquiera de las versiones mencionadas,
+solo se debe editar el parámetro ``número`` en la opción ``--releasever=número``
+, 24 para fc24, 25, para fc25, 26 para Fedora Branched y ``rawhide`` para
+actualizar a Rawhide. Hay que tener en cuenta que tanto Branched como Rawhide
+no son versiones estables de Fedora, por lo que su uso solo se recomienda a
+usuarios más experimentados.
 
 Actualizando a Fedora 24:
 
