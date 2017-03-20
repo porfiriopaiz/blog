@@ -109,16 +109,177 @@
 
     </header><div class="e-content entry-content" itemprop="articleBody text">
     <div>
-<p>Previamente había instalado Fedora 22 en mi laptop, desde hace más de 6 meses
-Fedora 22 fue declarado <a class="reference external" href="https://fedoramagazine.org/fedora-22-end-life/">EOL</a>
-, algo que me preocupaba era como reutilizar las particiones creadas para fc22
+<p>Previamente había actualizado mi laptop de Fedora 22 a Fedora 23, desde hace
+más de 6 meses, también es posible reutilizar las particiones creadas para fc22
 de forma que en ellas pudiera instalar la nueva versión de Fedora 25 y
-conservar todos los archivos contenedios en el Volumen Lógico que sirve como
+conservar todos los archivos contenidos en el Volumen Lógico que sirve como
 <tt class="docutils literal">/home</tt>.</p>
-<p>En el siguiente post explicaré un como lograr esto sin comprometer la
-integridad de nuestra información ni los demás sistemas operativos instalados
-instalados en nuestro equipo.</p>
+<p>En el siguiente post explicaré como lograr esto sin comprometer la integridad
+de nuestra información ni los demás sistemas operativos instalados en nuestro
+equipo.</p>
 <!-- TEASER_END -->
+<p>Como vimos en el post anterior, también es posible hacer un upgrade, es genial
+tener la posibilidad de poder hacer esto, pero la idea de descargar todos
+paquetes, para luego actualizarlos de una vez, es algo que no sé si quiera
+hacer, francamente hacer fresh installs y configurar todo a como estaba es algo
+que me gusta y disfruto hacer. También representa menor carga para el equipo,
+ya que solo descarga los paquetes mínimos para tener un sitema funcional, todo
+lo demás que eventualmente pueda necesitar lo puedo instalar en demanda.</p>
+<p>Considerando que todos los archivos contenidos en tus sistemas cuentan con su
+su debido respaldo, podemos empezar con el proceso de instalación sin miedo a
+que algo salga mal, nunca se sabe que podría salir mal hasta que sale mal XD.</p>
+<div class="section" id="creando-un-medio-de-instalacion">
+<h2>Creando un medio de instalación</h2>
+<p>El primer paso es crear un medio de instalación, para ello debemos decargar el
+archivo ISO de Fedora 25. Desde Fedora 21 he estado usando la imagen netinstall
+, de acuerdo con el capítulo 2 de la <a class="reference external" href="https://docs.fedoraproject.org/en-US/Fedora/25/html/Installation_Guide/chap-downloading-fedora.html">Guía de Instalación de Fedora</a>:</p>
+<blockquote>
+"La imagen iso netinstall se inicia directamente en el entorno de
+instalación y utiliza los repositorios de paquetes Fedora en línea como
+fuente de instalación. Con una imagen netinstall, se puede seleccionar una
+amplia variedad de paquetes para crear una instalación personalizada de
+Fedora. La imagen de Netinstall de Fedora Server es universal y puede
+utilizarse para instalar cualquier sabor de Fedora o su propio conjunto de
+paquetes favoritos."</blockquote>
+<div class="section" id="descargando-la-imagen-everything-netinstall">
+<h3>Descargando la imagen Everything netinstall</h3>
+<p>Yo prefiero usar la imagen ISO netinstall de <a class="reference external" href="https://alt.fedoraproject.org/es/">Fedora Everything</a>.</p>
+<p>Aparentemente, la imagen Everything netinstall no cuenta con servidor de
+torrents para su descarga:</p>
+<p><a class="reference external" href="https://torrent.fedoraproject.org/">https://torrent.fedoraproject.org/</a></p>
+<p>Por lo que deberemos usar el método convencional de descarga directa, para ello
+nos auxiliaremos de la línea de comandos.</p>
+<p>Para sistemas de 32 bits descargar la siguiente imagen:</p>
+<pre class="code console"><a name="rest_code_274de9d52dcc41729959f680e195c9b8-1"></a><span class="go">wget -N -t 0 -c https://download.fedoraproject.org/pub/fedora/linux/releases/25/Everything/i386/iso/Fedora-Everything-netinst-i386-25-1.3.iso</span>
+</pre>
+<p>Para sistemas de 64 bits descargar la siguiente imagen:</p>
+<pre class="code console"><a name="rest_code_6d722f5da4b043209311747d256e8e20-1"></a><span class="go">wget -N -t 0 -c https://download.fedoraproject.org/pub/fedora/linux/releases/25/Everything/x86_64/iso/Fedora-Everything-netinst-x86_64-25-1.3.iso</span>
+</pre>
+<dl class="docutils">
+<dt>Donde:</dt>
+<dd>
+<p class="first"><cite>-N</cite> descarga el archivo con las mismas marcas de tiempo de dia y hora con
+la que fue subido a los servidores.</p>
+<p><cite>-t 0</cite> en caso de que la descarga se vea interrumpida por problemas de
+conexión hará un intento automático de reconexión, si dejamos el tiempo en
+<cite>0</cite> hará la reconexión de forma inmediata.</p>
+<p class="last"><cite>-c</cite> indica que la descarga debe ser continuada en el byte que quedó
+pendiente al momento que la descarga se viera interrumpida.</p>
+</dd>
+</dl>
+<p>Esta es una pequeña medida de contingencia en caso que no contemos con acceso a
+una red lo suficiente estable.</p>
+<p>También podemos verificar la integridad de la imagen descargada usando el
+archivo checksum. Solo tenemos que descargar el archivo y guardarlo en el mismo
+directorio que contiene a la imagen ISO:</p>
+<pre class="code console"><a name="rest_code_4d5457624d8049a2a027d64306e6a2c5-1"></a><span class="go">wget -N -t 0 -c https://alt.fedoraproject.org/es/static/checksums/Fedora-Everything-25-1.3-x86_64-CHECKSUM</span>
+</pre>
+<p>Luego ejecutamos el siguiente comando:</p>
+<pre class="code console"><a name="rest_code_5e8ab99fd769495e8a84227bbbb20d95-1"></a><span class="go">sha256sum -c Fedora-Everything-25-1.3-x86_64-CHECKSUM</span>
+</pre>
+</div>
+<div class="section" id="grabando-la-imagen-iso-en-una-usb">
+<h3>Grabando la imagen ISO en una USB</h3>
+<p>Para grabar la imagen ISO en una USB usaremos la herramienta <strong>Fedora Media
+Writer</strong>. Si estás usando Windows puedes instalar Fedora Media Writer usando el
+siguiente enlace:</p>
+<p><a class="reference external" href="https://getfedora.org/fmw/FedoraMediaWriter-win32-4.0.7.exe">https://getfedora.org/fmw/FedoraMediaWriter-win32-4.0.7.exe</a></p>
+<p>Para MacOS:</p>
+<p><a class="reference external" href="https://getfedora.org/fmw/FedoraMediaWriter-osx-4.0.7.dmg">https://getfedora.org/fmw/FedoraMediaWriter-osx-4.0.7.dmg</a></p>
+<p>Si estás usando Fedora 23 o superior puedes instalar Fedora Media Writer con el
+siguinete comando:</p>
+<pre class="code console"><a name="rest_code_cbd409d381574d1ba5c0ec160dc2ef13-1"></a><span class="go">su -c 'dnf install mediawriter'</span>
+</pre>
+<p>Antes de ejecutar Fedora Media Writer es recomendable desconectar cualquier
+otro dispositivo de almacenamiento extraible que pueda estar conectado en
+nuestro equipo, esto para evitar posibles confusiones. Conectamos la memoria
+USB que usaremos y ejecutamos Fedora Media Writer.</p>
+<p>La siguiente imagen es una captura de pantalla de Fedora Media Writer, de las
+opciones mostradas seleccionamos:</p>
+<ol class="arabic simple">
+<li>Custom image.</li>
+<li>Navegamos hasta el directorio dónde se encuentre la imagen ISO previamente
+descargada.</li>
+<li>Seleccionamos la USB.</li>
+<li>Damos clic en <cite>Write to disk</cite>.</li>
+<li>Ingresamos nuestra contraseña de usuario si estamos en el grupo <cite>wheel</cite> o
+la de <cite>root</cite> en caso de que no seamos admins.</li>
+<li>Listo.</li>
+</ol>
+</div>
+<div class="section" id="arrancando-desde-la-usb">
+<h3>Arrancando desde la USB</h3>
+<p>En mi caso tengo configurada mi laptop para iniciar en <cite>UEFI mode</cite> y con
+<cite>Secure Boot</cite> activado.</p>
+<p>Crear nuestro medio de instalación con Fedora Media Writer nos garantiza que
+el medio de instalación funcionará en cualquier posible escenario.</p>
+<p>Para acceder al Administrador de arranque de mi laptop solo debo presionar la
+tecla <strong>Enter</strong> mientras se muestra el logo de <strong>Lenovo</strong>, este es un
+indicador, en mi caso, de que la máquina está arrancando en UEFI mode.</p>
+</div>
+</div>
+<div class="section" id="iniciando-el-proceso-de-instalacion-de-fedora-25">
+<h2>Iniciando el proceso de instalación de Fedora 25</h2>
+<p>Para esta sección del post haré uso de capturas de pantallas y una breve
+descripción de las mismas.</p>
+<p>Nos enfocaremos principalmente en la etapa de particionado, pero primero lo
+primero, la conexión a Internet.</p>
+<p>Los medios de instalación creados a partir de imágenes netinstall dependen
+exclusivamente de una conexión a Internet, ya sea cableada vía puerto RJ45
+(Ethernet) o vía Wireless (Usando nuestra tarjeta WiFi), en mi caso el medio de
+instalación netinstall detecta ambas tarjetas de red. Los netinstall de Fedora
+contienen un conjunto de driveres que nos permiten hacer usos de ciertos
+periféricos, en caso de no ser detectada nuestra tarjeta de red WiFi puede que
+nuestro dispositivo no sea soportado por Fedora, esto es por razones legales.
+Fedora solo incluye controladores libres o que sus fabricantes hacen explícita
+mención sobre su política de uso y distribución.</p>
+<p>Mi T440p viene equipada con una tarjeta red cableada <a class="reference external" href="https://ark.intel.com/products/60019/Intel-Ethernet-Connection-I217-LM">Intel® Ethernet
+Connection I217-LM</a>
+y una tarjeta de red inalámbrica <a class="reference external" href="http://ark.intel.com/products/75174/Intel-Wireless-N-7260">Intel® Wireless-N 7260</a>
+, ambas tarjetas fueron detectadas durante la instalación, en la oficina solo
+tengo acceso a redes WiFi por lo que usé la tarjeta Wireless.</p>
+<img alt="/images/anaconda-screenshots/0000.png" class="align-center" src="../../images/anaconda-screenshots/0000.png"><p>En esta primer imagen del resumen de instalación, lo primero que debemos hacer
+es conectarnos a alguna de las redes disponibles ya sea que usemos una red
+cableada o una red WiFi, para ello damos clic en la opción <cite>NETWORK &amp; HOST
+NAME</cite>.</p>
+<p>A continuación, selecionando Wireless y activando la tarjeta; seleccionamos una
+red de las que estén disponibles; cambiamos el nombre de nuestro equipo y damos
+clic en Apply...</p>
+<img alt="/images/anaconda-screenshots/0002.png" class="align-center" src="../../images/anaconda-screenshots/0002.png"><p>damos clic en <cite>Done</cite>.</p>
+<p>En la sección de <cite>LOCALIZATION</cite> añadí la distribución de teclado <cite>French (English (International AltGr dead keys))</cite>
+y removí <cite>English (US)</cite>.</p>
+<img alt="/images/anaconda-screenshots/0005.png" class="align-center" src="../../images/anaconda-screenshots/0005.png"><p>Se puede apreciar una pequeña verificación, donde presionando la tecla <cite>AltGr + a</cite>
+y otras vocales el resultado es las vocales acentuadas.</p>
+<p>En la sección <cite>TIME &amp; DATE</cite> siempre habilito la opción <cite>Network Time</cite>...</p>
+<img alt="/images/anaconda-screenshots/0007.png" class="align-center" src="../../images/anaconda-screenshots/0007.png"><p>también seleccionamos la <cite>Región</cite> y <cite>Ciudad</cite> en la que nos encontramos, ya que
+en base a ello se ajusta la hora y la fecha.</p>
+<p>Hasta este momento ya tenemos configuradas las siguientes secciones:</p>
+<img alt="/images/anaconda-screenshots/0008.png" class="align-center" src="../../images/anaconda-screenshots/0008.png"><p>Ahora debemos configurar la sección <cite>SOFTWARE</cite>, especificamente <cite>INSTALLATION
+SOURCE</cite>...</p>
+<p>En esta sección marcamos <cite>On the Network:</cite> y seleccionamos <cite>Closest mirror</cite>,
+también nos aseguramos de desmarcar la opción <cite>Updates</cite>...</p>
+<img alt="/images/anaconda-screenshots/0009.png" class="align-center" src="../../images/anaconda-screenshots/0009.png"><p>de esta forma el instalador usará los repositorios en línea para descargar los
+paquetes necesarios para la instalación, usando el servidor más cercano que por
+lo general no es el más cercano geográficamente, pero el más eficiente y con
+mejores tiempos en términos de transferencia de datos. Al desmarcar <cite>Updates</cite>
+le estamos diciendo al instalador que use los paquetes más recientes que estén
+disponibles en el repo.</p>
+<p>Esperamos que se descarguen los metadatos de grupos de paquetes, del cual
+depende la sección <cite>SOFTWARE SELECTION</cite>:</p>
+<img alt="/images/anaconda-screenshots/0011.png" class="align-center" src="../../images/anaconda-screenshots/0011.png"><p>En <cite>SOFTWARE SELECTION</cite> yo escogí <cite>Fedora Custom Operating System</cite>, el cual
+representa una selección de paquete muy mínima, sin etorno gráfico, solo unos
+pocos grupos de paquetes que son los siguientes:</p>
+<pre class="code console"><a name="rest_code_de8ab9ca5d2542229699285bb7b842bb-1"></a><span class="go">Environment Group: Fedora Custom Operating System</span>
+<a name="rest_code_de8ab9ca5d2542229699285bb7b842bb-2"></a><span class="go"> Environment-Id: custom-environment</span>
+<a name="rest_code_de8ab9ca5d2542229699285bb7b842bb-3"></a><span class="go"> Description: Basic building block for a custom Fedora system.</span>
+<a name="rest_code_de8ab9ca5d2542229699285bb7b842bb-4"></a><span class="go"> Mandatory Groups:</span>
+<a name="rest_code_de8ab9ca5d2542229699285bb7b842bb-5"></a><span class="go">   Core</span>
+<a name="rest_code_de8ab9ca5d2542229699285bb7b842bb-6"></a><span class="go"> Optional Groups:</span>
+<a name="rest_code_de8ab9ca5d2542229699285bb7b842bb-7"></a><span class="go">   Guest Agents</span>
+<a name="rest_code_de8ab9ca5d2542229699285bb7b842bb-8"></a><span class="go">   Standard</span>
+</pre>
+<p>Finalmente hemos llegado a la sección</p>
+</div>
 </div>
     </div>
     <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
