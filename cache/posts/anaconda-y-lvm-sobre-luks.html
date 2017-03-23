@@ -1,8 +1,8 @@
-<p>Previamente había actualizado mi laptop de Fedora 22 a Fedora 23, desde hace
-más de 6 meses, también es posible reutilizar las particiones creadas para fc22
-de forma que en ellas pudiera instalar la nueva versión de Fedora 25 y
-conservar todos los archivos contenidos en el Volumen Lógico que sirve como
-<tt class="docutils literal">/home</tt>.</p>
+<p>Previamente había actualizado mi laptop de Fedora 22 a Fedora 23 cuando fc22
+ya tenía más de 6 meses de haber alcanzado su final vida, también es posible
+reutilizar las particiones creadas para fc22 de forma que en ellas se pueda
+instalar la nueva versión de Fedora y conservar todos los archivos contenidos
+en el Volumen Lógico que sirve como <tt class="docutils literal">/home</tt>.</p>
 <p>En el siguiente post explicaré como lograr esto sin comprometer la integridad
 de nuestra información ni los demás sistemas operativos instalados en nuestro
 equipo.</p>
@@ -39,12 +39,12 @@ torrents para su descarga:</p>
 <p>Por lo que deberemos usar el método convencional de descarga directa, para ello
 nos auxiliaremos de la línea de comandos.</p>
 <p>Para sistemas de 32 bits descargar la siguiente imagen:</p>
-<pre class="code console"><a name="rest_code_274de9d52dcc41729959f680e195c9b8-1"></a><span class="go">wget -N -t 0 -c https://download.fedoraproject.org/pub/fedora/linux/releases/25/Everything/i386/iso/Fedora-Everything-netinst-i386-25-1.3.iso</span>
+<pre class="code console"><a name="rest_code_8e928a7859934cedbfd7686b05439f9c-1"></a><span class="go">wget -N -t 0 -c https://download.fedoraproject.org/pub/fedora/linux/releases/25/Everything/i386/iso/Fedora-Everything-netinst-i386-25-1.3.iso</span>
 </pre><p>Para sistemas de 64 bits descargar la siguiente imagen:</p>
-<pre class="code console"><a name="rest_code_6d722f5da4b043209311747d256e8e20-1"></a><span class="go">wget -N -t 0 -c https://download.fedoraproject.org/pub/fedora/linux/releases/25/Everything/x86_64/iso/Fedora-Everything-netinst-x86_64-25-1.3.iso</span>
+<pre class="code console"><a name="rest_code_a09e5b0c65644f0bbd3e388cf695f118-1"></a><span class="go">wget -N -t 0 -c https://download.fedoraproject.org/pub/fedora/linux/releases/25/Everything/x86_64/iso/Fedora-Everything-netinst-x86_64-25-1.3.iso</span>
 </pre><dl class="docutils">
 <dt>Donde:</dt>
-<dd><p class="first"><cite>-N</cite> descarga el archivo con las mismas marcas de tiempo de dia y hora con
+<dd><p class="first"><cite>-N</cite> descarga el archivo con las misma marca de tiempo de dia y hora con
 la que fue subido a los servidores.</p>
 <p><cite>-t 0</cite> en caso de que la descarga se vea interrumpida por problemas de
 conexión hará un intento automático de reconexión, si dejamos el tiempo en
@@ -58,9 +58,9 @@ una red lo suficiente estable.</p>
 <p>También podemos verificar la integridad de la imagen descargada usando el
 archivo checksum. Solo tenemos que descargar el archivo y guardarlo en el mismo
 directorio que contiene a la imagen ISO:</p>
-<pre class="code console"><a name="rest_code_4d5457624d8049a2a027d64306e6a2c5-1"></a><span class="go">wget -N -t 0 -c https://alt.fedoraproject.org/es/static/checksums/Fedora-Everything-25-1.3-x86_64-CHECKSUM</span>
+<pre class="code console"><a name="rest_code_1d85ba322c6a4549b76b03b8d2b2fa5c-1"></a><span class="go">wget -N -t 0 -c https://alt.fedoraproject.org/es/static/checksums/Fedora-Everything-25-1.3-x86_64-CHECKSUM</span>
 </pre><p>Luego ejecutamos el siguiente comando:</p>
-<pre class="code console"><a name="rest_code_5e8ab99fd769495e8a84227bbbb20d95-1"></a><span class="go">sha256sum -c Fedora-Everything-25-1.3-x86_64-CHECKSUM</span>
+<pre class="code console"><a name="rest_code_17d9c4eec353491ca8fd50ca767e0484-1"></a><span class="go">sha256sum -c Fedora-Everything-25-1.3-x86_64-CHECKSUM</span>
 </pre></div>
 <div class="section" id="grabando-la-imagen-iso-en-una-usb">
 <h2>Grabando la imagen ISO en una USB</h2>
@@ -72,13 +72,12 @@ siguiente enlace:</p>
 <p><a class="reference external" href="https://getfedora.org/fmw/FedoraMediaWriter-osx-4.0.7.dmg">https://getfedora.org/fmw/FedoraMediaWriter-osx-4.0.7.dmg</a></p>
 <p>Si estás usando Fedora 23 o superior puedes instalar Fedora Media Writer con el
 siguinete comando:</p>
-<pre class="code console"><a name="rest_code_cbd409d381574d1ba5c0ec160dc2ef13-1"></a><span class="go">su -c &#39;dnf install mediawriter&#39;</span>
+<pre class="code console"><a name="rest_code_31375ef75c374793ad34f3f35f8eb593-1"></a><span class="go">su -c &#39;dnf install mediawriter&#39;</span>
 </pre><p>Antes de ejecutar Fedora Media Writer es recomendable desconectar cualquier
 otro dispositivo de almacenamiento extraible que pueda estar conectado en
 nuestro equipo, esto para evitar posibles confusiones. Conectamos la memoria
 USB que usaremos y ejecutamos Fedora Media Writer.</p>
-<p>La siguiente imagen es una captura de pantalla de Fedora Media Writer, de las
-opciones mostradas seleccionamos:</p>
+<p>Los pasos a seguir son muy sencillos, seleccionamos:</p>
 <ol class="arabic simple">
 <li>Custom image.</li>
 <li>Navegamos hasta el directorio dónde se encuentre la imagen ISO previamente
@@ -105,13 +104,12 @@ indicador, en mi caso, de que la máquina está arrancando en UEFI mode.</p>
 <h1>Iniciando el proceso de instalación de Fedora 25</h1>
 <p>Para esta sección del post haré uso de capturas de pantallas y una breve
 descripción de las mismas.</p>
-<p>Nos enfocaremos principalmente en la etapa de particionado, pero primero lo
-primero, la conexión a Internet.</p>
+<p>Lo primero primero, la conexión a Internet.</p>
 <p>Los medios de instalación creados a partir de imágenes netinstall dependen
 exclusivamente de una conexión a Internet, ya sea cableada vía puerto RJ45
 (Ethernet) o vía Wireless (Usando nuestra tarjeta WiFi), en mi caso el medio de
 instalación netinstall detecta ambas tarjetas de red. Los netinstall de Fedora
-contienen un conjunto de driveres que nos permiten hacer usos de ciertos
+contienen un conjunto de driveres que nos permiten hacer uso de ciertos
 periféricos, en caso de no ser detectada nuestra tarjeta de red WiFi puede que
 nuestro dispositivo no sea soportado por Fedora, esto es por razones legales.
 Fedora solo incluye controladores libres o que sus fabricantes hacen explícita
@@ -135,7 +133,7 @@ clic en Apply...</p>
 y removí <cite>English (US)</cite>.</p>
 <img alt="/images/anaconda-screenshots/0005.png" class="align-center" src="/images/anaconda-screenshots/0005.png" />
 <p>Se puede apreciar una pequeña verificación, donde presionando la tecla <cite>AltGr + a</cite>
-y otras vocales el resultado es las vocales acentuadas.</p>
+y otras vocales, el resultado es las vocales acentuadas.</p>
 <p>En la sección <cite>TIME &amp; DATE</cite> siempre habilito la opción <cite>Network Time</cite>...</p>
 <img alt="/images/anaconda-screenshots/0007.png" class="align-center" src="/images/anaconda-screenshots/0007.png" />
 <p>también seleccionamos la <cite>Región</cite> y <cite>Ciudad</cite> en la que nos encontramos, ya que
@@ -157,15 +155,86 @@ disponibles en el repo.</p>
 depende la sección <cite>SOFTWARE SELECTION</cite>:</p>
 <img alt="/images/anaconda-screenshots/0011.png" class="align-center" src="/images/anaconda-screenshots/0011.png" />
 <p>En <cite>SOFTWARE SELECTION</cite> yo escogí <cite>Fedora Custom Operating System</cite>, el cual
-representa una selección de paquete muy mínima, sin etorno gráfico, solo unos
+representa una selección de paquetes muy mínima, sin etorno gráfico, solo unos
 pocos grupos de paquetes que son los siguientes:</p>
-<pre class="code console"><a name="rest_code_de8ab9ca5d2542229699285bb7b842bb-1"></a><span class="go">Environment Group: Fedora Custom Operating System</span>
-<a name="rest_code_de8ab9ca5d2542229699285bb7b842bb-2"></a><span class="go"> Environment-Id: custom-environment</span>
-<a name="rest_code_de8ab9ca5d2542229699285bb7b842bb-3"></a><span class="go"> Description: Basic building block for a custom Fedora system.</span>
-<a name="rest_code_de8ab9ca5d2542229699285bb7b842bb-4"></a><span class="go"> Mandatory Groups:</span>
-<a name="rest_code_de8ab9ca5d2542229699285bb7b842bb-5"></a><span class="go">   Core</span>
-<a name="rest_code_de8ab9ca5d2542229699285bb7b842bb-6"></a><span class="go"> Optional Groups:</span>
-<a name="rest_code_de8ab9ca5d2542229699285bb7b842bb-7"></a><span class="go">   Guest Agents</span>
-<a name="rest_code_de8ab9ca5d2542229699285bb7b842bb-8"></a><span class="go">   Standard</span>
-</pre><p>Finalmente hemos llegado a la sección</p>
+<pre class="code console"><a name="rest_code_ecfc8e0a3c4f412ba290c5516359d27d-1"></a><span class="go">Environment Group: Fedora Custom Operating System</span>
+<a name="rest_code_ecfc8e0a3c4f412ba290c5516359d27d-2"></a><span class="go"> Environment-Id: custom-environment</span>
+<a name="rest_code_ecfc8e0a3c4f412ba290c5516359d27d-3"></a><span class="go"> Description: Basic building block for a custom Fedora system.</span>
+<a name="rest_code_ecfc8e0a3c4f412ba290c5516359d27d-4"></a><span class="go"> Mandatory Groups:</span>
+<a name="rest_code_ecfc8e0a3c4f412ba290c5516359d27d-5"></a><span class="go">   Core</span>
+<a name="rest_code_ecfc8e0a3c4f412ba290c5516359d27d-6"></a><span class="go"> Optional Groups:</span>
+<a name="rest_code_ecfc8e0a3c4f412ba290c5516359d27d-7"></a><span class="go">   Guest Agents</span>
+<a name="rest_code_ecfc8e0a3c4f412ba290c5516359d27d-8"></a><span class="go">   Standard</span>
+</pre><p>Finalmente hemos llegado a la sección <cite>SYSTEM</cite>, seleccionamos <cite>INSTALLATION
+DESTINATION</cite>. En <cite>Device Selection</cite>, en <cite>Local Stardard Disk</cite> selecionamos el
+disco duro en el que tenemos la instalación de Fedora del cual queremos
+reutilizar las particiones existentes.</p>
+<p>En la sección <cite>Other Storage Options</cite>, en <cite>Partitioning</cite> seleccionamos <cite>I will
+configure partitioning</cite>.</p>
+<p>A continuacióñ se muestra el siguiente menú, en el cual daremos clic en
+<cite>Unknown</cite>:</p>
+<img alt="/images/anaconda-screenshots/0013.png" class="align-center" src="/images/anaconda-screenshots/0013.png" />
+<p>Una vez que damos clic en <cite>Unknown</cite> se mostrarán las demás particiones
+existentes. Nos enfocaremos en las particiones <strong>sda2</strong>, <strong>sda9</strong> y <strong>sda10</strong>:</p>
+<img alt="/images/anaconda-screenshots/0014.png" class="align-center" src="/images/anaconda-screenshots/0014.png" />
+<dl class="docutils">
+<dt>Donde:</dt>
+<dd><p class="first"><strong>sda2</strong> es la partición ESP (EFI Partition System), esta partición
+contiene los demás archivos *.efi, cada OS que haya sido instalado en
+nuestro equipo en UEFI mode tiene un archivo *.efi que será enlazado a
+nuestro GRUB, el cual nos permite escoger que OS arrancar durante los
+primeros segundos luego de haber encendido nuestro equipo. Por nada del
+mundo esta partición debe ser marcada para ser formateada. <strong>sda2</strong> será
+montada en <cite>/boot/efi</cite>.</p>
+<p><strong>sda9</strong> es la partición que montaré en <cite>/boot</cite>, esta partición no debe
+estar cifrada, ya que ahí se almacenan archivos necesarios para que el OS
+sea cargado, por ejemplo el kernel. Si estuviera cifrada no podriamos
+acceder al kernel.</p>
+<blockquote class="last">
+<strong>sda10</strong> es la partición que fue cifrada usando LUKS, la cual contiene
+el <cite>Volume Group</cite> que contiene los demás volúmenes lógicos que sirven de
+<cite>/</cite>, <cite>/home</cite> y <cite>swap</cite>.</blockquote>
+</dd>
+</dl>
+<p>Al seleccionar <strong>sda10</strong> se nos solicita la contraseña de cifrado que nos
+permitirá acceder al <cite>Volume Group</cite> que contiene las particiones mencionadas.</p>
+<p>Que se muestra como la instalación existente de Fedora 23, que originalmente
+era el fc22 que actualizamos en el post anterior.</p>
+<img alt="/images/anaconda-screenshots/0015.png" class="align-center" src="/images/anaconda-screenshots/0015.png" />
+<p>Damos clic en <cite>Fedora Linux 23 for x86_64</cite> y podremos ver los volúmenes lógicos
+que reciclaremos.</p>
+<p>Dando clic <cite>/home</cite>, nos aseguramos de asignar un <cite>Mount Point</cite> o punto de
+montaje para esta Volumén Lógico. Nos aseguramos que el checkbox <cite>Reformat</cite>
+<strong>no</strong> esté marcado, y damos clic en <cite>Update Settings</cite>.</p>
+<img alt="/images/anaconda-screenshots/0017.png" class="align-center" src="/images/anaconda-screenshots/0017.png" />
+<p>En la siguiente imagen podemos apreciar que el volumen lógico <cite>fedora_lilit-home</cite>
+fue reasignado a <cite>New Fedora 25 Installation</cite>.</p>
+<img alt="/images/anaconda-screenshots/0018.png" class="align-center" src="/images/anaconda-screenshots/0018.png" />
+<p>Seleccionamos <cite>/boot/efi</cite>, que no es más que la partición ESP ubicada en
+<strong>sda2</strong>, nos aseguramos de asignar un <cite>Mount Point</cite> o punto de montaje para
+esta Volumén Lógicoi, que en este caso sería <cite>/boot/efi</cite>. Nos aseguramos que el
+checkbox <cite>Reformat</cite> <strong>no</strong> esté marcado, y damos clic en <cite>Update Settings</cite>.</p>
+<img alt="/images/anaconda-screenshots/0019.png" class="align-center" src="/images/anaconda-screenshots/0019.png" />
+<p>Seleccionamos <cite>/</cite>, este volumen lógico servía como <cite>/</cite> de fc23, por lo que para
+poder reutilizarlo debemos marcarlo para formatear. Asignamos <cite>/</cite> como putno de
+montaje, Asignamos un sistema de archivos (ext4), nos aseguramos que el
+checkbox <cite>Reformat</cite> <strong>esté</strong> marcado, y damos clic en <cite>Update Settings</cite>.</p>
+<img alt="/images/anaconda-screenshots/0023.png" class="align-center" src="/images/anaconda-screenshots/0023.png" />
+<p>Seleccionamos <cite>swap</cite>, marcamos el checkbox y damos clic en <cite>Update Settings</cite>.</p>
+<img alt="/images/anaconda-screenshots/0025.png" class="align-center" src="/images/anaconda-screenshots/0025.png" />
+<p>Seleccionamos <cite>/boot</cite>, acá es donde se almacenaban los kernels de fc23, para
+poder reutilizar es partición es necesario formatearla. Asignamos un punto de
+montaje <cite>/boot</cite>, damos clic en <cite>Reformat</cite>, y le asignamos un sistema de archivos
+<cite>ext4</cite> en mi caso y clic en <cite>Update Settings</cite>.</p>
+<img alt="/images/anaconda-screenshots/0030.png" class="align-center" src="/images/anaconda-screenshots/0030.png" />
+<p>Damos clic en <cite>Done</cite> y aceptamos los cambios que serán efectuados.</p>
+<p>Para finalizar solo damos clic en <cite>Begin Installation</cite>.</p>
+<img alt="/images/anaconda-screenshots/0032.png" class="align-center" src="/images/anaconda-screenshots/0032.png" />
+<p>Asignamos una contraseña de usuario y la contraseña de ROOT. Y listo, ahora solo
+debemos esperar que la descarga de los paquetes y su instalación finalice:</p>
+<img alt="/images/anaconda-screenshots/0037.png" class="align-center" src="/images/anaconda-screenshots/0037.png" />
+<p>Y listo, damos clic en <cite>Reboot</cite>.</p>
+<img alt="/images/anaconda-screenshots/0053.png" class="align-center" src="/images/anaconda-screenshots/0053.png" />
+<p>En mi caso tuve que hacer una serie de pasos luego de la instalación que los
+veremos en el siguiente post.</p>
 </div>

@@ -13,25 +13,25 @@ ocupar aproximadamente 10GB de espacio en mi disco duro:</p>
 <p>Para indicarle a dnf que conserve la caché de paquetes es necesario añadir la
 siguiente línea al archivo de configuración de dnf que está en
 <tt class="docutils literal">/etc/dnf/dnf.conf</tt>:</p>
-<pre class="code console"><a name="rest_code_a818de6da8d746c0b0ad4e1a6ad91397-1"></a><span class="go">su -c &quot;echo &#39;keepcache=true&#39; &gt;&gt; /etc/dnf/dnf.conf&quot;</span>
+<pre class="code console"><a name="rest_code_4ec18ed1afa0482a9331478fb685c253-1"></a><span class="go">su -c &quot;echo &#39;keepcache=true&#39; &gt;&gt; /etc/dnf/dnf.conf&quot;</span>
 </pre><div class="section" id="actualizando-a-fedora-23">
 <h1>Actualizando a Fedora 23</h1>
 <div class="section" id="requisitos-previos-a-la-actulizacion">
 <h2>Requisitos previos a la actulización</h2>
 <p>Primero nos aseguramos de tener suficiente espacio en nuestra partición <tt class="docutils literal">/</tt>,
-ya que durante el proceso de actualización necesitaremos descargar las
+ya que durante el proceso de actualización necesitaremos descargar la
 versión más reciente de todos y cada uno de los paquetes instalados en nuestro
 sistema. Considerando que existe la posibilidad que nuestra caché puede estar
 llena, es necesario remover los paquetes almacenados en ella para liberar
 espacio en caso de que nos haga falta:</p>
-<pre class="code console"><a name="rest_code_7f7d97338e894645893a24e7df43ac8a-1"></a><span class="go">su -c &#39;dnf clean all&#39;</span>
+<pre class="code console"><a name="rest_code_6d859d46e20e428d8336c4f3149e36af-1"></a><span class="go">su -c &#39;dnf clean all&#39;</span>
 </pre><p>Antes de continuar, es necesario que asegurarnos que nuestro sistema tiene
 instaladas las actualizaciones más recientes disponibles desde los diferentes
 repositorios habilitados en nuestro sistema. Para ello, debemos reconstruir la
 caché de metadatos de paquetes:</p>
-<pre class="code console"><a name="rest_code_a13708fffaef4c9e971724118ee478e5-1"></a><span class="go">su -c &#39;dnf makecache&#39;</span>
+<pre class="code console"><a name="rest_code_2c64c8d2ad3b4fdba9719566d2ed4eb3-1"></a><span class="go">su -c &#39;dnf makecache&#39;</span>
 </pre><img alt="/images/screenshot_from_2016-11-22_17-23-27.png" class="align-center" src="/images/screenshot_from_2016-11-22_17-23-27.png" />
-<pre class="code console"><a name="rest_code_e92851e71226420da78c22918e5a6d39-1"></a><span class="go">su -c &#39;dnf upgrade&#39;</span>
+<pre class="code console"><a name="rest_code_ba72a9f36c4d47abbde6dfa81ac08778-1"></a><span class="go">su -c &#39;dnf upgrade&#39;</span>
 </pre></div>
 <div class="section" id="instalar-el-plugin-dnf-plugin-system-upgrade">
 <h2>Instalar el plugin dnf-plugin-system-upgrade</h2>
@@ -41,16 +41,15 @@ actualizaciones de paquetes sin conexión. Los paquetes actualizados se
 descargan mientras el sistema se ejecuta normalmente y, a continuación, el
 sistema se reinicia en un entorno especial (implementado como un systmend
 target) para instalarlos. Una vez completada la instalación de los paquetes
-actualizados, el sistema se reinicia pero esta vez en la nueva versión de
-Fedora.</p>
+, el sistema se reinicia pero esta vez en la nueva versión de Fedora.</p>
 <p>El primer paso es instalar el plugin <tt class="docutils literal"><span class="pre">dnf-plugin-system-upgrade</span></tt>:</p>
-<pre class="code console"><a name="rest_code_0dac761ae84642489883192e2bbb84be-1"></a><span class="go">su -c &#39;dnf install dnf-plugin-system-upgrade&#39;</span>
+<pre class="code console"><a name="rest_code_418304ba88f74ad6a9cc484f7b122cdb-1"></a><span class="go">su -c &#39;dnf install dnf-plugin-system-upgrade&#39;</span>
 </pre><p>Y ahora procemos a descargar los paquetes necesarios para realizar el upgrade a
 Fedora 23.</p>
 <p>Este proceso descargará todos y cada uno de los paquetes que tenemos instalado
 en nuestro sistema, en su versión más reciente disponible para el release que
 nosotros le indiquemos, en este caso el release será <tt class="docutils literal">23</tt>.</p>
-<pre class="code console"><a name="rest_code_79b30e99d2014831a556e0633f6ece80-1"></a><span class="go">su -c &#39;dnf system-upgrade download --refresh --best --allowerasing --releasever=23&#39;</span>
+<pre class="code console"><a name="rest_code_d0fe72ad1ada4e2abd342d3cc48a201a-1"></a><span class="go">su -c &#39;dnf system-upgrade download --refresh --best --allowerasing --releasever=23&#39;</span>
 </pre><p>En la siguiente captura de pantalla se puede apreciar la número de paquetes a
 descargar y la cantidad datos que implica su descarga:</p>
 <img alt="/images/screenshot_from_2016-11-22_17-34-42.png" class="align-center" src="/images/screenshot_from_2016-11-22_17-34-42.png" />
@@ -66,14 +65,14 @@ actualizar a Rawhide. Hay que tener en cuenta que tanto Branched como Rawhide
 no son versiones estables de Fedora, por lo que su uso solo se recomienda a
 usuarios más experimentados.</p>
 <p>Actualizando a Fedora 24:</p>
-<pre class="code console"><a name="rest_code_49514af253f6491f9709ad02d69477b2-1"></a><span class="go">su -c &#39;dnf system-upgrade download --refresh --best --allowerasing --releasever=24&#39;</span>
+<pre class="code console"><a name="rest_code_10e5a1b066264dc2a2f91cbcc812a3b1-1"></a><span class="go">su -c &#39;dnf system-upgrade download --refresh --best --allowerasing --releasever=24&#39;</span>
 </pre><p>Actualizando a Fedora 25:</p>
-<pre class="code console"><a name="rest_code_7ec0697bf2a24f4487532de53aded0bb-1"></a><span class="go">su -c &#39;dnf system-upgrade download --refresh --best --allowerasing --releasever=25&#39;</span>
+<pre class="code console"><a name="rest_code_859cd6b2867a473eb6d9ba6f3582a0ed-1"></a><span class="go">su -c &#39;dnf system-upgrade download --refresh --best --allowerasing --releasever=25&#39;</span>
 </pre><p>Actualizando a Fedora Rawhide:</p>
-<pre class="code console"><a name="rest_code_ef748d610b0945f48960a522df991e87-1"></a><span class="go">su -c &#39;dnf system-upgrade download --refresh --best --allowerasing --releasever=rawhide&#39;</span>
+<pre class="code console"><a name="rest_code_b68209854955428ba3c66b5c2378a0b3-1"></a><span class="go">su -c &#39;dnf system-upgrade download --refresh --best --allowerasing --releasever=rawhide&#39;</span>
 </pre><p>Finalmente, una vez terminada la descarga de los paquetes, es necesario
 reiniciar el sistema ejecutando el siguiente comando:</p>
-<pre class="code console"><a name="rest_code_4193cb4ba9ef4cea9416b58f6cdb40b2-1"></a><span class="go">su -c &#39;dnf system-upgrade reboot&#39;</span>
+<pre class="code console"><a name="rest_code_5385623a52bd4bf6ac2043b158d42034-1"></a><span class="go">su -c &#39;dnf system-upgrade reboot&#39;</span>
 </pre><p>Esto hará que la computadora reinicie. El sistema debería arrancar nuevamente
 utilizando el mismo kernel (el más reciente), pero esta vez iniciará el proceso
 de upgrade de Fedora 22 hacia Fedora 23.</p>

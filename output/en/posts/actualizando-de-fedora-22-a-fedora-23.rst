@@ -40,7 +40,7 @@ Requisitos previos a la actulización
 ------------------------------------
 
 Primero nos aseguramos de tener suficiente espacio en nuestra partición ``/``,
-ya que durante el proceso de actualización necesitaremos descargar las
+ya que durante el proceso de actualización necesitaremos descargar la
 versión más reciente de todos y cada uno de los paquetes instalados en nuestro
 sistema. Considerando que existe la posibilidad que nuestra caché puede estar
 llena, es necesario remover los paquetes almacenados en ella para liberar
@@ -75,8 +75,7 @@ actualizaciones de paquetes sin conexión. Los paquetes actualizados se
 descargan mientras el sistema se ejecuta normalmente y, a continuación, el
 sistema se reinicia en un entorno especial (implementado como un systmend
 target) para instalarlos. Una vez completada la instalación de los paquetes
-actualizados, el sistema se reinicia pero esta vez en la nueva versión de
-Fedora.
+, el sistema se reinicia pero esta vez en la nueva versión de Fedora.
 
 El primer paso es instalar el plugin ``dnf-plugin-system-upgrade``:
 
