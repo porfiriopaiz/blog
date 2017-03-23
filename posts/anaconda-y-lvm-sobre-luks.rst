@@ -24,12 +24,12 @@ tener la posibilidad de poder hacer esto, pero la idea de descargar todos
 paquetes, para luego actualizarlos de una vez, es algo que no sé si quiera
 hacer, francamente hacer fresh installs y configurar todo a como estaba es algo
 que me gusta y disfruto hacer. También representa menor carga para el equipo,
-ya que solo descarga los paquetes mínimos para tener un sitema funcional, todo
+ya que solo descarga los paquetes mínimos para tener un sistema funcional, todo
 lo demás que eventualmente pueda necesitar lo puedo instalar en demanda.
 
 Considerando que todos los archivos contenidos en tus sistemas cuentan con su
-su debido respaldo, podemos empezar con el proceso de instalación sin miedo a
-que algo salga mal, nunca se sabe que podría salir mal hasta que sale mal XD.
+debido respaldo, podemos empezar con el proceso de instalación sin miedo a que
+algo salga mal, nunca se sabe que podría salir mal hasta que sale mal XD.
 
 Creando un medio de instalación
 ===============================
@@ -154,7 +154,7 @@ Iniciando el proceso de instalación de Fedora 25
 Para esta sección del post haré uso de capturas de pantallas y una breve
 descripción de las mismas.
 
-Lo primero primero, la conexión a Internet.
+Lo primero, la conexión a Internet.
 
 Los medios de instalación creados a partir de imágenes netinstall dependen
 exclusivamente de una conexión a Internet, ya sea cableada vía puerto RJ45
@@ -234,7 +234,7 @@ depende la sección `SOFTWARE SELECTION`:
    :align: center
 
 En `SOFTWARE SELECTION` yo escogí `Fedora Custom Operating System`, el cual
-representa una selección de paquetes muy mínima, sin etorno gráfico, solo unos
+representa una selección de paquetes muy mínima, sin entorno gráfico, solo unos
 pocos grupos de paquetes que son los siguientes:
 
 .. code-block:: console
@@ -256,7 +256,7 @@ reutilizar las particiones existentes.
 En la sección `Other Storage Options`, en `Partitioning` seleccionamos `I will
 configure partitioning`.
 
-A continuacióñ se muestra el siguiente menú, en el cual daremos clic en
+A continuación se muestra el siguiente menú, en el cual daremos clic en
 `Unknown`:
 
 .. image:: /images/anaconda-screenshots/0013.png
@@ -269,6 +269,7 @@ existentes. Nos enfocaremos en las particiones **sda2**, **sda9** y **sda10**:
    :align: center
 
 Donde:
+
     **sda2** es la partición ESP (EFI Partition System), esta partición
     contiene los demás archivos \*.efi, cada OS que haya sido instalado en
     nuestro equipo en UEFI mode tiene un archivo \*.efi que será enlazado a
@@ -282,15 +283,14 @@ Donde:
     sea cargado, por ejemplo el kernel. Si estuviera cifrada no podriamos
     acceder al kernel.
 
-     **sda10** es la partición que fue cifrada usando LUKS, la cual contiene
-     el `Volume Group` que contiene los demás volúmenes lógicos que sirven de
-     `/`, `/home` y `swap`.
+    **sda10** es la partición que fue cifrada usando LUKS, la cual contiene
+    el `Volume Group` que contiene los demás volúmenes lógicos que sirven de
+    `/`, `/home` y `swap`.
 
 Al seleccionar **sda10** se nos solicita la contraseña de cifrado que nos
 permitirá acceder al `Volume Group` que contiene las particiones mencionadas.
-
-Que se muestra como la instalación existente de Fedora 23, que originalmente
-era el fc22 que actualizamos en el post anterior.
+Se muestra como la instalación existente de Fedora 23, que originalmente era el
+fc22 que actualizamos en el post anterior.
 
 .. image:: /images/anaconda-screenshots/0015.png
    :align: center
@@ -299,7 +299,7 @@ Damos clic en `Fedora Linux 23 for x86_64` y podremos ver los volúmenes lógico
 que reciclaremos.
 
 Dando clic `/home`, nos aseguramos de asignar un `Mount Point` o punto de
-montaje para esta Volumén Lógico. Nos aseguramos que el checkbox `Reformat`
+montaje para este Volumén Lógico. Nos aseguramos que el checkbox `Reformat`
 **no** esté marcado, y damos clic en `Update Settings`.
 
 .. image:: /images/anaconda-screenshots/0017.png
@@ -313,15 +313,15 @@ fue reasignado a `New Fedora 25 Installation`.
 
 Seleccionamos `/boot/efi`, que no es más que la partición ESP ubicada en
 **sda2**, nos aseguramos de asignar un `Mount Point` o punto de montaje para
-esta Volumén Lógicoi, que en este caso sería `/boot/efi`. Nos aseguramos que el
+este Volumén Lógico, que en este caso sería `/boot/efi`. Nos aseguramos que el
 checkbox `Reformat` **no** esté marcado, y damos clic en `Update Settings`.
 
 .. image:: /images/anaconda-screenshots/0019.png
    :align: center
 
 Seleccionamos `/`, este volumen lógico servía como `/` de fc23, por lo que para
-poder reutilizarlo debemos marcarlo para formatear. Asignamos `/` como putno de
-montaje, Asignamos un sistema de archivos (ext4), nos aseguramos que el
+poder reutilizarlo debemos marcarlo para formatear. Asignamos `/` como punto de
+montaje, asignamos un sistema de archivos (ext4), nos aseguramos que el
 checkbox `Reformat` **esté** marcado, y damos clic en `Update Settings`.
 
 .. image:: /images/anaconda-screenshots/0023.png
@@ -334,8 +334,8 @@ Seleccionamos `swap`, marcamos el checkbox y damos clic en `Update Settings`.
 
 Seleccionamos `/boot`, acá es donde se almacenaban los kernels de fc23, para
 poder reutilizar es partición es necesario formatearla. Asignamos un punto de
-montaje `/boot`, damos clic en `Reformat`, y le asignamos un sistema de archivos
-`ext4` en mi caso y clic en `Update Settings`.
+montaje `/boot`, damos clic en `Reformat`, en mi caso le asigno un sistema de
+archivos `ext4` y clic en `Update Settings`.
 
 .. image:: /images/anaconda-screenshots/0030.png
    :align: center
