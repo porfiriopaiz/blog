@@ -9,7 +9,7 @@
 
 El Martes 14 de Marzo la Comunidad de Contribuidores del Proyecto `Fedora
 Nicaragua <http://fedora.org.ni/>`_ y el Staff del `CS50x.ni
-<http://code-fu.net.ni/>`_ , con el apoyo de `Fundación UNO
+<http://code-fu.net.ni/>`_, con el apoyo de `Fundación UNO
 <http://fundacionuno.org/en/>`_ y The Fedora Project, tuvimos la oportunidad
 reunirnos para disfrutar de a una serie de charlas en las que los expositores
 compartieron sobre su experiencia en el uso del Software Libre, de la
@@ -32,7 +32,7 @@ Eduardo es Embajador del Proyecto Fedora, Mantenedor de Paquetes y actualmente
 forma parte del grupo de estudiantes que están participando en el curso CS50x.ni,
 nos explicó en qué consiste el Proyecto Fedora, su misión y visión como proyecto
 de Software Libre, además que nos dio una mirada de lo que consiste se parte de
-esta comunidad tanto a nivel internacional como a nivel internacional.
+esta comunidad tanto a nivel local como a nivel internacional.
 
 .. image:: /images/fedora_at_cs50xni/mayorga.jpg
    :align: center
@@ -44,7 +44,7 @@ herramientas de línea de comando presentes en todas las distribuciones
 GNU/Linux, para ello Neville hizo una demostración sobre el uso de herramientas
 de `administración remota SSH <https://yn1v.fedorapeople.org/Slides/ssh_una_presentacion_corta.odp>`_
 en la que mostró como acceder a un equipo conectado en la misma red desde un
-segundo equipo mediante una línea de comando y habló sobre algunas herramientas
+segundo equipo mediante una línea de comandos y habló sobre algunas herramientas
 que permiten hacer monitoreo de recursos, todo ello de forma remota.
 
 .. image:: /images/fedora_at_cs50xni/yn1v.jpg
@@ -72,13 +72,13 @@ En el último bloque de charlas `Porfirio Páiz <https://fedoraproject.org/wiki/
 contribuidor del Proyecto Fedora y estudiante del curso CS50x.ni, dio 3 ejemplos
 de como la distribución Fedora puede ser una herramienta muy útil para los
 estudiantes del CS50x.ni con demostraciones sobre el uso de herramientas
-`“Comenzando con Git” <https://porfiriopaiz.fedorapeople.org/Slides/comenzando_con_git.odp>`_
+`“Comenzando con Git” <https://porfiriopaiz.fedorapeople.org/Slides/comenzando_con_git.odp>`_,
 charla en la que hizo un pequeña demo sobre el flujo de trabajo para la
-administración de sistema de control de versiones de código, en una segunda
+administración de este sistema de control de versiones de código, en una segunda
 charla compartió `“Una breve introducción a Docker” <https://porfiriopaiz.fedorapeople.org/Slides/breve_introduccion_a_docker.odp>`_
 y nos habló sobre como esta herramienta está siendo usada en el CS50x.ni para
 ofrecer un entorno de programación fácil y sencillo de usar para quienes están
-tomando el curso y en una tercera charla no habló sobre como montar una
+tomando el curso y en una tercera charla nos habló sobre como montar una
 `“Estación de desarrollo con Fedora” <https://porfiriopaiz.fedorapeople.org/Slides/estacion_de_trabajo.odp>`_,
 en esta charla Porfirio habló sobre uno de los productos que ofrece el Proyecto
 Fedora para todos aquellos que están enfocados en lograr entorno de trabajo con
