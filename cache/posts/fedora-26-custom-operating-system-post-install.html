@@ -1,0 +1,126 @@
+<p>En la última publicación expliqué cómo hacer una instalación mínima de Fedora
+25, han pasado varios meses desde entonces y Fedora 26 ya salió, siguiendo los
+mismos pasos lo instalé en mi laptop y a continuación documentaré mi &quot;post
+install&quot;.</p>
+<!-- TEASER_END -->
+<p>Dado que esta instalación es mínima, los paquetes instalados no proveen soporte
+para tarjetas de redes inalámbricas. Si bien es cierto durante la instalación
+Anaconda ofrece dicho soporte, una vez instalados los paquetes mínimos, estos
+no incluyen los controladores necesarios, por lo que para esta primera parte
+debo conectar mi laptop a una red cableada.</p>
+<p>Luego de verificar la conexión de red cableada, lo primero que hice fue editar
+el archivo de configuración de <tt class="docutils literal">dnf</tt> y agregar las siguientes líneas como
+root con los siguientes comandos:</p>
+<pre class="code console"><a name="rest_code_23a98fb0e3d54cdc97ec895d07c40b03-1"></a><span class="go">echo &#39;fastestmirror=true&#39; &gt;&gt; /etc/dnf/dnf.conf</span>
+<a name="rest_code_23a98fb0e3d54cdc97ec895d07c40b03-2"></a><span class="go">echo &#39;deltarpm=false&#39; &gt;&gt; /etc/dnf/dnf.conf</span>
+<a name="rest_code_23a98fb0e3d54cdc97ec895d07c40b03-3"></a><span class="go">echo &#39;keepcache=true&#39; &gt;&gt; /etc/dnf/dnf.conf</span>
+</pre><p>De esta forma que aseguro que <tt class="docutils literal">dnf</tt> siempre use el mirror más eficiente; que
+no use use <tt class="docutils literal">*.drpm</tt>'s para realizar las actualizaciones, sino que en su lugar
+siempre descargue <tt class="docutils literal">*.rpm</tt>'s; y que guarde cada paquete que se descargue en la
+caché.</p>
+<p>A continuación reiniciamos.</p>
+<pre class="code console"><a name="rest_code_7c5703fc7f694a06a60a8da5b7c2dc5d-1"></a><span class="go">reboot</span>
+</pre><p><tt class="docutils literal">dnf</tt> tiene un servicio y un timer que me resultan muy molestos, ambos se
+aseguran de actualizar la caché de metadatos de paquetes con cierta frecuencia,
+esto es algo que me gusta hacer cuando yo quiero y lo necesito, no cuando a
+<tt class="docutils literal">dnf</tt> se le antoje, así que eso se corrije de la siguiente forma:</p>
+<pre class="code console"><a name="rest_code_cb258ea5bd9e46bfad90911688d56614-1"></a><span class="go">su -c &#39;systemctl disable dnf-makecache.service&#39;</span>
+<a name="rest_code_cb258ea5bd9e46bfad90911688d56614-2"></a><span class="go">su -c &#39;systemctl disable dnf-makecache.timer&#39;</span>
+</pre><p>Reiniciamos.</p>
+<pre class="code console"><a name="rest_code_53d6744117114a4195f8577736aa5352-1"></a><span class="go">reboot</span>
+</pre><p>Una vez personalizado el archivo de configuración de <tt class="docutils literal">dnf</tt> y deshabilitados
+los molestos servicios y timer, procedo a limpiar la caché y a regenerarla,
+esta vez, todos los comandos lo ejecutaré como usuario normal, pasándole dichos
+comandos a root como un parámetro:</p>
+<p>Este crea la caché de metadatos de paquetes para mi usuario <cite>mortal</cite>:</p>
+<pre class="code console"><a name="rest_code_ea99a1f3ee754371962c46588993d443-1"></a><span class="go">dnf clean all</span>
+<a name="rest_code_ea99a1f3ee754371962c46588993d443-2"></a><span class="go">dnf makecache</span>
+</pre><p>Este crea la caché de metadatos de paquetes para mi usuario <cite>dios</cite>:</p>
+<pre class="code console"><a name="rest_code_e166f9d17b67459692105e3c021b5416-1"></a><span class="go">su -c &#39;dnf clean all&#39;</span>
+<a name="rest_code_e166f9d17b67459692105e3c021b5416-2"></a><span class="go">su -c &#39;dnf makecache&#39;</span>
+</pre><p>Existe la posibilidad de que durante la instalación no haya marcado la opción
+de descargar las versión más reciente de los paquetes a instalar, para
+verificar si hay actualizaciones disponibles:</p>
+<pre class="code console"><a name="rest_code_f6ca76c7ed374aa29c99f4b84be980b7-1"></a><span class="go">su -c &#39;dnf --refresh check-update&#39;</span>
+</pre><p>Para descargar e instalar las actualizaciones:</p>
+<pre class="code console"><a name="rest_code_7e3dba1b1f0945fc80bd2863a4af0b3b-1"></a><span class="go">su -c &#39;dnf upgrade&#39;</span>
+</pre><p>Y reiniciamos:</p>
+<pre class="code console"><a name="rest_code_5baa6301c56249cf833ce419e77ad8fa-1"></a><span class="go">reboot</span>
+</pre><p>En mi laptop uso GNOME Shell como entorno de escritorio, así que procederé a
+instalarlo usando un grupo de paquetes especifico que provee las colección de
+paquetes necesaria para hacer de mi Fedora Custom Operating System un Fedora
+Workstation:</p>
+<pre class="code console"><a name="rest_code_ec5db1ce0d0d494bbfa5126b402574b1-1"></a><span class="go">su -c &#39;dnf groups install workstation-product-environment&#39;</span>
+</pre><p>Una vez descargados e instalados los paquetes, cambiamos el <cite>init mode</cite> por
+defecto de <cite>multi-user.tarjet</cite> a <cite>graphical.tarjet</cite>, de lo contrario, cuando
+reiniciemos no arrancará en modo gráfico.</p>
+<p>También debemos habilitar el servicio de <cite>login</cite> gráfico, si no, aunque hayamos
+habilitado el modo gráfico el login seguirá siendo en modo texto:</p>
+<pre class="code console"><a name="rest_code_dc6f3ce6dece4199bfb0abe61ed279eb-1"></a><span class="go">su -c &#39;systemctl set-default graphical.target&#39;</span>
+<a name="rest_code_dc6f3ce6dece4199bfb0abe61ed279eb-2"></a><span class="go">su -c &#39;systemctl enable gdm.service&#39;</span>
+<a name="rest_code_dc6f3ce6dece4199bfb0abe61ed279eb-3"></a><span class="go">reboot</span>
+</pre><p>Si todo ha salido bien, ya debes estar corriendo Fedora 26 Workstation con
+GNOME Shell.</p>
+<p>Antes de abrir cualquier aplicación, lo primero es abrir una terminal y
+ejecutar el siguiente comando:</p>
+<pre class="code console"><a name="rest_code_200ad3237476430288057d87636922cc-1"></a><span class="go">gsettings set org.gnome.nautilus.preferences default-sort-order type</span>
+</pre><p>De esta forma cuando abra <tt class="docutils literal">Nautilus</tt> me mostrará todos los archivos ordenados
+por externsión.</p>
+<p>Habilitamos el repositio RPMFusion:</p>
+<pre class="code console"><a name="rest_code_3a74200b322c4d27893b8aeb29488d8c-1"></a><span class="go">su -c &#39;dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm&#39;</span>
+</pre><p>Refrescamos la caché, esto solo descargará los metadatos del repositorio de
+RPMFusion:</p>
+<pre class="code console"><a name="rest_code_befef97bdda144e7a989506065d738e4-1"></a><span class="go">su -c &#39;dnf check-update&#39;</span>
+</pre><p>Otro repositorio que agrego es el repo de Google Chrome. Uso Google Chrome para
+esos sitios que todavía requieren del uso de Flash, la opción de habilitar el
+repo de Adobe no me resulta para nada atrayente y menos instalar su plugin.
+Habilitando el repo de Google Chrome me aseguro que mi <tt class="docutils literal">Firefox</tt> se mantendrá
+libre de flash.</p>
+<pre class="code console"><a name="rest_code_da354bafc8104e8b96cf114fd9b43813-1"></a><span class="go">su -c &quot;echo &#39;[google-chrome]&#39; &gt; /etc/yum.repos.d/google-chrome.repo&quot;</span>
+<a name="rest_code_da354bafc8104e8b96cf114fd9b43813-2"></a><span class="go">su -c &quot;echo &#39;name=google-chrome - \$basearch&#39; &gt;&gt; /etc/yum.repos.d/google-chrome.repo&quot;</span>
+<a name="rest_code_da354bafc8104e8b96cf114fd9b43813-3"></a><span class="go">su -c &quot;echo &#39;baseurl=http://dl.google.com/linux/chrome/rpm/stable/\$basearch&#39; &gt;&gt; /etc/yum.repos.d/google-chrome.repo&quot;</span>
+<a name="rest_code_da354bafc8104e8b96cf114fd9b43813-4"></a><span class="go">su -c &quot;echo &#39;enabled=1&#39; &gt;&gt; /etc/yum.repos.d/google-chrome.repo&quot;</span>
+<a name="rest_code_da354bafc8104e8b96cf114fd9b43813-5"></a><span class="go">su -c &quot;echo &#39;gpgcheck=1&#39; &gt;&gt; /etc/yum.repos.d/google-chrome.repo&quot;</span>
+<a name="rest_code_da354bafc8104e8b96cf114fd9b43813-6"></a><span class="go">su -c &quot;echo &#39;gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub&#39; &gt;&gt; /etc/yum.repos.d/google-chrome.repo&quot;</span>
+</pre><p>Refrescamos la caché, esto solo descargará los metadatos del repositorio de
+Google Chrome:</p>
+<pre class="code console"><a name="rest_code_dfe4f6f2ffec4c748611924adb6ae3b7-1"></a><span class="go">su -c &#39;dnf check-update&#39;</span>
+</pre><p>Antes de copiar cualquier archivo desde mis respaldos, debo reconfigurar el
+molesto <tt class="docutils literal">tracker</tt> y a todos sus amigos:</p>
+<pre class="code console"><a name="rest_code_5ba856f2559844c2843e262e821dd282-1"></a><span class="go">su -c &#39;dnf install tracker-preferences&#39;</span>
+<a name="rest_code_5ba856f2559844c2843e262e821dd282-2"></a><span class="go">mkdir ~/.config/autostart</span>
+<a name="rest_code_5ba856f2559844c2843e262e821dd282-3"></a><span class="go">cp /etc/xdg/autostart/tracker* ~/.config/autostart</span>
+<a name="rest_code_5ba856f2559844c2843e262e821dd282-4"></a><span class="go">cd ~/.config/autostart</span>
+<a name="rest_code_5ba856f2559844c2843e262e821dd282-5"></a><span class="go">sed -i &#39;s/X-GNOME-Autostart-enabled=true/X-GNOME-Autostart-enabled=false/&#39; tracker*</span>
+</pre><p>Verificamos el estado de <tt class="docutils literal">tracker</tt>:</p>
+<pre class="code console"><a name="rest_code_f3cce35270454037bc8570c153f26d58-1"></a><span class="go">tracker status</span>
+</pre><p>Y le hacemos un <cite>hard reset</cite>:</p>
+<pre class="code console"><a name="rest_code_601c6493d5aa49d8afdcd350e2d112d5-1"></a><span class="go">tracker reset --hard</span>
+</pre><p>A continuación instalo grupos de paquetes que proveen librerías necesarias para
+la construción de otros programas, o bien para hacer de <tt class="docutils literal">vim</tt> un <cite>IDE</cite>, en
+otro post explicaré por qué es útil tenerlas:</p>
+<pre class="code console"><a name="rest_code_7002dd80e4c34f2e864b2dbf28929d27-1"></a><span class="go">su -c &#39;dnf -y groups install c-development&#39;</span>
+<a name="rest_code_7002dd80e4c34f2e864b2dbf28929d27-2"></a><span class="go">su -c &#39;dnf -y groups install development-libs&#39;</span>
+<a name="rest_code_7002dd80e4c34f2e864b2dbf28929d27-3"></a><span class="go">su -c &#39;dnf -y groups install development-tools&#39;</span>
+<a name="rest_code_7002dd80e4c34f2e864b2dbf28929d27-4"></a><span class="go">su -c &#39;dnf -y groups install fedora-packager&#39;</span>
+<a name="rest_code_7002dd80e4c34f2e864b2dbf28929d27-5"></a><span class="go">su -c &#39;dnf -y groups install rpm-development-tools&#39;</span>
+<a name="rest_code_7002dd80e4c34f2e864b2dbf28929d27-6"></a><span class="go">su -c &#39;dnf install automake gcc gcc-c++ kernel-devel cmake&#39;</span>
+<a name="rest_code_7002dd80e4c34f2e864b2dbf28929d27-7"></a><span class="go">su -c &#39;dnf install python-devel python3-devel&#39;</span>
+<a name="rest_code_7002dd80e4c34f2e864b2dbf28929d27-8"></a><span class="go">su -c &#39;dnf install monodevelop&#39;</span>
+<a name="rest_code_7002dd80e4c34f2e864b2dbf28929d27-9"></a><span class="go">su -c &#39;dnf install golang&#39;</span>
+<a name="rest_code_7002dd80e4c34f2e864b2dbf28929d27-10"></a><span class="go">su -c &#39;dnf install nodejs&#39;</span>
+<a name="rest_code_7002dd80e4c34f2e864b2dbf28929d27-11"></a><span class="go">su -c &#39;dnf install rust&#39;</span>
+<a name="rest_code_7002dd80e4c34f2e864b2dbf28929d27-12"></a><span class="go">su -c &#39;dnf install cargo&#39;</span>
+<a name="rest_code_7002dd80e4c34f2e864b2dbf28929d27-13"></a><span class="go">su -c &#39;dnf install python3-virtualenv&#39;</span>
+<a name="rest_code_7002dd80e4c34f2e864b2dbf28929d27-14"></a><span class="go">su -c &#39;dnf install python3-pip&#39;</span>
+</pre><p>Y finalmente, los correctores ortográficos:</p>
+<pre class="code console"><a name="rest_code_4158505fd40249d2a81c219835ea65be-1"></a><span class="go">su -c &#39;dnf install hunspell&#39;</span>
+<a name="rest_code_4158505fd40249d2a81c219835ea65be-2"></a><span class="go">su -c &#39;dnf install hunspell-en&#39;</span>
+<a name="rest_code_4158505fd40249d2a81c219835ea65be-3"></a><span class="go">su -c &#39;dnf install hunspell-es&#39;</span>
+<a name="rest_code_4158505fd40249d2a81c219835ea65be-4"></a><span class="go">su -c &#39;dnf install aspell&#39;</span>
+<a name="rest_code_4158505fd40249d2a81c219835ea65be-5"></a><span class="go">su -c &#39;dnf install aspell-es&#39;</span>
+<a name="rest_code_4158505fd40249d2a81c219835ea65be-6"></a><span class="go">su -c &#39;dnf install aspell-en&#39;</span>
+<a name="rest_code_4158505fd40249d2a81c219835ea65be-7"></a><span class="go">su -c &#39;dnf install autocorr-es&#39;</span>
+<a name="rest_code_4158505fd40249d2a81c219835ea65be-8"></a><span class="go">su -c &#39;dnf install autocorr-en&#39;</span>
+</pre><p>En las siguientes publicaciones haré pequeñas reseñas de las demás herramientas
+que uso en Fedora.</p>
