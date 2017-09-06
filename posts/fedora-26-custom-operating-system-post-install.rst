@@ -71,8 +71,8 @@ Reconstruyendo la caché de metadatos de paquetes
 
 Una vez personalizado el archivo de configuración de ``dnf`` y deshabilitados
 los molestos servicios y timer, procedo a limpiar la caché y a regenerarla,
-esta vez, todos los comandos los ejecutaré como usuario normal, pasándole dichos
-comandos a root como un parámetro:
+esta vez, todos los comandos los ejecutaré como usuario normal, pasándole
+dichos comandos a root como un parámetro:
 
 Este crea la caché de metadatos de paquetes para mi usuario `mortal`:
 
@@ -150,7 +150,8 @@ Comportamiento de Nautilus
 ==========================
 
 Antes de abrir cualquier otra aplicación, corrijo la configuración por defecto
-de Nautilus sobre como ordena los archivos, yo prefiero que los muestre ordenados por tipo o extensión:
+de Nautilus sobre como ordena los archivos, yo prefiero que los muestre
+ordenados por tipo o extensión:
 
 .. code-block:: console
 
