@@ -1,7 +1,7 @@
 .. title: Fedora 26 Custom Operating System post install
 .. slug: fedora-26-custom-operating-system-post-install
 .. date: 2017-08-31 16:26:39 UTC-06:00
-.. tags: dnf, fc26, postinstall
+.. tags: dnf, fc26, fedora, postinstall
 .. category: floss
 .. link: 
 .. description:
