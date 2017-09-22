@@ -187,7 +187,7 @@ post del siguiente enlace:
 
 Pero Mayorga me mostró un método más sencillo, básicamente solo hay que bajar
 el paquete ``rpm`` de Google Chrome, instalarlo desde la línea de comandos
-indicando la ruta del archivos ``rpm`` y este por sí solo, agrega el archivo
+indicando la ruta del archivo ``rpm`` y este por sí solo, agrega el archivo
 ``*.repo`` a ``/etc/yum.repos.d/``.
 
 .. code-block:: console
