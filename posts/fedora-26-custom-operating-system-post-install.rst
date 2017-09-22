@@ -180,31 +180,22 @@ RPMFusion:
 Habilitamos el repositio de Google Chrome:
 ------------------------------------------
 
-Otro repositorio que agrego es el repo de Google Chrome. Uso Google Chrome para
-esos sitios que todavía requieren del uso de Flash, la opción de habilitar el
-repo de Adobe no me resulta para nada atrayente y menos instalar su plugin.
-Habilitando el repo de Google Chrome me aseguro que mi ``Firefox`` se mantendrá
-libre de flash.
+Antes solía habilitar el repositio de Google Chrome a como se explica en el
+post del siguiente enlace:
+
+`https://www.if-not-true-then-false.com/2010/install-google-chrome-with-yum-on-fedora-red-hat-rhel/ <https://www.if-not-true-then-false.com/2010/install-google-chrome-with-yum-on-fedora-red-hat-rhel/>`_
+
+Pero Mayorga me mostró un método más sencillo, básicamente solo hay que bajar
+el paquete ``rpm`` de Google Chrome, instalarlo desde la línea de comandos
+indicando la ruta del archivos ``rpm`` y este por sí solo, agrega el archivo
+``*.repo`` a ``/etc/yum.repos.d/``.
 
 .. code-block:: console
 
-   su -c "echo '[google-chrome]' > /etc/yum.repos.d/google-chrome.repo"
-
-   su -c "echo 'name=google-chrome - \$basearch' >> /etc/yum.repos.d/google-chrome.repo"
-
-   su -c "echo 'baseurl=http://dl.google.com/linux/chrome/rpm/stable/\$basearch' >> /etc/yum.repos.d/google-chrome.repo"
-
-   su -c "echo 'enabled=1' >> /etc/yum.repos.d/google-chrome.repo"
-
-   su -c "echo 'gpgcheck=1' >> /etc/yum.repos.d/google-chrome.repo"
-
-   su -c "echo 'gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub' >> /etc/yum.repos.d/google-chrome.repo"
-
-Refrescamos la caché, esto solo descargará los metadatos del repositorio de
-Google Chrome:
-
-.. code-block:: console
-
+   cd ~/Downloads
+   wget
+   https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+   su -c 'dnf install google-chrome-stable_current_x86_64.rpm'
    su -c 'dnf check-update'
 
 Deshabilitando ``tracker``
@@ -237,11 +228,25 @@ Y le hacemos un `hard reset`:
 
    tracker reset --hard
 
+Deshabilitando GNOME Software y PackageKit download-updates
+===========================================================
+
+GNOME Software suele descargar metadatos y actualizaciones del sistema en
+`background`, para deshabilitarlo ejecutamos los siguientes comandos:
+
+.. code-block:: console
+
+   gsettings set org.gnome.software download-updates false
+   su -c 'systemctl mask packagekit.service'
+
+Esto debería detener las autodescargas de actualizaciones y el programa de
+revisiones de PackageKit.
+
 Librerías y herramientas de desarrollo
 ======================================
 
 A continuación instalo grupos de paquetes que proveen librerías necesarias para
-la construción de otros programas, o bien para hacer de ``vim`` un `IDE`, en
+la construcción de otros programas, o bien para hacer de ``vim`` un `IDE`, en
 otro post explicaré por qué es útil tenerlas:
 
 .. code-block:: console
