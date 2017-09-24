@@ -193,8 +193,7 @@ indicando la ruta del archivo ``rpm`` y este por sí solo, agrega el archivo
 .. code-block:: console
 
    cd ~/Downloads
-   wget
-   https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+   wget -N -t 0 -c https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
    su -c 'dnf install google-chrome-stable_current_x86_64.rpm'
    su -c 'dnf check-update'
 
