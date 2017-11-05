@@ -36,7 +36,7 @@ cd virtualenvs
 Use the `virtualenv-3` or the `virtualenv-3.6` command.
 
 ```sh
-virtualenv3 nikola
+virtualenv3 --no-site-packages nikola
 ```
 
 ```sh
