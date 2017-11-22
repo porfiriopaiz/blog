@@ -1,0 +1,107 @@
+<p>KeePassXC es uno de los primeros programas que instalo luego del primer <cite>boot</cite>
+de cualquier <cite>fresh install</cite>.</p>
+<p>En el siguiente post mostraré como instalar KeePassXC en Fedora y Debian, su
+uso e importancia para facilitar la gestión de cientos cuentas y las
+contraseñas asociadas a ellas, y la generación de contraseñas seguras con los
+más altos niveles de entropía.</p>
+<!-- TEASER_END -->
+<div class="section" id="instalacion">
+<h1>Instalación</h1>
+<div class="section" id="fedora">
+<h2>Fedora</h2>
+<pre class="code console"><a name="rest_code_8e58ce850780448785077bdff4f4b411-1"></a><span class="go">su -c &#39;dnf install keepassxc&#39;</span>
+</pre></div>
+<div class="section" id="debian">
+<h2>Debian</h2>
+<pre class="code console"><a name="rest_code_5f29dbe66eba4effbbd6481b1ff7f2e3-1"></a><span class="go">su -c &#39;apt-get install keepassxc&#39;</span>
+</pre></div>
+</div>
+<div class="section" id="crear-una-base-de-datos-de-contrasenas">
+<h1>Crear una base de datos de contraseñas</h1>
+<p>Lo primero que debemos hacer es crear nuestra primera base de datos en la que
+guardaremos todas las contraseñas que generamos para cada una las cuentas.</p>
+<ul class="simple">
+<li>Ejecutamos KeePassXC:</li>
+</ul>
+<img alt="/images/keepassxc/screenshot_from_2017-11-18_21-38-49.png" class="align-center" src="/images/keepassxc/screenshot_from_2017-11-18_21-38-49.png" />
+<ul class="simple">
+<li>Creamos una nueva base de datos:</li>
+</ul>
+<img alt="/images/keepassxc/screenshot_from_2017-11-18_21-31-18.png" class="align-center" src="/images/keepassxc/screenshot_from_2017-11-18_21-31-18.png" />
+<ul class="simple">
+<li>Asignamos un nombre al archivo <cite>*.kdbx</cite>, nuestra base de datos:</li>
+</ul>
+<img alt="/images/keepassxc/screenshot_from_2017-11-18_22-02-29.png" class="align-center" src="/images/keepassxc/screenshot_from_2017-11-18_22-02-29.png" />
+<ul class="simple">
+<li>Es momento de asignar una contraseña, esta será la contraseña maestra con la
+que desencriptaremos el archivo <cite>Passwords.kdbx</cite>, damos clic en <cite>OK</cite>:</li>
+</ul>
+<img alt="/images/keepassxc/screenshot_from_2017-11-18_22-09-07.png" class="align-center" src="/images/keepassxc/screenshot_from_2017-11-18_22-09-07.png" />
+<ul class="simple">
+<li>Para agregar una cuenta nueva y su respectiva contraseña, dar clic sobre el
+ícono de la llave con una flechita color verde:</li>
+</ul>
+<img alt="/images/keepassxc/screenshot_from_2017-11-20_16-37-51.png" class="align-center" src="/images/keepassxc/screenshot_from_2017-11-20_16-37-51.png" />
+<ul class="simple">
+<li>Agregamos un título para indentificar a qué corresponde esta contraseña,
+agregamos el nombre de usuario al que pertenecerá la contraseña que vamos a
+crear:</li>
+</ul>
+<img alt="/images/keepassxc/screenshot_from_2017-11-19_22-15-14.png" class="align-center" src="/images/keepassxc/screenshot_from_2017-11-19_22-15-14.png" />
+<ul>
+<li><p class="first">Luego damos clic en el ícono del dado negro, notar cómo se despliega un nuevo
+menú con opciones:</p>
+<ul>
+<li><p class="first">Damos clic en pestaña password, aumentamos la cantidad de caracteres
+deseados para nuestra contraseña, entre más caracteres mayor nivel de
+entropía:</p>
+</li>
+<li><p class="first">En la sección <strong>Characters Types</strong>, podemos seleccionar los diferentes
+grupos de caracteres que queremos estén presentes en nuestra contraseña:</p>
+<ul class="simple">
+<li>Caracteres de la <cite>A</cite> a la <cite>Z</cite>, en mayúsculas: <cite>A-Z</cite></li>
+<li>Caracteres de la <cite>a</cite> hasta la <cite>z</cite>, en minúsculas: <cite>a-z</cite></li>
+<li>Números: <cite>0-9</cite></li>
+<li>Caracteres especiales: <cite>/*_ ...</cite></li>
+<li>Caracteres del <a class="reference external" href="https://es.wikipedia.org/wiki/ASCII_extendido">ASCII Extenedido</a></li>
+</ul>
+<p>En mi caso los marqué todos.</p>
+<ul class="simple">
+<li>Con el <cite>scroll</cite> del <cite>mouse</cite> bajamos y marcamos con un check:<ul>
+<li><strong>Exclude look alike characters</strong></li>
+<li><strong>Pick characters from every group</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p class="first">Finalmente damos clic en <tt class="docutils literal">Generate</tt> para generar la contraseña con la
+combinación de caracteres escogidas y luego en <tt class="docutils literal">Copy</tt> para copiar la
+contraseña al portapales.</p>
+</li>
+</ul>
+</li>
+</ul>
+<img alt="/images/keepassxc/screenshot_from_2017-11-19_22-17-30.png" class="align-center" src="/images/keepassxc/screenshot_from_2017-11-19_22-17-30.png" />
+<ul class="simple">
+<li>Ahora presionando <cite>Ctrl-v</cite> pegamos la contraseña en el campo <strong>Password</strong> y
+<cite>Ctrl-v</cite> en <strong>Repeat</strong>:</li>
+</ul>
+<img alt="/images/keepassxc/screenshot_from_2017-11-19_22-18-18.png" class="align-center" src="/images/keepassxc/screenshot_from_2017-11-19_22-18-18.png" />
+<ul class="simple">
+<li>Dando clic en ícono del ojo podemos revelar la contraseña que hemos generado,
+copiado y pegado en los campos <strong>Password</strong> y <cite>Ctrl-v</cite> en <strong>Repeat</strong>, damos
+clic en <cite>Apply</cite> y luego <cite>OK</cite>:</li>
+</ul>
+<img alt="/images/keepassxc/screenshot_from_2017-11-19_22-18-31.png" class="align-center" src="/images/keepassxc/screenshot_from_2017-11-19_22-18-31.png" />
+<ul class="simple">
+<li>Notar el asterisco en el borde superior de la pantalla al final de
+<cite>Passwords.kdbx</cite>, esto quiere decir que los cambios no se han guardado en la
+base de datos:</li>
+</ul>
+<img alt="/images/keepassxc/screenshot_from_2017-11-19_22-18-58.png" class="align-center" src="/images/keepassxc/screenshot_from_2017-11-19_22-18-58.png" />
+<ul class="simple">
+<li>Damos clic en el ícono del fichero color azul para salvar los cambios en la
+base de datos:</li>
+</ul>
+<img alt="/images/keepassxc/screenshot_from_2017-11-19_22-19-03.png" class="align-center" src="/images/keepassxc/screenshot_from_2017-11-19_22-19-03.png" />
+</div>
