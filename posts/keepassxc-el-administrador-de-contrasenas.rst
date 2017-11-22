@@ -205,6 +205,6 @@ datos, presionamos:
 
 El resultado final debería hacer que ``KeePassXC`` regrese al navegador,
 inserte el usuario, de un salto al siguiente campo, inserte la contraseña, para
-finalmente y de forma automática "presione" ``Enter`` e inicie sesión.
+finalmente y de forma automática "presione" ``Log In`` e inicie sesión.
 
 Espero que este post les sea de utilidad.
