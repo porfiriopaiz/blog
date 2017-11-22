@@ -9,11 +9,11 @@ más altos niveles de entropía.</p>
 <h1>Instalación</h1>
 <div class="section" id="fedora">
 <h2>Fedora</h2>
-<pre class="code console"><a name="rest_code_d403843737e744c598cf975dee1e896b-1"></a><span class="go">su -c &#39;dnf install keepassxc&#39;</span>
+<pre class="code console"><a name="rest_code_333085b53c354c499c5b64081bfe126d-1"></a><span class="go">su -c &#39;dnf install keepassxc&#39;</span>
 </pre></div>
 <div class="section" id="debian">
 <h2>Debian</h2>
-<pre class="code console"><a name="rest_code_9ebad3e296184e13a3677ff176e0db65-1"></a><span class="go">su -c &#39;apt-get install keepassxc&#39;</span>
+<pre class="code console"><a name="rest_code_bf786021878c49a6a19469895992c0ac-1"></a><span class="go">su -c &#39;apt-get install keepassxc&#39;</span>
 </pre></div>
 </div>
 <div class="section" id="crear-una-base-de-datos-de-contrasenas">
@@ -54,7 +54,7 @@ menú con opciones:</p>
 <ul>
 <li><p class="first">Damos clic en pestaña password, aumentamos la cantidad de caracteres
 deseados para nuestra contraseña, entre más caracteres mayor nivel de
-entropía:</p>
+entropía.</p>
 </li>
 <li><p class="first">En la sección <strong>Characters Types</strong>, podemos seleccionar los diferentes
 grupos de caracteres que queremos estén presentes en nuestra contraseña:</p>
@@ -89,12 +89,12 @@ contraseña al portapales.</p>
 <img alt="/images/keepassxc/screenshot_from_2017-11-19_22-18-18.png" class="align-center" src="/images/keepassxc/screenshot_from_2017-11-19_22-18-18.png" />
 <ul class="simple">
 <li>Dando clic en ícono del ojo podemos revelar la contraseña que hemos generado,
-copiado y pegado en los campos <strong>Password</strong> y <cite>Ctrl-v</cite> en <strong>Repeat</strong>, damos
-clic en <cite>Apply</cite> y luego <cite>OK</cite>:</li>
+copiado y pegado en los campos <strong>Password</strong> y en <strong>Repeat</strong>, damos clic en
+<cite>Apply</cite> y luego <cite>OK</cite>:</li>
 </ul>
 <img alt="/images/keepassxc/screenshot_from_2017-11-19_22-18-31.png" class="align-center" src="/images/keepassxc/screenshot_from_2017-11-19_22-18-31.png" />
 <ul class="simple">
-<li>Notar el asterisco en el borde superior de la pantalla al final de
+<li>Notar el asterisco en el borde superior de la ventana al final de
 <cite>Passwords.kdbx</cite>, esto quiere decir que los cambios no se han guardado en la
 base de datos:</li>
 </ul>
@@ -103,5 +103,53 @@ base de datos:</li>
 <li>Damos clic en el ícono del fichero color azul para salvar los cambios en la
 base de datos:</li>
 </ul>
+<img alt="/images/keepassxc/screenshot_from_2017-11-22_16-21-04.png" class="align-center" src="/images/keepassxc/screenshot_from_2017-11-22_16-21-04.png" />
+<ul class="simple">
+<li>Notar que el asterisco en el borde superior de la pantalla al final de
+<cite>Passwords.kdbx</cite> ha desaparecido, esto quiere decir que los cambios ya se han
+guardado en la base de datos:</li>
+</ul>
 <img alt="/images/keepassxc/screenshot_from_2017-11-19_22-19-03.png" class="align-center" src="/images/keepassxc/screenshot_from_2017-11-19_22-19-03.png" />
+</div>
+<div class="section" id="atajos-de-teclados-utiles">
+<h1>Atajos de teclados útiles</h1>
+<p><strong>Ctrl</strong> - <strong>b</strong> Copia el usuario al portapapeles.</p>
+<p><strong>Ctrl</strong> - <strong>c</strong> Copia el la contraseña del usuario al portapapeles.</p>
+<p><strong>Ctrl</strong> - <strong>e</strong> Abre el menú para hacer modificaciones a las diferentes
+cuentas que tenemos en nuestra base de datos.</p>
+<p><strong>Ctrl</strong> - <strong>n</strong> Permite agregar una nueva cuenta a nuestra base de datos.</p>
+</div>
+<div class="section" id="atajo-de-autoescritura">
+<h1>Atajo de autoescritura</h1>
+<p>Este atajo de teclado es mi favorito. Permite escribir el usuario y la
+contraseña de una entrada en nuestra base de datos directamente a la página
+donde se usa ese usuario y esa contraseña, por lo que no es necesario usar
+tres atajos para lograr el mismo resultado.</p>
+<p><strong>Ctrl</strong> - <strong>v</strong></p>
+<p>Para que funcione como debe, ambos, tanto KeePassXC como el campo donde se
+pegan el usuario y la contraseña deben estar a un tiro de <strong>Alt</strong> - <strong>Tab</strong>.</p>
+<p>Con esto quiero decir que si presionamos <strong>Atl</strong> - <strong>Tab</strong> debería  pasar de
+la ventana de <tt class="docutils literal">KeePassXC</tt> a la ventana del navegador, por ejemplo:</p>
+<p>Notemos que la cuenta tiene vinculada una URL:</p>
+<img alt="/images/keepassxc/screenshot_from_2017-11-22_15-56-04.png" class="align-center" src="/images/keepassxc/screenshot_from_2017-11-22_15-56-04.png" />
+<p>Nos vamos a nuestro <tt class="docutils literal">KeePassXC</tt>, seleccionamos la entrada de nuestra base de
+datos que corresponde a la cuenta en la que queremos iniciar sesión.</p>
+<img alt="/images/keepassxc/screenshot_from_2017-11-22_15-55-41.png" class="align-center" src="/images/keepassxc/screenshot_from_2017-11-22_15-55-41.png" />
+<p>Presionamos:</p>
+<p><strong>Ctrl</strong> - <strong>u</strong> para abrir la pestaña en la que iniciaremos sesión, esto hará
+que se abra el navegador que tengamos configurado como nuestro navegador por
+defecto, esta página está configurada para ubicar la entrada del teclado en el
+campo del usuario.</p>
+<img alt="/images/keepassxc/screenshot_from_2017-11-22_16-35-24.png" class="align-center" src="/images/keepassxc/screenshot_from_2017-11-22_16-35-24.png" />
+<p>Presionamos:</p>
+<p><strong>Atl</strong> - <strong>Tab</strong> para seleccionar de regreso la ventana de <tt class="docutils literal">KeePassXC</tt>:</p>
+<img alt="/images/keepassxc/screenshot_from_2017-11-22_15-55-41.png" class="align-center" src="/images/keepassxc/screenshot_from_2017-11-22_15-55-41.png" />
+<p>Y luego, asegurándonos de tener seleccionada la misma entrada en la base de
+datos, presionamos:</p>
+<p><strong>Ctrl</strong> - <strong>v</strong></p>
+<img alt="/images/keepassxc/screenshot_from_2017-11-22_17-01-06.png" class="align-center" src="/images/keepassxc/screenshot_from_2017-11-22_17-01-06.png" />
+<p>El resultado final debería hacer que <tt class="docutils literal">KeePassXC</tt> regrese al navegador,
+inserte el usuario, de un salto al siguiente campo, inserte la contraseña, para
+finalmente y de forma automática &quot;presione&quot; <tt class="docutils literal">Enter</tt> e inicie sesión.</p>
+<p>Espero que este post les sea de utilidad.</p>
 </div>
