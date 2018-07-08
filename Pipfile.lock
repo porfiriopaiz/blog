@@ -253,10 +253,10 @@
         },
         "natsort": {
             "hashes": [
-                "sha256:94056276c41be501d9fad3ade61d4eb4edf3b37fea53829b3294b75dc1d23708",
-                "sha256:b06571dfe08c7649d7906392687381767f06e9002939afb71bd806685dbeb737"
+                "sha256:6d3e98c8c7ace4024181dca44dfdc57de3489fd92df11a494b8d4c50e81fb219",
+                "sha256:da930bfddce941526955dea8d35a44243c96adf919ceb758ba7bbd1ba5b0a39a"
             ],
-            "version": "==5.3.2"
+            "version": "==5.3.3"
         },
         "nbconvert": {
             "hashes": [
@@ -402,6 +402,7 @@
                 "sha256:923f299cc5ad920c68f2bc0bc98b75b9f838b93b599941a6b63ddbc2476394c0",
                 "sha256:d7cc528d76e76342423ca640335bd3633420dc1366f258cb31d05e865ef5ca1f"
             ],
+            "markers": "os_name != 'nt'",
             "version": "==0.6.0"
         },
         "pygal": {
