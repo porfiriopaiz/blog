@@ -3,12 +3,12 @@
 .. date: 2017-02-03 16:59:06 UTC-06:00
 .. tags: anaconda, fc25, fedora, luks, lvm
 .. category: floss
-.. link: 
+.. link:
 .. description: Reutilizando LUKS y VG en una instalación cifrada de Fedora.
 .. type: text
 
-Previamente había actualizado mi laptop de Fedora 22 a Fedora 23 cuando fc22
-ya tenía más de 6 meses de haber alcanzado su final vida, también es posible
+Previamente había actualizado mi laptop de Fedora 22 a Fedora 23 cuando fc22 ya
+tenía más de 6 meses de haber alcanzado su final vida, también es posible
 reutilizar las particiones creadas para fc22 de forma que en ellas se pueda
 instalar la nueva versión de Fedora y conservar todos los archivos contenidos
 en el Volumen Lógico que sirve como ``/home``.
@@ -36,7 +36,8 @@ Creando un medio de instalación
 
 El primer paso es crear un medio de instalación, para ello debemos decargar el
 archivo ISO de Fedora 25. Desde Fedora 21 he estado usando la imagen netinstall
-, de acuerdo con el capítulo 2 de la `Guía de Instalación de Fedora <https://docs.fedoraproject.org/en-US/Fedora/25/html/Installation_Guide/chap-downloading-fedora.html>`_:
+, de acuerdo con el capítulo 2 de la `Guía de Instalación de Fedora
+<https://docs.fedoraproject.org/en-US/Fedora/25/html/Installation_Guide/chap-downloading-fedora.html>`_:
 
     "La imagen iso netinstall se inicia directamente en el entorno de
     instalación y utiliza los repositorios de paquetes Fedora en línea como
@@ -72,8 +73,8 @@ Para sistemas de 64 bits descargar la siguiente imagen:
    wget -N -t 0 -c https://download.fedoraproject.org/pub/fedora/linux/releases/25/Everything/x86_64/iso/Fedora-Everything-netinst-x86_64-25-1.3.iso
 
 Donde:
-    `-N` descarga el archivo con las misma marca de tiempo de dia y hora con
-    la que fue subido a los servidores.
+    `-N` descarga el archivo con las misma marca de tiempo de dia y hora con la
+    que fue subido a los servidores.
 
     `-t 0` en caso de que la descarga se vea interrumpida por problemas de
     conexión hará un intento automático de reconexión, si dejamos el tiempo en
@@ -131,8 +132,8 @@ Los pasos a seguir son muy sencillos, seleccionamos:
    descargada.
 3. Seleccionamos la USB.
 4. Damos clic en `Write to disk`.
-5. Ingresamos nuestra contraseña de usuario si estamos en el grupo `wheel` o
-   la de `root` en caso de que no seamos admins.
+5. Ingresamos nuestra contraseña de usuario si estamos en el grupo `wheel` o la
+   de `root` en caso de que no seamos admins.
 6. Listo.
 
 Arrancando desde la USB
@@ -141,8 +142,8 @@ Arrancando desde la USB
 En mi caso tengo configurada mi laptop para iniciar en `UEFI mode` y con
 `Secure Boot` activado.
 
-Crear nuestro medio de instalación con Fedora Media Writer nos garantiza que
-el medio de instalación funcionará en cualquier posible escenario.
+Crear nuestro medio de instalación con Fedora Media Writer nos garantiza que el
+medio de instalación funcionará en cualquier posible escenario.
 
 Para acceder al Administrador de arranque de mi laptop solo debo presionar la
 tecla **Enter** mientras se muestra el logo de **Lenovo**, este es un
@@ -167,10 +168,12 @@ Fedora solo incluye controladores libres o que sus fabricantes hacen explícita
 mención sobre su política de uso y distribución.
 
 Mi T440p viene equipada con una tarjeta red cableada `Intel® Ethernet
-Connection I217-LM <https://ark.intel.com/products/60019/Intel-Ethernet-Connection-I217-LM>`_
-y una tarjeta de red inalámbrica `Intel® Wireless-N 7260 <http://ark.intel.com/products/75174/Intel-Wireless-N-7260>`_
-, ambas tarjetas fueron detectadas durante la instalación, en la oficina solo
-tengo acceso a redes WiFi por lo que usé la tarjeta Wireless.
+Connection I217-LM
+<https://ark.intel.com/products/60019/Intel-Ethernet-Connection-I217-LM>`_ y
+una tarjeta de red inalámbrica `Intel® Wireless-N 7260
+<http://ark.intel.com/products/75174/Intel-Wireless-N-7260>`_ , ambas tarjetas
+fueron detectadas durante la instalación, en la oficina solo tengo acceso a
+redes WiFi por lo que usé la tarjeta Wireless.
 
 .. image:: /images/anaconda-screenshots/0000.png
    :align: center
@@ -189,14 +192,14 @@ clic en Apply...
 
 damos clic en `Done`.
 
-En la sección de `LOCALIZATION` añadí la distribución de teclado `French (English (International AltGr dead keys))`
-y removí `English (US)`.
+En la sección de `LOCALIZATION` añadí la distribución de teclado `French
+(English (International AltGr dead keys))` y removí `English (US)`.
 
 .. image:: /images/anaconda-screenshots/0005.png
    :align: center
 
-Se puede apreciar una pequeña verificación, donde presionando la tecla `AltGr + a`
-y otras vocales, el resultado es las vocales acentuadas.
+Se puede apreciar una pequeña verificación, donde presionando la tecla `AltGr +
+a` y otras vocales, el resultado es las vocales acentuadas.
 
 En la sección `TIME & DATE` siempre habilito la opción `Network Time`...
 
@@ -283,9 +286,9 @@ Donde:
     sea cargado, por ejemplo el kernel. Si estuviera cifrada no podriamos
     acceder al kernel.
 
-    **sda10** es la partición que fue cifrada usando LUKS, la cual contiene
-    el `Volume Group` que contiene los demás volúmenes lógicos que sirven de
-    `/`, `/home` y `swap`.
+    **sda10** es la partición que fue cifrada usando LUKS, la cual contiene el
+    `Volume Group` que contiene los demás volúmenes lógicos que sirven de `/`,
+    `/home` y `swap`.
 
 Al seleccionar **sda10** se nos solicita la contraseña de cifrado que nos
 permitirá acceder al `Volume Group` que contiene las particiones mencionadas.
@@ -305,8 +308,8 @@ montaje para este Volumén Lógico. Nos aseguramos que el checkbox `Reformat`
 .. image:: /images/anaconda-screenshots/0017.png
    :align: center
 
-En la siguiente imagen podemos apreciar que el volumen lógico `fedora_lilit-home`
-fue reasignado a `New Fedora 25 Installation`.
+En la siguiente imagen podemos apreciar que el volumen lógico
+`fedora_lilit-home` fue reasignado a `New Fedora 25 Installation`.
 
 .. image:: /images/anaconda-screenshots/0018.png
    :align: center
@@ -347,8 +350,8 @@ Para finalizar solo damos clic en `Begin Installation`.
 .. image:: /images/anaconda-screenshots/0032.png
    :align: center
 
-Asignamos una contraseña de usuario y la contraseña de ROOT. Y listo, ahora solo
-debemos esperar que la descarga de los paquetes y su instalación finalice:
+Asignamos una contraseña de usuario y la contraseña de ROOT. Y listo, ahora
+solo debemos esperar que la descarga de los paquetes y su instalación finalice:
 
 .. image:: /images/anaconda-screenshots/0037.png
    :align: center

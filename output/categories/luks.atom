@@ -3,7 +3,7 @@
 <feed xml:lang="es" xmlns="http://www.w3.org/2005/Atom">
   <title>Publicaciones sobre luks</title>
   <id>https://porfiriopaiz.github.io/blog/categories/luks.atom</id>
-  <updated>2017-09-22T22:10:02Z</updated>
+  <updated>2018-08-31T04:52:37Z</updated>
   <author>
     <name>porfirio</name>
   </author>
@@ -19,8 +19,8 @@
       <name>porfirio</name>
     </author>
     <link rel="alternate" type="text/html" href="https://porfiriopaiz.github.io/blog/posts/anaconda-y-lvm-sobre-luks.html"/>
-    <summary type="html">&lt;div&gt;&lt;p&gt;Previamente había actualizado mi laptop de Fedora 22 a Fedora 23 cuando fc22
-ya tenía más de 6 meses de haber alcanzado su final vida, también es posible
+    <summary type="html">&lt;div&gt;&lt;p&gt;Previamente había actualizado mi laptop de Fedora 22 a Fedora 23 cuando fc22 ya
+tenía más de 6 meses de haber alcanzado su final vida, también es posible
 reutilizar las particiones creadas para fc22 de forma que en ellas se pueda
 instalar la nueva versión de Fedora y conservar todos los archivos contenidos
 en el Volumen Lógico que sirve como &lt;tt class="docutils literal"&gt;/home&lt;/tt&gt;.&lt;/p&gt;

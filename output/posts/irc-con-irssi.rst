@@ -3,7 +3,7 @@
 .. date: 2016-11-02 15:26:28 UTC-06:00
 .. tags: irc, cli
 .. category: floss
-.. link: 
+.. link:
 .. description: Automatizando la conexión a IRC con irssi.
 .. type: text
 
@@ -54,7 +54,8 @@ Configuraciones de Servidor
 Todos estos comandos deben ser ejecutados en una sesión de irssi.
 
 Primero removeremos la configuración existente del servidor que necesitamos
-automatizar. Con ``/server list`` podremos visualizar los servidores existentes:
+automatizar. Con ``/server list`` podremos visualizar los servidores
+existentes:
 
 .. code-block:: console
 
@@ -109,7 +110,7 @@ Donde ``nick`` es tu usario de IRC en Freenode.
 
 Una vez que hayas añadido todos tus canales de interés que se encuentran en el
 servidor de Freenode y guardado los cambios, solo necesitarás ejecutar en una
-terminal el comando ``irssi`` y automáticamente te conectarás al servidor y
-a todos los canales que hayas añadido, sin necesidad de autenticarte manualmente
+terminal el comando ``irssi`` y automáticamente te conectarás al servidor y a
+todos los canales que hayas añadido, sin necesidad de autenticarte manualmente
 y sin correr riesgo que alguien pueda leer tu contraseña mientras la escribes.
 Todo esto desde una terminal.

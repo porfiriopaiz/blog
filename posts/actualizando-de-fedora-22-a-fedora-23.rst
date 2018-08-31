@@ -3,19 +3,19 @@
 .. date: 2016-12-30 18:10:00 UTC-06:00
 .. tags: dnf, eol, fc22, fc23, fedora, system-upgrade
 .. category: floss
-.. link: 
+.. link:
 .. description: Actualizar Fedora a la versión estable más reciente vía dnf.
 .. type: text
 
 Desde el Martes 26 de Mayo de 2015 hasta el 22 de Noviembre de 2016 estuve
 usando Fedora 22 en mi Lenovo ThinkPad T440p, lo que es equivalente a un año y
-medio usando fc22. El 19 Julio de 2016 fc22 entró en periodo
-`EOL <https://fedoraproject.org/wiki/End_of_life>`_, esto quiere decir que ya
-no recibirá más actulizaciones de seguridad ni mantenimiento, por lo que
+medio usando fc22. El 19 Julio de 2016 fc22 entró en periodo `EOL
+<https://fedoraproject.org/wiki/End_of_life>`_, esto quiere decir que ya no
+recibirá más actulizaciones de seguridad ni mantenimiento, por lo que
 actualizar a una versión estable más reciente era recomendable.
 
-En este post explicaré como actualizar a Fedora 23 usando del administrador
-de paquetes **dnf**.
+En este post explicaré como actualizar a Fedora 23 usando del administrador de
+paquetes **dnf**.
 
 .. TEASER_END
 
@@ -40,11 +40,11 @@ Requisitos previos a la actulización
 ------------------------------------
 
 Primero nos aseguramos de tener suficiente espacio en nuestra partición ``/``,
-ya que durante el proceso de actualización necesitaremos descargar la
-versión más reciente de todos y cada uno de los paquetes instalados en nuestro
-sistema. Considerando que existe la posibilidad que nuestra caché puede estar
-llena, es necesario remover los paquetes almacenados en ella para liberar
-espacio en caso de que nos haga falta:
+ya que durante el proceso de actualización necesitaremos descargar la versión
+más reciente de todos y cada uno de los paquetes instalados en nuestro sistema.
+Considerando que existe la posibilidad que nuestra caché puede estar llena, es
+necesario remover los paquetes almacenados en ella para liberar espacio en caso
+de que nos haga falta:
 
 .. code-block:: console
 
@@ -74,8 +74,8 @@ de Fedora, utilizando un mecanismo similar al utilizado para las
 actualizaciones de paquetes sin conexión. Los paquetes actualizados se
 descargan mientras el sistema se ejecuta normalmente y, a continuación, el
 sistema se reinicia en un entorno especial (implementado como un systmend
-target) para instalarlos. Una vez completada la instalación de los paquetes
-, el sistema se reinicia pero esta vez en la nueva versión de Fedora.
+target) para instalarlos. Una vez completada la instalación de los paquetes ,
+el sistema se reinicia pero esta vez en la nueva versión de Fedora.
 
 El primer paso es instalar el plugin ``dnf-plugin-system-upgrade``:
 
@@ -103,14 +103,14 @@ descargar y la cantidad datos que implica su descarga:
 De igual manera es posible actualizar a Fedora 24, aunque no recomiendo saltar
 a una versión ``n + 2`` de Fedora, es decir, pasar de Fedora 22 a Fedora 24. A
 la fecha, las versiones estables más recientes son Fedora 24 y Fedora 25;
-Fedora 26 es `Branched <https://fedoraproject.org/wiki/Releases/Branched>`_
-y `Rawhide <https://fedoraproject.org/wiki/Releases/Rawhide>`_ la versión en
+Fedora 26 es `Branched <https://fedoraproject.org/wiki/Releases/Branched>`_ y
+`Rawhide <https://fedoraproject.org/wiki/Releases/Rawhide>`_ la versión en
 desarrollo continuo. Para actualizar a cualquiera de las versiones mencionadas,
-solo se debe editar el parámetro ``número`` en la opción ``--releasever=número``
-, 24 para fc24, 25, para fc25, 26 para Fedora Branched y ``rawhide`` para
-actualizar a Rawhide. Hay que tener en cuenta que tanto Branched como Rawhide
-no son versiones estables de Fedora, por lo que su uso solo se recomienda a
-usuarios más experimentados.
+solo se debe editar el parámetro ``número`` en la opción
+``--releasever=número`` , 24 para fc24, 25, para fc25, 26 para Fedora Branched
+y ``rawhide`` para actualizar a Rawhide. Hay que tener en cuenta que tanto
+Branched como Rawhide no son versiones estables de Fedora, por lo que su uso
+solo se recomienda a usuarios más experimentados.
 
 Actualizando a Fedora 24:
 

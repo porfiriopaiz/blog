@@ -3,7 +3,7 @@
 .. date: 2017-08-31 16:26:39 UTC-06:00
 .. tags: dnf, fc26, fedora, postinstall
 .. category: floss
-.. link: 
+.. link:
 .. description:
 .. type: text
 
@@ -63,7 +63,7 @@ esto es algo que me gusta hacer cuando yo quiero y lo necesito, no cuando a
 Reiniciamos.
 
 .. code-block:: console
-   
+
    reboot
 
 Reconstruyendo la caché de metadatos de paquetes
@@ -141,7 +141,7 @@ habilitado el modo gráfico el login seguirá siendo en modo texto:
 
    su -c 'systemctl enable gdm.service'
 
-   reboot 
+   reboot
 
 Si todo ha salido bien, ya debes estar corriendo Fedora 26 Workstation con
 GNOME Shell.
