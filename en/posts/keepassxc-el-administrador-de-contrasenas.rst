@@ -88,7 +88,8 @@ guardaremos todas las contraseñas que generamos para cada una las cuentas.
     + Caracteres de la `a` hasta la `z`, en minúsculas: `a-z`
     + Números: `0-9`
     + Caracteres especiales: `/*_ ...`
-    + Caracteres del `ASCII Extenedido <https://es.wikipedia.org/wiki/ASCII_extendido>`_
+    + Caracteres del `ASCII Extenedido
+      <https://es.wikipedia.org/wiki/ASCII_extendido>`_
 
     En mi caso los marqué todos.
 
@@ -154,16 +155,16 @@ Atajo de autoescritura
 
 Este atajo de teclado es mi favorito. Permite escribir el usuario y la
 contraseña de una entrada en nuestra base de datos directamente a la página
-donde se usa ese usuario y esa contraseña, por lo que no es necesario usar
-tres atajos para lograr el mismo resultado.
+donde se usa ese usuario y esa contraseña, por lo que no es necesario usar tres
+atajos para lograr el mismo resultado.
 
 **Ctrl** - **v**
 
 Para que funcione como debe, ambos, tanto KeePassXC como el campo donde se
 pegan el usuario y la contraseña deben estar a un tiro de **Alt** - **Tab**.
 
-Con esto quiero decir que si presionamos **Atl** - **Tab** debería  pasar de
-la ventana de ``KeePassXC`` a la ventana del navegador, por ejemplo:
+Con esto quiero decir que si presionamos **Atl** - **Tab** debería  pasar de la
+ventana de ``KeePassXC`` a la ventana del navegador, por ejemplo:
 
 Notemos que la cuenta tiene vinculada una URL:
 

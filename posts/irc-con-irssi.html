@@ -47,7 +47,7 @@
             </a>
         </div>
 <!-- /.navbar-header -->
-        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+        <div class="collapse navbar-collapse" id="bs-navbar" role="navigation" aria-expanded="false">
             <ul class="nav navbar-nav">
 <li>
 <a href="../archive.html">Archivo</a>
@@ -123,15 +123,15 @@ diferentes canales que sean de nuestro interés.</p>
 <h2>Instalando irssi</h2>
 <p>Para instalar irssi en fedora, basta con abrir una terminal y escribir el
 siguiente comando:</p>
-<pre class="code console"><a name="rest_code_392ab4d4c2b64aef84829ecd1f2aef7b-1"></a><span class="go">su -c 'dnf install irssi'</span>
+<pre class="code console"><a name="rest_code_c682d95fccc445afb46d8f72eb359b34-1"></a><span class="go">su -c 'dnf install irssi'</span>
 </pre>
 <p>Y para instalar irssi en debian:</p>
-<pre class="code console"><a name="rest_code_4d80a04c435f435bab9467106a75ba06-1"></a><span class="go">su -c 'apt-get install irssi'</span>
+<pre class="code console"><a name="rest_code_05b378691ab243a2a15b0132b3b12cd1-1"></a><span class="go">su -c 'apt-get install irssi'</span>
 </pre>
 <div class="section" id="ejecutando-irssi">
 <h3>Ejecutando irssi</h3>
 <p>Para correr irssi abrimos una terminal y escribimos el siguiente comando:</p>
-<pre class="code console"><a name="rest_code_6efad3a0081243f088c794c79fcaa57c-1"></a><span class="go">irssi</span>
+<pre class="code console"><a name="rest_code_b944fc90c0424ac89bffbfee11b84425-1"></a><span class="go">irssi</span>
 </pre>
 </div>
 </div>
@@ -141,14 +141,15 @@ siguiente comando:</p>
 <h3>Configuraciones de Servidor</h3>
 <p>Todos estos comandos deben ser ejecutados en una sesión de irssi.</p>
 <p>Primero removeremos la configuración existente del servidor que necesitamos
-automatizar. Con <tt class="docutils literal">/server list</tt> podremos visualizar los servidores existentes:</p>
-<pre class="code console"><a name="rest_code_ebc388237a5b466699cff9973fc29582-1"></a><span class="go">/server list</span>
+automatizar. Con <tt class="docutils literal">/server list</tt> podremos visualizar los servidores
+existentes:</p>
+<pre class="code console"><a name="rest_code_8ffdf106035f4a239f13cd020539d323-1"></a><span class="go">/server list</span>
 </pre>
 <p>En nuestro caso eliminaremos la configuración existente de Freenode.</p>
-<pre class="code console"><a name="rest_code_33cb8943217149b78e36940cb604d904-1"></a><span class="go">/server remove chat.freenode.net</span>
+<pre class="code console"><a name="rest_code_73bf74fa0c834d9888bf9329452f5c84-1"></a><span class="go">/server remove chat.freenode.net</span>
 </pre>
 <p>Y añadiremos la nueva configuración con el siguiente comando:</p>
-<pre class="code console"><a name="rest_code_16f0d89a235d459dbf8c2c46b9d98b66-1"></a><span class="go">/SERVER ADD -auto -network Freenode chat.freenode.net 6667 your_nick_password</span>
+<pre class="code console"><a name="rest_code_46b7a15bbac440c99e58deb62bb851bd-1"></a><span class="go">/SERVER ADD -auto -network Freenode chat.freenode.net 6667 your_nick_password</span>
 </pre>
 <p>Donde <tt class="docutils literal"><span class="pre">-auto</span></tt> define la conexión al servidor de Freenode como automática y
 <tt class="docutils literal">your_nick_password</tt> es tu contraseña de usuario en Freenode.</p>
@@ -158,25 +159,25 @@ automatizar. Con <tt class="docutils literal">/server list</tt> podremos visuali
 <p>De igual manera es posible añadir a qué canales de este servidor nos queremos
 conectar automáticamente en cada inicio de sesión, para ello ejecutamos el
 siguiente comando en nuestra sesión de irssi:</p>
-<pre class="code console"><a name="rest_code_c9cb81c3906a40ad9f8bdf60117d8a4e-1"></a><span class="go">/channel add -auto #fedora Freenode</span>
+<pre class="code console"><a name="rest_code_b0ece3121c6248c59c5cc8b912baffde-1"></a><span class="go">/channel add -auto #fedora Freenode</span>
 </pre>
 <p>Donde <tt class="docutils literal"><span class="pre">-auto</span></tt> permite que ingresemos al canal <tt class="docutils literal">#fedora</tt> en <tt class="docutils literal">Freenode</tt> de
 forma automática en cada inicio de sesión.</p>
 <p>Para terminar, cada vez que hagamos un cambio en nuestra configuración será
 necesario salvar los cambios con el comando:</p>
-<pre class="code console"><a name="rest_code_7c758d0269814d85bbd03a74569a8387-1"></a><span class="go">/save</span>
+<pre class="code console"><a name="rest_code_cb6a7a81799f4b52951a2cb2ab7b5805-1"></a><span class="go">/save</span>
 </pre>
 <p>irssi toma el user name de tu sesión actual como el usuario para tu sesión en
 irc, para evitar que esto suceda en caso de que el usuario de tu sesión en el
 sistema no coincida con tu usuario en Freenode, deberás ejecutar irssi con el
 siguiente parámetro:</p>
-<pre class="code console"><a name="rest_code_d01a2b8e4c5548b58e064cebaac7b5ea-1"></a><span class="go">irssi -n nick</span>
+<pre class="code console"><a name="rest_code_52ce4db671744eaebc3dd0f1bb6649f6-1"></a><span class="go">irssi -n nick</span>
 </pre>
 <p>Donde <tt class="docutils literal">nick</tt> es tu usario de IRC en Freenode.</p>
 <p>Una vez que hayas añadido todos tus canales de interés que se encuentran en el
 servidor de Freenode y guardado los cambios, solo necesitarás ejecutar en una
-terminal el comando <tt class="docutils literal">irssi</tt> y automáticamente te conectarás al servidor y
-a todos los canales que hayas añadido, sin necesidad de autenticarte manualmente
+terminal el comando <tt class="docutils literal">irssi</tt> y automáticamente te conectarás al servidor y a
+todos los canales que hayas añadido, sin necesidad de autenticarte manualmente
 y sin correr riesgo que alguien pueda leer tu contraseña mientras la escribes.
 Todo esto desde una terminal.</p>
 </div>
@@ -221,7 +222,7 @@ Todo esto desde una terminal.</p>
         <!--End of body content-->
 
         <footer id="footer">
-            Contents © 2017         <a href="mailto:porfiriopaiz@gmail.com">porfirio</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+            Contents © 2018         <a href="mailto:porfiriopaiz@gmail.com">porfirio</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
 <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"></a>
 
