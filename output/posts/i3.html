@@ -123,20 +123,20 @@ instalción mínima a como he explicado en otras publicaciones.</p>
 </h3>
 <p>Desde el sitio: <a class="reference external" href="https://alt.fedoraproject.org/">https://alt.fedoraproject.org/</a> descargar el archivo de la
 sección <cite>Todo</cite>, este es un ISO que funciona como medio de instalación por red,
-que descarga todos los paquetes que serán parte de la isntalación desde
-Internet, además de darnos la opción de qué colecciones de paquetes instalar,
-a diferencia de los medios lives cuya selección de software ha sido previamente
+que descarga todos los paquetes que serán parte de la instalación desde
+Internet, además de darnos la opción de qué colecciones de paquetes instalar, a
+diferencia de los medios Lives cuya selección de software ha sido previamente
 definida.</p>
 <p>Descarga con <tt class="docutils literal">wget</tt>:</p>
-<pre class="code console"><a name="rest_code_15a4cd58557f4a90858adf570c307a7b-1"></a><span class="go">wget -N -t 0 -c https://download.fedoraproject.org/pub/fedora/linux/releases/29/Everything/x86_64/iso/Fedora-Everything-netinst-x86_64-29-1.2.iso</span>
+<pre class="code console"><a name="rest_code_c56ea46e51f947eaa4e0fa3061ae3d26-1"></a><span class="go">wget -N -t 0 -c https://download.fedoraproject.org/pub/fedora/linux/releases/29/Everything/x86_64/iso/Fedora-Everything-netinst-x86_64-29-1.2.iso</span>
 </pre>
 <p>Descargamos el archivo de comprobación de integridad:</p>
-<pre class="code console"><a name="rest_code_8086e9d64c7a430fba6cc6f582653e3f-1"></a><span class="go">wget -N -t 0 -c https://download.fedoraproject.org/pub/fedora/linux/releases/29/Everything/x86_64/iso/Fedora-Everything-29-1.2-x86_64-CHECKSUM</span>
+<pre class="code console"><a name="rest_code_d40be4c67fc04f1089f3b20442691966-1"></a><span class="go">wget -N -t 0 -c https://download.fedoraproject.org/pub/fedora/linux/releases/29/Everything/x86_64/iso/Fedora-Everything-29-1.2-x86_64-CHECKSUM</span>
 </pre>
 </div>
 <div class="section" id="comprobar-la-integridad-del-archivo">
 <h3>Comprobar la integridad del archivo</h3>
-<pre class="code console"><a name="rest_code_3db5480706a54da7bd82b38d7678706c-1"></a><span class="go">sha256sum -c Fedora-Everything-29-1.2-x86_64-CHECKSUM</span>
+<pre class="code console"><a name="rest_code_3a0236ba52a2472e91077445c3bf4f18-1"></a><span class="go">sha256sum -c Fedora-Everything-29-1.2-x86_64-CHECKSUM</span>
 </pre>
 </div>
 <div class="section" id="crear-el-medio-de-instalacion-con-fedora-media-writer">
@@ -149,111 +149,111 @@ arrancar en equipos que cuentan tanto con UEFI o BIOS.</p>
 <p>De qué modo arrancará, quedará en dependencia de cual de los dos tenga mayor
 prioridad durante el arranque.</p>
 <p><a class="reference external" href="https://github.com/FedoraQt/MediaWriter/releases/tag/4.1.1">https://github.com/FedoraQt/MediaWriter/releases/tag/4.1.1</a></p>
-<p>Conectamos nuestra memoria USB, ejecutamos Fedora Media Writer y usar la opción
-<cite>Custom Image</cite>, navegamos hasta la ruta en la que se encuentra la ISO que
-acabamos de descargar.</p>
+<p>Conectamos nuestra memoria USB, ejecutamos Fedora Media Writer y usamos la
+opción <cite>Custom Image</cite>, navegamos hasta la ruta en la que se encuentra la ISO
+que acabamos de descargar, lo seleccionamos y grabamos la imagen en la memoria
+USB.</p>
 </div>
 </div>
 <div class="section" id="instalacion">
 <h2>Instalación</h2>
-<p>He seguido los pasos de instalación descritos en este post anterior:</p>
+<p>He seguido los pasos de instalación descritos en esta publicación anterior
+asegurándome de tener acceso a una red inalambrica o una red cableada.</p>
 <p><a class="reference external" href="https://porfiriopaiz.github.io/blog/posts/anaconda-y-lvm-sobre-luks.html">https://porfiriopaiz.github.io/blog/posts/anaconda-y-lvm-sobre-luks.html</a></p>
-<p>Asegurándome de tener acceso a una red inalambrica o una red cableada. En esta
-ocasión me he tenido que auxiliar de mi teléfono móvil, si bien es cierto tenía
-acceso a una red inalambrica durante la instalación del sistema base (Fedora
-Custom Install), luego de la instalación la colección de paquetes no consta de
-los controladores de red necesarios para poder acceder a redes inalámbricas ya
-que no se incluyen los controladores de red.</p>
+<p>En esta ocasión me he tenido que auxiliar de mi teléfono móvil, si bien es
+cierto tenía acceso a una red inalámbrica durante la instalación del sistema
+base (Fedora Custom Install), luego de la instalación la colección de paquetes
+no consta de los controladores de red necesarios para poder acceder a redes
+inalámbricas ya que no se incluyen en la selección Custom Install.</p>
 <p>Por eso he creado una red cableada via USB con mi teléfono móvil. Para que
-funcione hay que asegurarse de los siguiente luego del primer arranque después
+funcione hay que asegurarse de lo siguiente luego del primer arranque después
 de la instalación:</p>
 <ol class="arabic simple">
 <li>Loguearse en el sistema.</li>
 <li>Conectar el cable USB al equipo.</li>
 <li>Conectar el otro extremo al teléfono móvil.</li>
 <li>Asegurarse que el teléfono está conectado a una red inalámbrica o bien que
-los esté activado el plan de datos. Como nota, considera que son necesarios
-al menos unos 800MB de datos en paquetes RPM los que se deben descargar para
+esté activado el plan de datos. Como nota, considera que son necesarios al
+menos unos 800MB de datos en paquetes RPM los que se deben descargar para
 una instalación mínima de Fedora con soporte para entorno gráfico con i3wm.</li>
-<li>Asegurarse de que el teléfono está en modo de transferencias de dato USB o
+<li>Asegurarse de que el teléfono está en modo de transferencia de datos USB o
 MTP.</li>
 <li>Activar una red cableada o Tethered Wired Network.</li>
 </ol>
 <p>Luego de lo cual deberías tener acceso a Internet, compruébalo hacien ping
 Google:</p>
-<pre class="code console"><a name="rest_code_f64884b7215c4a3fb7076d7533bbddf6-1"></a><span class="go">ping 8.8.8.8</span>
+<pre class="code console"><a name="rest_code_a1b6301785624844888ba8a03e65ade2-1"></a><span class="go">ping 8.8.8.8</span>
 </pre>
 </div>
-<div class="section" id="requerimientos-minimos">
-<h2>Requerimientos mínimos</h2>
+<div class="section" id="configuraciones-basicas">
+<h2>Configuraciones básicas</h2>
 <div class="section" id="configurando-dnf">
 <h3>Configurando <tt class="docutils literal">dnf</tt>
 </h3>
 <p>El siguiente paso es opcional, como <cite>root</cite>, lo primero que hago es configurar
 <tt class="docutils literal">dnf</tt>, para que use los espejos de paquetes más eficientes:</p>
-<pre class="code console"><a name="rest_code_9552c4d5c3374e388f42f79871ec9820-1"></a><span class="go">echo 'fastestmirror=true' &gt;&gt; /etc/dnf/dnf.conf</span>
+<pre class="code console"><a name="rest_code_70b40af103ea41bbb71f4c83a309957d-1"></a><span class="go">echo 'fastestmirror=true' &gt;&gt; /etc/dnf/dnf.conf</span>
 </pre>
 <p>Luego desabilito el uso de <cite>deltarpm's</cite> para las futuras actualizaciones. Si
 prefieres reducir la cantidad de datos a descargar en cada una de las futuras
-actualizacones que vayas a descargar omite este paso:</p>
-<pre class="code console"><a name="rest_code_7f65f0f4c85247b4aa15fc55a5e0d4b5-1"></a><span class="go">echo 'deltarpm=false' &gt;&gt; /etc/dnf/dnf.conf</span>
+actualizaciones omite este paso:</p>
+<pre class="code console"><a name="rest_code_f59075b170504703bc17a6276a9d3ac4-1"></a><span class="go">echo 'deltarpm=false' &gt;&gt; /etc/dnf/dnf.conf</span>
 </pre>
 <p>Siempre conservo cada uno de los paquetes desde donde se instala cualquier
 programa de mi sistema, incluidos los que se descargan como parte de las
-actualizaciones, para mantener la cache de paquetes a lo largo del periodo que
-usemos Fedora 29, ejecuta el siguinte comando, este paso es opcional y puedes
+actualizaciones, para mantener la caché de paquetes a lo largo del período que
+usemos Fedora 29, ejecuta el siguinte comando. Este paso es opcional y puedes
 omitirlo si te parece:</p>
-<pre class="code console"><a name="rest_code_5b13f3b3bdeb4f01b545d82555658a93-1"></a><span class="go">echo 'keepcache=true' &gt;&gt; /etc/dnf/dnf.conf</span>
+<pre class="code console"><a name="rest_code_18613c995afe412abc73f0c78fdf2c07-1"></a><span class="go">echo 'keepcache=true' &gt;&gt; /etc/dnf/dnf.conf</span>
 </pre>
-<p>Ahora procedo a deshabilitar un servicio y <cite>timer</cite> de <tt class="docutils literal">dnf</tt>. El servicio se
-asegura de refrescar la cache de metadatos para poder hacer comprobaciones
+<p>Ahora procedo a deshabilitar un servicio y un <cite>timer</cite> de <tt class="docutils literal">dnf</tt>. El servicio
+se asegura de refrescar la caché de metadatos para poder hacer comprobaciones
 sobre las versiones de los paquetes que están en los repos y así posteriormente
 comprobar si hay actualizaciones disponibles. El <cite>timer</cite> se encargar de
 ejecutar el servicio de manera periódica y sistemática.</p>
-<p>Simpre deshabilito ambos para evitar molestos consumos de anchos de bandas y
-bloqueos de <tt class="docutils literal">dnf</tt> mientras se refresca la cache. Si contás un límitado ancho
-de banda y pland de datos esto te ayudará a reducir el consumo del mismo.</p>
-<pre class="code console"><a name="rest_code_736aec64ff7e46b7ab6f5b4658df794e-1"></a><span class="go">systemctl disable dnf-makecache.service</span>
-<a name="rest_code_736aec64ff7e46b7ab6f5b4658df794e-2"></a><span class="go">systemctl disable dnf-makecache.timer</span>
+<p>Simpre deshabilito ambos para evitar molestos consumosde ancho de banda y
+bloqueos de <tt class="docutils literal">dnf</tt> mientras se refresca la caché. Si contás con un límitado
+ancho de banda o plan de datos esto te ayudará a reducir el consumo del mismo.</p>
+<pre class="code console"><a name="rest_code_6d33eb7738f94573b36f287a82719f06-1"></a><span class="go">systemctl disable dnf-makecache.service</span>
+<a name="rest_code_6d33eb7738f94573b36f287a82719f06-2"></a><span class="go">systemctl disable dnf-makecache.timer</span>
 </pre>
-<p>Finalmente para asegurarnos que no los cambios tendrán efecto debemos
-reiniciar:</p>
-<pre class="code console"><a name="rest_code_ebc9224e365343888a3352ceedefd3f3-1"></a><span class="go">reboot</span>
+<p>Finalmente para asegurarnos que los cambios tengan efecto debemos reiniciar:</p>
+<pre class="code console"><a name="rest_code_cb38e87cecbc4285b32c0e4b8aa50fea-1"></a><span class="go">reboot</span>
 </pre>
 </div>
 <div class="section" id="regenerar-la-cache-e-instalar-actualizaciones-disponibles">
-<h3>Regenerar la cache e instalar actualizaciones disponibles</h3>
+<h3>Regenerar la caché e instalar actualizaciones disponibles</h3>
 <p>Durante la instalación es posible que hayas omitido marcar la opción que
 permite instalar la versión más reciente de paquetes de los espejos, por lo que
 tu sistema podría estar desactualizado incluso habiendo hecho uso del medio de
 instalación por red.</p>
 <p>Para aplicar las actualizaciones más recientes y usar los espejos más
-eficientes es necesario regenerar la cache de metadatos.</p>
+eficientes es necesario regenerar la caché de metadatos.</p>
 <p>Fedora mantiene dos cachés distintas, una para el usuario <cite>root</cite> otra para el
 usuario normal, en mi caso <cite>pionen</cite>, por lo que debemos regenerar ambas cachés
 en caso de querer realizar tareas como administrador o simples consultas que no
 requieren privilegios de administrador:</p>
 <p>Como usuario normal no-root:</p>
-<pre class="code console"><a name="rest_code_012dec054f5547e883d25834db119121-1"></a><span class="go">dnf clean all</span>
-<a name="rest_code_012dec054f5547e883d25834db119121-2"></a>
-<a name="rest_code_012dec054f5547e883d25834db119121-3"></a><span class="go">dnf makecache</span>
+<pre class="code console"><a name="rest_code_fcb9996d0f2045ad88c059a00034f18f-1"></a><span class="go">dnf clean all</span>
+<a name="rest_code_fcb9996d0f2045ad88c059a00034f18f-2"></a>
+<a name="rest_code_fcb9996d0f2045ad88c059a00034f18f-3"></a><span class="go">dnf makecache</span>
 </pre>
 <p>Luego, siempre como usuario normal no-root ejecutamos los siguientes comandos,
-donde pasamos la instrución como parámetro al usuario <cite>root</cite>:</p>
-<pre class="code console"><a name="rest_code_a2436df5430f4749b74ca1fd5e68a435-1"></a><span class="go">su -c 'dnf clean all'</span>
-<a name="rest_code_a2436df5430f4749b74ca1fd5e68a435-2"></a>
-<a name="rest_code_a2436df5430f4749b74ca1fd5e68a435-3"></a><span class="go">su -c 'dnf makecache'</span>
+donde pasamos la instrucción entre comillas, como parámetro al usuario <cite>root</cite>:</p>
+<pre class="code console"><a name="rest_code_9968f8263ed747ac8c7c0cdef25b88df-1"></a><span class="go">su -c 'dnf clean all'</span>
+<a name="rest_code_9968f8263ed747ac8c7c0cdef25b88df-2"></a>
+<a name="rest_code_9968f8263ed747ac8c7c0cdef25b88df-3"></a><span class="go">su -c 'dnf makecache'</span>
 </pre>
 <p>Consultamos si hay actualizaciones disponibles e ingresamos nuestra contraseña
 de <cite>root</cite>:</p>
-<pre class="code console"><a name="rest_code_2f712ee03a184425a8aad801f84d4bf6-1"></a><span class="go">su -c 'dnf --refresh check-upgrade'</span>
+<pre class="code console"><a name="rest_code_c8bef67476574b8d916cdbc7b973dab5-1"></a><span class="go">su -c 'dnf --refresh check-upgrade'</span>
 </pre>
 <p>En caso de haber actualizacones disponibles, las aplicamos con:</p>
-<pre class="code console"><a name="rest_code_ec03939e4e30440da6646705ed229bb2-1"></a><span class="go">su -c 'dnf upgrade'</span>
+<pre class="code console"><a name="rest_code_f2c10be536294392bfd248da6b1d2d6b-1"></a><span class="go">su -c 'dnf upgrade'</span>
 </pre>
 <p>De haberse aplicado actualizaciones es recomendable actualizar para poder hacer
 uso de la versión más reciente de todos lo programas, por ejemplo el kernel:</p>
-<pre class="code console"><a name="rest_code_db31e12ddc524db7ba2960edce405f95-1"></a><span class="go">reboot</span>
+<pre class="code console"><a name="rest_code_0e6d88646b9b4b28997bb82a0e3ecfd7-1"></a><span class="go">reboot</span>
 </pre>
 </div>
 </div>
@@ -266,33 +266,32 @@ grupos especializados. Los siguientes comandos deben ser ejecutados como
 usuario <cite>root</cite>.</p>
 <div class="section" id="submodulos-comunes-de-networkmanager">
 <h3>Submódulos comunes de NetworkManager</h3>
-<p>Este grupo contiene los submódulos de NetworkManager que se usan comúnmente,
-pero es posible que no se deseen en algunas configuraciones simplificadas.</p>
-<pre class="code console"><a name="rest_code_6291e90d919345ae8830d0c2977fded4-1"></a><span class="go">dnf -y group install networkmanager-submodules</span>
+<p>Este grupo contiene los submódulos de NetworkManager que se usan comúnmente.</p>
+<pre class="code console"><a name="rest_code_2f883d5b8e6c4ccb8ed769b8f41fc29d-1"></a><span class="go">dnf -y group install networkmanager-submodules</span>
 </pre>
 </div>
 <div class="section" id="core">
 <h3>Core</h3>
 <p>Grupo de paquetes para una instalación más pequeña posible, solo contiene los
 paquetes mínimos requeridos para fucionar. Podría estar ya instalado...</p>
-<pre class="code console"><a name="rest_code_fdab116a9c4c4a059aeb11dcbb024951-1"></a><span class="go">dnf -y group install core</span>
+<pre class="code console"><a name="rest_code_6e036ae2fc6848959562df7eac758674-1"></a><span class="go">dnf -y group install core</span>
 </pre>
 </div>
 <div class="section" id="soporte-de-acceso-telefonico-a-redes">
 <h3>Soporte de acceso telefónico a redes</h3>
-<pre class="code console"><a name="rest_code_4e46cc1a99e34153b78775c80e4ca613-1"></a><span class="go">dnf -y group install dial-up</span>
+<pre class="code console"><a name="rest_code_a48a3a969b794a8b8859a867134a2bf2-1"></a><span class="go">dnf -y group install dial-up</span>
 </pre>
 </div>
 <div class="section" id="fuentes-tipograficas">
 <h3>Fuentes tipográficas</h3>
 <p>Paquetes de fuentes para renderizar texto en el escritorio.</p>
-<pre class="code console"><a name="rest_code_6ce66b540cc344e0a456e322143384eb-1"></a><span class="go">dnf -y group install fonts</span>
+<pre class="code console"><a name="rest_code_5a8d264d8cca4527a65fd381597ba347-1"></a><span class="go">dnf -y group install fonts</span>
 </pre>
 </div>
 <div class="section" id="guest-desktop-agents">
 <h3>Guest Desktop Agents</h3>
 <p>Agentes utilizados cuando se ejecuta como un escritorio virtualizado.</p>
-<pre class="code console"><a name="rest_code_0919d6d6ed9548f295e3988129129cef-1"></a><span class="go">dnf -y group install guest-desktop-agents</span>
+<pre class="code console"><a name="rest_code_79e50ed7ca1846cda75135ce1e676760-1"></a><span class="go">dnf -y group install guest-desktop-agents</span>
 </pre>
 </div>
 <div class="section" id="soporte-de-hardware">
@@ -300,7 +299,7 @@ paquetes mínimos requeridos para fucionar. Podría estar ya instalado...</p>
 <p>Este grupo es una colección de herramientas para varias utilidades específicas
 de hardware. Provee los controladores de red necesarios para hacer funcionar
 una amplia variedad de tarjetas de red inalámbricas.</p>
-<pre class="code console"><a name="rest_code_8dcbf9616ed945af9de359b830504d2f-1"></a><span class="go">dnf -y group install hardware-support</span>
+<pre class="code console"><a name="rest_code_9426af5b0ead4a8990af9af1cf2daa67-1"></a><span class="go">dnf -y group install hardware-support</span>
 </pre>
 </div>
 <div class="section" id="multimedia">
@@ -309,61 +308,62 @@ una amplia variedad de tarjetas de red inalámbricas.</p>
 para un entorno de escritorio. Esta colección no incluye códecs de audio y
 video propietarios o bajo patentes. Únicamente se incluye software, códecs y
 librerías libres.</p>
-<pre class="code console"><a name="rest_code_1cf7dcf3360b463ca4f424b243657423-1"></a><span class="go">dnf -y group install multimedia</span>
+<pre class="code console"><a name="rest_code_d18ff1457ac14a3c8288b13bb991f41a-1"></a><span class="go">dnf -y group install multimedia</span>
 </pre>
 </div>
 <div class="section" id="standard">
 <h3>Standard</h3>
 <p>Conjunto común de utilidades que amplían la instalación mínima.</p>
-<pre class="code console"><a name="rest_code_05b8a967fa1842119651d842d3c7a1ae-1"></a><span class="go">dnf -y group install standard</span>
+<pre class="code console"><a name="rest_code_82778738a8bb4265b760e1088ccb8ace-1"></a><span class="go">dnf -y group install standard</span>
 </pre>
 </div>
 <div class="section" id="base-x">
 <h3>base-x</h3>
-<p>Servidor de pantalla local de X.org</p>
-<pre class="code console"><a name="rest_code_0ffdfb9bdee64ad1a46fec2257b2ed0b-1"></a><span class="go">dnf -y group install base-x</span>
+<p>Servidor de pantalla local de X.org, indispensable para poder tener
+aplicaciones de interfaz gráfica.</p>
+<pre class="code console"><a name="rest_code_df9f699fb3734b29844383ffea55272f-1"></a><span class="go">dnf -y group install base-x</span>
 </pre>
 </div>
 <div class="section" id="metodos-de-entrada">
 <h3>Métodos de entrada</h3>
 <p>Paquetes de método de entrada para la entrada de texto internacional.</p>
-<pre class="code console"><a name="rest_code_45644e6b7f024b71bf1e23645903fca5-1"></a><span class="go">dnf -y group install input-methods</span>
+<pre class="code console"><a name="rest_code_786d328c0d114be08d785218e6fe3d1d-1"></a><span class="go">dnf -y group install input-methods</span>
 </pre>
 </div>
 <div class="section" id="tema-de-iconos-de-fedora">
 <h3>Tema de íconos de Fedora</h3>
-<p>Este paquete contiene el tema del icono de Fedora.</p>
-<pre class="code console"><a name="rest_code_1ca9bf67acce45f19bd1c56a608756ff-1"></a><span class="go">dnf -y install fedora-icon-theme</span>
+<p>Este paquete contiene el tema del íconos de Fedora.</p>
+<pre class="code console"><a name="rest_code_6373b69b836b4131afae2f89e2e75b47-1"></a><span class="go">dnf -y install fedora-icon-theme</span>
 </pre>
 </div>
 <div class="section" id="tema-de-iconos-de-gnome">
 <h3>Tema de íconos de GNOME</h3>
-<p>Este paquete contiene el tema de iconos predeterminado utilizado por el
+<p>Este paquete contiene el tema de íconos predeterminado utilizado por el
 escritorio de GNOME.</p>
-<pre class="code console"><a name="rest_code_6e33a8e3647346429da4d4f71f4355da-1"></a><span class="go">dnf -y install gnome-icon-theme</span>
+<pre class="code console"><a name="rest_code_e679bbd0ae02486892e6cbd15f7bcaed-1"></a><span class="go">dnf -y install gnome-icon-theme</span>
 </pre>
 </div>
 <div class="section" id="tema-de-iconos-extras-de-gnome">
 <h3>Tema de íconos extras de GNOME</h3>
 <p>Este paquete contiene iconos adicionales de tipo mime y dispositivo para uso en
 el escritorio de GNOME.</p>
-<pre class="code console"><a name="rest_code_93953ee338d847fd9c91b25be269d968-1"></a><span class="go">dnf -y install gnome-icon-theme-extras</span>
+<pre class="code console"><a name="rest_code_b382fac79bd6465ea3afd5b8f816e8dc-1"></a><span class="go">dnf -y install gnome-icon-theme-extras</span>
 </pre>
 </div>
 <div class="section" id="i3-manejador-de-ventanas">
 <h3>i3 Manejador de Ventanas</h3>
 <p>Finalmente podemos instalar el manejador de ventanas i3.</p>
-<pre class="code console"><a name="rest_code_a29ef1fa22f042bbb0711c4d8b7d57a7-1"></a><span class="go">dnf -y install i3</span>
+<pre class="code console"><a name="rest_code_4b581716840c42be813de07d0af8225f-1"></a><span class="go">dnf -y install i3</span>
 </pre>
 </div>
 <div class="section" id="instalando-login-grafico">
 <h3>Instalando login gráfico</h3>
-<p>Necesitarmos un login gráfico desde el cual poder ingresar nuestro usuario y
+<p>Necesitaremos un login gráfico desde el cual poder ingresar nuestro usuario y
 contraseña para autenticarnos en el sistema. Desde este también podremos
-seleccionar otros entornos gráfito que instalemos a futuro.</p>
+seleccionar otros entornos gráficos que instalemos a futuro.</p>
 <p>LightDM es un dispositivo de bienvenida que utiliza el kit de herramientas
 GTK3.</p>
-<pre class="code console"><a name="rest_code_96a5805dd41d48d5b11c1fabfd478ef7-1"></a><span class="go">dnf -y install lightdm-gtk</span>
+<pre class="code console"><a name="rest_code_39c457c8ea3240aa972a0b8a275c9007-1"></a><span class="go">dnf -y install lightdm-gtk</span>
 </pre>
 </div>
 <div class="section" id="xdg-user-dirs">
@@ -371,7 +371,7 @@ GTK3.</p>
 <p>Contiene xdg-user-dirs-update que actualiza las carpetas en un directorio de
 inicio, el <tt class="docutils literal">/home/</tt> según los valores predeterminados configurados por el
 administrador.</p>
-<pre class="code console"><a name="rest_code_ab985e38aa7f4cd6b0e383e96dde2dd1-1"></a><span class="go">dnf -y install xdg-user-dirs</span>
+<pre class="code console"><a name="rest_code_db1aeeb399c04986b4d08a7082ad428d-1"></a><span class="go">dnf -y install xdg-user-dirs</span>
 </pre>
 </div>
 </div>
@@ -379,20 +379,20 @@ administrador.</p>
 <h2>Habilitar el arranque en modo gráfico</h2>
 <p>Nuestro sistema ya tiene instalado todo lo necesario para funcionar como un
 entorno de escritorio usando el manejador de ventanas i3. Pero es necesario
-cambiar ciertas configuraciones que hacen que el sistema arranque en modo
-<cite>runlevel 3</cite> o <cite>multi-user.target</cite> para que en su lugar arranque en <cite>runlevel
-5</cite> o <cite>graphical.target</cite>.</p>
+cambiar ciertas configuraciones que hacen que el sistema arranque de modo
+<cite>runlevel 3</cite> o <cite>multi-user.target</cite> a un modo de arranque en <cite>runlevel 5</cite> o
+<cite>graphical.target</cite>.</p>
 <p>Con el siguiente comando corregimos eso:</p>
-<pre class="code console"><a name="rest_code_3a64164b7da84608964d715aa4b94048-1"></a><span class="go">systemctl set-default graphical.target</span>
+<pre class="code console"><a name="rest_code_ec0654df71f349ed933f05321c8e9f44-1"></a><span class="go">systemctl set-default graphical.target</span>
 </pre>
 <p>También debemos habilitar el servicio que provee la opción de acceder al
 sistema desde el login gráfico que hemos instalado, <cite>lightdm</cite>:</p>
-<pre class="code console"><a name="rest_code_916fea163c1d4fea87e45d4d9bee5a48-1"></a><span class="go">systemctl enable lightdm.service</span>
+<pre class="code console"><a name="rest_code_fa535bb6d0cd4fef9b254a537dc6f9bb-1"></a><span class="go">systemctl enable lightdm.service</span>
 </pre>
-<p>Finalmente podemos reiniciar nuestro sistema y luego de esto deberiamos poder
+<p>Finalmente podemos reiniciar nuestro sistema y luego de esto deberíamos poder
 acceder al logín gráfico y hacer uso de nuestro equipo con el manejador de
 ventanas i3.</p>
-<pre class="code console"><a name="rest_code_7b116df069804731aaff7e4c92838b96-1"></a><span class="go">reboot</span>
+<pre class="code console"><a name="rest_code_e6969b17681d40129425b8be0bd5dd7a-1"></a><span class="go">reboot</span>
 </pre>
 </div>
 <div class="section" id="primer-inicio-de-sesion-grafico">
@@ -408,16 +408,16 @@ Key</cite>, también conociddad como <cite>Meta Key</cite> o <cite>Tecla de Inic
 <div class="section" id="terminal-de-comandos">
 <h2>Terminal de comandos</h2>
 <p>Esta instalación no cuenta con ningún programa por defecto preinstalado para
-navegar en Internet, manejador de archivos, visor de imagenes, lector de
+navegar en Internet, manejador de archivos, visor de imágenes o lector de
 archivos PDF.</p>
-<p>Queda a criterio de cada quién que usar.</p>
+<p>Queda a criterio de cada quién qué usar y qué instalar.</p>
 <p>― Pero, ¿Cómo puedo instalar más programas?</p>
 <p>Si seleccionaste la tecla Windows para accionar los atajos de teclado de i3,
 presionando:</p>
 <p>&lt;Inicio&gt; + Enter</p>
 <p>Podrás ejecutar la terminal de comandos. Yo prefiero usar GNOME Terminal, por
 lo que siempre la instalo.</p>
-<pre class="code console"><a name="rest_code_2293b300de174ad2b14e6ad7e7a2ca22-1"></a><span class="go">su -c 'dnf install gnome-terminal'</span>
+<pre class="code console"><a name="rest_code_cdf867a5e0054abfae9f04eac7bfd295-1"></a><span class="go">su -c 'dnf install gnome-terminal'</span>
 </pre>
 <p>Luego presionando:</p>
 <p>&lt;Inicio&gt; + d</p>
@@ -430,7 +430,7 @@ lo que siempre la instalo.</p>
 <p>Para salir de i3 debemos presionar:</p>
 <p>&lt;Inicio&gt; + &lt;Shift&gt; + e</p>
 <p>Esto accionará un diálogo que nos consultará si queremos finalizar nuestra
-sesión de i3. Damos clic en <tt class="docutils literal">Yes, exite i3</tt> y luego estando en <cite>lightdm</cite>
+sesión de i3. Damos clic en <tt class="docutils literal">Yes, exit i3</tt> y luego estando en <cite>lightdm</cite>
 podemos presionar:</p>
 <p>&lt;Alt&gt; + &lt;F4&gt;</p>
 <p>Para apagar nuestro equipo.</p>
