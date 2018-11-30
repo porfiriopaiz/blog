@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="description" content="Automatizando la conexión a IRC con irssi.">
@@ -8,10 +8,10 @@
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <meta name="theme-color" content="#5670d4">
 <meta name="generator" content="Nikola (getnikola.com)">
-<link rel="alternate" type="application/atom+xml" title="Atom (en)" href="../index.atom">
-<link rel="alternate" type="application/rss+xml" title="RSS (en)" href="../rss.xml">
-<link rel="alternate" type="application/atom+xml" title="Atom (es)" href="../../index.atom">
-<link rel="alternate" type="application/rss+xml" title="RSS (es)" href="../../rss.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS (en)" hreflang="en" href="../rss.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS (es)" hreflang="es" href="../../rss.xml">
+<link rel="alternate" type="application/atom+xml" title="Atom (en)" hreflang="en" href="../index.atom">
+<link rel="alternate" type="application/atom+xml" title="Atom (es)" hreflang="es" href="../../index.atom">
 <link rel="canonical" href="https://porfiriopaiz.github.io/blog/en/posts/irc-con-irssi.html">
 <link rel="icon" href="../../favicon.png" sizes="16x16">
 <!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="porfirio">
@@ -47,7 +47,7 @@
             </a>
         </div>
 <!-- /.navbar-header -->
-        <div class="collapse navbar-collapse" id="bs-navbar" role="navigation" aria-expanded="false">
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
             <ul class="nav navbar-nav">
 <li>
 <a href="../archive.html">Archive</a>
@@ -90,7 +90,10 @@
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                     porfirio
             </span></p>
-            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2016-11-02T15:26:28-06:00" itemprop="datePublished" title="2016-11-02 15:26">2016-11-02 15:26</time></a></p>
+            <p class="dateline">
+            <a href="#" rel="bookmark">
+            <time class="published dt-published" datetime="2016-11-02T15:26:28-06:00" itemprop="datePublished" title="2016-11-02 15:26">2016-11-02 15:26</time></a>
+            </p>
                 <p class="commentline">
         
     <a href="irc-con-irssi.html#disqus_thread" data-disqus-identifier="cache/posts/irc-con-irssi.html">Comments</a>
@@ -122,15 +125,15 @@ authenticate and then joining the differents channels that are of interest.</p>
 <h2>Installing irssi</h2>
 <p>To install irssi in fedora, just open a terminal and type the following
 command:</p>
-<pre class="code console"><a name="rest_code_9b671307ae9a4726a176563fdf9b8c01-1"></a><span class="go">su -c 'dnf install irssi'</span>
+<pre class="code console"><a name="rest_code_6f0515a5958d49ce9ec71269a9f4f01d-1"></a><span class="go">su -c 'dnf install irssi'</span>
 </pre>
 <p>And to install irssi in debian:</p>
-<pre class="code console"><a name="rest_code_5b74afdfe2fe4de2a9bfe9d895886a3d-1"></a><span class="go">su -c 'apt-get install irssi'</span>
+<pre class="code console"><a name="rest_code_3e2cb1567e7141ecbacc5ecf7775bc11-1"></a><span class="go">su -c 'apt-get install irssi'</span>
 </pre>
 <div class="section" id="running-irssi">
 <h3>Running irssi</h3>
 <p>To run irssi, open a terminal and type the following command:</p>
-<pre class="code console"><a name="rest_code_b10cb2aa84974ae281876d81d5c79e59-1"></a><span class="go">irssi</span>
+<pre class="code console"><a name="rest_code_222d86b886dd47d28d39c233368514c0-1"></a><span class="go">irssi</span>
 </pre>
 </div>
 </div>
@@ -141,13 +144,13 @@ command:</p>
 <p>All these commands must be executed on a irssi session.</p>
 <p>First we will remove the existing server configuration that we want to
 automate.  With <tt class="docutils literal">/server list</tt> we can view existing servers:</p>
-<pre class="code console"><a name="rest_code_3c120f4671b146ecaebc2dddb9dc75d6-1"></a><span class="go">/server list</span>
+<pre class="code console"><a name="rest_code_929389c4a4654b18b8f039faf24a4f62-1"></a><span class="go">/server list</span>
 </pre>
 <p>In our case we will remove the existing configuration of Freenode.</p>
-<pre class="code console"><a name="rest_code_b08a4328960144858e738284dae81e34-1"></a><span class="go">/server remove chat.freenode.net</span>
+<pre class="code console"><a name="rest_code_9839b2282c78466fb91e63a4f263682e-1"></a><span class="go">/server remove chat.freenode.net</span>
 </pre>
 <p>And add the new configuration with the following command:</p>
-<pre class="code console"><a name="rest_code_e98e49c54d3e409594d700c41ce278f8-1"></a><span class="go">/SERVER ADD -auto -network Freenode chat.freenode.net 6667 your_nick_password</span>
+<pre class="code console"><a name="rest_code_3160e3594ad24fd39f1a42f1370fbed6-1"></a><span class="go">/SERVER ADD -auto -network Freenode chat.freenode.net 6667 your_nick_password</span>
 </pre>
 <p>In which <tt class="docutils literal"><span class="pre">-auto</span></tt> defines the connection to the <tt class="docutils literal">Freenode</tt> server as
 automatic and <tt class="docutils literal">your_nick_password</tt> is your user password.</p>
@@ -157,19 +160,19 @@ automatic and <tt class="docutils literal">your_nick_password</tt> is your user 
 <p>Similarly, it is possible to add channels to this server in order to get
 connected automatically on each login, for this run the following command in
 our irssi session:</p>
-<pre class="code console"><a name="rest_code_20bd7e669a754de984cadbaa6756bf23-1"></a><span class="go">/channel add -auto #fedora Freenode</span>
+<pre class="code console"><a name="rest_code_8265fdc56c4d451d9ebeec282054b359-1"></a><span class="go">/channel add -auto #fedora Freenode</span>
 </pre>
 <p>In which <tt class="docutils literal"><span class="pre">-auto</span></tt> allows us joining to <tt class="docutils literal">#fedora</tt> channel at <tt class="docutils literal">Freenode</tt>
 server automatically at each login.</p>
 <p>Finally, every time we make a change in our configuration, we must save changes
 with the command:</p>
-<pre class="code console"><a name="rest_code_f1449ec1b45346b8a3376b9473819293-1"></a><span class="go">/save</span>
+<pre class="code console"><a name="rest_code_cd8fb2f6ce654177bc5b6a83f810d767-1"></a><span class="go">/save</span>
 </pre>
 <p>irssi takes the user name of your current session on the system as the user for
 your session in irc, to prevent this from happening if the name of your session
 in the system does not match your user at Freenode, you should run irssi with
 the following parameter:</p>
-<pre class="code console"><a name="rest_code_81a7281b5b1c43b6bab32512bf0a0283-1"></a><span class="go">irssi -n nick</span>
+<pre class="code console"><a name="rest_code_fafe17ff24c147778e05761096868727-1"></a><span class="go">irssi -n nick</span>
 </pre>
 <p>Where <tt class="docutils literal">nick</tt> is your user nick on Freenode IRC.</p>
 <p>Once you've added all your channels of interest from the Freenode server and
@@ -229,9 +232,15 @@ reading your password while you type it. All this from a terminal.</p>
 </div>
 
 
-            <script src="../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+            <script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
     moment.locale("en");
     fancydates(0, "YYYY-MM-DD HH:mm");
-    </script><!-- end fancy dates -->
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
 </body>
 </html>

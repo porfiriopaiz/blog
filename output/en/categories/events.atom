@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?xml-stylesheet href="https://porfiriopaiz.github.io/blog/assets/xml/atom.xsl" type="text/xsl media="all"?>
 <feed xml:lang="en" xmlns="http://www.w3.org/2005/Atom">
-  <title>Posts about events</title>
+  <title>el blog de porfirio (Posts about events)</title>
   <id>https://porfiriopaiz.github.io/blog/en/categories/events.atom</id>
-  <updated>2018-08-31T04:52:37Z</updated>
+  <updated>2018-11-30T08:01:52Z</updated>
   <author>
     <name>porfirio</name>
   </author>

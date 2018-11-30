@@ -1,3 +1,11 @@
+<!-- title: Anaconda y LVM sobre LUKS -->
+<!-- slug: anaconda-y-lvm-sobre-luks -->
+<!-- date: 2017-02-03 16:59:06 UTC-06:00 -->
+<!-- tags: anaconda, fc25, fedora, luks, lvm -->
+<!-- category: floss -->
+<!-- link: -->
+<!-- description: Reutilizando LUKS y VG en una instalación cifrada de Fedora. -->
+<!-- type: text -->
 <p>Previamente había actualizado mi laptop de Fedora 22 a Fedora 23 cuando fc22 ya
 tenía más de 6 meses de haber alcanzado su final vida, también es posible
 reutilizar las particiones creadas para fc22 de forma que en ellas se pueda
@@ -39,9 +47,9 @@ torrents para su descarga:</p>
 <p>Por lo que deberemos usar el método convencional de descarga directa, para ello
 nos auxiliaremos de la línea de comandos.</p>
 <p>Para sistemas de 32 bits descargar la siguiente imagen:</p>
-<pre class="code console"><a name="rest_code_eadede0082ec4855bef7526025ab9a47-1"></a><span class="go">wget -N -t 0 -c https://download.fedoraproject.org/pub/fedora/linux/releases/25/Everything/i386/iso/Fedora-Everything-netinst-i386-25-1.3.iso</span>
+<pre class="code console"><a name="rest_code_ca80aeda604e4a5e894a045eb56888cf-1"></a><span class="go">wget -N -t 0 -c https://download.fedoraproject.org/pub/fedora/linux/releases/25/Everything/i386/iso/Fedora-Everything-netinst-i386-25-1.3.iso</span>
 </pre><p>Para sistemas de 64 bits descargar la siguiente imagen:</p>
-<pre class="code console"><a name="rest_code_e1d249a811a7441b9cba5f6732feaaa6-1"></a><span class="go">wget -N -t 0 -c https://download.fedoraproject.org/pub/fedora/linux/releases/25/Everything/x86_64/iso/Fedora-Everything-netinst-x86_64-25-1.3.iso</span>
+<pre class="code console"><a name="rest_code_d1f249488a6d4814b987ea7b6dd5edeb-1"></a><span class="go">wget -N -t 0 -c https://download.fedoraproject.org/pub/fedora/linux/releases/25/Everything/x86_64/iso/Fedora-Everything-netinst-x86_64-25-1.3.iso</span>
 </pre><dl class="docutils">
 <dt>Donde:</dt>
 <dd><p class="first"><cite>-N</cite> descarga el archivo con las misma marca de tiempo de dia y hora con la
@@ -58,9 +66,9 @@ una red lo suficiente estable.</p>
 <p>También podemos verificar la integridad de la imagen descargada usando el
 archivo checksum. Solo tenemos que descargar el archivo y guardarlo en el mismo
 directorio que contiene a la imagen ISO:</p>
-<pre class="code console"><a name="rest_code_85911eb632584621b7e4dfc7afd82858-1"></a><span class="go">wget -N -t 0 -c https://alt.fedoraproject.org/es/static/checksums/Fedora-Everything-25-1.3-x86_64-CHECKSUM</span>
+<pre class="code console"><a name="rest_code_35e3d1d41bd24bd9a91d27ab8819c7b6-1"></a><span class="go">wget -N -t 0 -c https://alt.fedoraproject.org/es/static/checksums/Fedora-Everything-25-1.3-x86_64-CHECKSUM</span>
 </pre><p>Luego ejecutamos el siguiente comando:</p>
-<pre class="code console"><a name="rest_code_1338afd2e5ec48c1b2280895c62837e3-1"></a><span class="go">sha256sum -c Fedora-Everything-25-1.3-x86_64-CHECKSUM</span>
+<pre class="code console"><a name="rest_code_204bbf50598649318971e3cf824682e8-1"></a><span class="go">sha256sum -c Fedora-Everything-25-1.3-x86_64-CHECKSUM</span>
 </pre></div>
 <div class="section" id="grabando-la-imagen-iso-en-una-usb">
 <h2>Grabando la imagen ISO en una USB</h2>
@@ -72,7 +80,7 @@ siguiente enlace:</p>
 <p><a class="reference external" href="https://getfedora.org/fmw/FedoraMediaWriter-osx-4.0.7.dmg">https://getfedora.org/fmw/FedoraMediaWriter-osx-4.0.7.dmg</a></p>
 <p>Si estás usando Fedora 23 o superior puedes instalar Fedora Media Writer con el
 siguinete comando:</p>
-<pre class="code console"><a name="rest_code_365cb2e1069c4739a2d727f88b2c89bf-1"></a><span class="go">su -c &#39;dnf install mediawriter&#39;</span>
+<pre class="code console"><a name="rest_code_6d1cd780d9174a5095de7cd10dd88d94-1"></a><span class="go">su -c &#39;dnf install mediawriter&#39;</span>
 </pre><p>Antes de ejecutar Fedora Media Writer es recomendable desconectar cualquier
 otro dispositivo de almacenamiento extraible que pueda estar conectado en
 nuestro equipo, esto para evitar posibles confusiones. Conectamos la memoria
@@ -157,14 +165,14 @@ depende la sección <cite>SOFTWARE SELECTION</cite>:</p>
 <p>En <cite>SOFTWARE SELECTION</cite> yo escogí <cite>Fedora Custom Operating System</cite>, el cual
 representa una selección de paquetes muy mínima, sin entorno gráfico, solo unos
 pocos grupos de paquetes que son los siguientes:</p>
-<pre class="code console"><a name="rest_code_145e7d94f267420d98c4e55ff55ef8d7-1"></a><span class="go">Environment Group: Fedora Custom Operating System</span>
-<a name="rest_code_145e7d94f267420d98c4e55ff55ef8d7-2"></a><span class="go"> Environment-Id: custom-environment</span>
-<a name="rest_code_145e7d94f267420d98c4e55ff55ef8d7-3"></a><span class="go"> Description: Basic building block for a custom Fedora system.</span>
-<a name="rest_code_145e7d94f267420d98c4e55ff55ef8d7-4"></a><span class="go"> Mandatory Groups:</span>
-<a name="rest_code_145e7d94f267420d98c4e55ff55ef8d7-5"></a><span class="go">   Core</span>
-<a name="rest_code_145e7d94f267420d98c4e55ff55ef8d7-6"></a><span class="go"> Optional Groups:</span>
-<a name="rest_code_145e7d94f267420d98c4e55ff55ef8d7-7"></a><span class="go">   Guest Agents</span>
-<a name="rest_code_145e7d94f267420d98c4e55ff55ef8d7-8"></a><span class="go">   Standard</span>
+<pre class="code console"><a name="rest_code_06051e9bc9eb479ca21d7bfb5dacc9e9-1"></a><span class="go">Environment Group: Fedora Custom Operating System</span>
+<a name="rest_code_06051e9bc9eb479ca21d7bfb5dacc9e9-2"></a><span class="go"> Environment-Id: custom-environment</span>
+<a name="rest_code_06051e9bc9eb479ca21d7bfb5dacc9e9-3"></a><span class="go"> Description: Basic building block for a custom Fedora system.</span>
+<a name="rest_code_06051e9bc9eb479ca21d7bfb5dacc9e9-4"></a><span class="go"> Mandatory Groups:</span>
+<a name="rest_code_06051e9bc9eb479ca21d7bfb5dacc9e9-5"></a><span class="go">   Core</span>
+<a name="rest_code_06051e9bc9eb479ca21d7bfb5dacc9e9-6"></a><span class="go"> Optional Groups:</span>
+<a name="rest_code_06051e9bc9eb479ca21d7bfb5dacc9e9-7"></a><span class="go">   Guest Agents</span>
+<a name="rest_code_06051e9bc9eb479ca21d7bfb5dacc9e9-8"></a><span class="go">   Standard</span>
 </pre><p>Finalmente hemos llegado a la sección <cite>SYSTEM</cite>, seleccionamos <cite>INSTALLATION
 DESTINATION</cite>. En <cite>Device Selection</cite>, en <cite>Local Stardard Disk</cite> selecionamos el
 disco duro en el que tenemos la instalación de Fedora del cual queremos

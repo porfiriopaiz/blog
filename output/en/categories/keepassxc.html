@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,16 +7,14 @@
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <meta name="theme-color" content="#5670d4">
 <meta name="generator" content="Nikola (getnikola.com)">
-<link rel="alternate" type="application/atom+xml" title="Atom (en)" href="../index.atom">
-<link rel="alternate" type="application/rss+xml" title="RSS (en)" href="../rss.xml">
-<link rel="alternate" type="application/atom+xml" title="Atom (es)" href="../../index.atom">
-<link rel="alternate" type="application/rss+xml" title="RSS (es)" href="../../rss.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS (en)" hreflang="en" href="../rss.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS (es)" hreflang="es" href="../../rss.xml">
+<link rel="alternate" type="application/atom+xml" title="Atom (en)" hreflang="en" href="../index.atom">
+<link rel="alternate" type="application/atom+xml" title="Atom (es)" hreflang="es" href="../../index.atom">
 <link rel="canonical" href="https://porfiriopaiz.github.io/blog/en/categories/keepassxc.html">
 <link rel="icon" href="../../favicon.png" sizes="16x16">
-<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><link rel="alternate" type="application/atom+xml" title="Atom for tag keepassxc (en)" href="keepassxc.atom">
-<link rel="alternate" type="application/rss+xml" title="RSS for tag keepassxc (en)" href="keepassxc.xml">
-<link rel="alternate" type="application/atom+xml" title="Atom for tag keepassxc (es)" href="../../categories/keepassxc.atom">
-<link rel="alternate" type="application/rss+xml" title="RSS for tag keepassxc (es)" href="../../categories/keepassxc.xml">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><link rel="alternate" type="application/rss+xml" title="RSS for tag keepassxc (en)" hreflang="en" href="keepassxc.xml">
+<link rel="alternate" type="application/atom+xml" title="Atom for tag keepassxc (en)" hreflang="en" href="keepassxc.atom">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -38,7 +36,7 @@
             </a>
         </div>
 <!-- /.navbar-header -->
-        <div class="collapse navbar-collapse" id="bs-navbar" role="navigation" aria-expanded="false">
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
             <ul class="nav navbar-nav">
 <li>
 <a href="../archive.html">Archive</a>
@@ -75,12 +73,12 @@
         <div class="metadata">
             
                 <p class="feedlink">
-                        <a href="keepassxc.atom" hreflang="en" type="application/atom+xml">Atom feed (en)</a>
-                        <a href="keepassxc.xml" hreflang="en" type="application/rss+xml">RSS feed (en)</a>
-                </p>
-                <p class="feedlink">
-                        <a href="../../categories/keepassxc.atom" hreflang="es" type="application/atom+xml">Canal Atom (es)</a>
-                        <a href="../../categories/keepassxc.xml" hreflang="es" type="application/rss+xml">Canal RSS (es)</a>
+                        
+            <a href="keepassxc.atom" hreflang="en" type="application/atom+xml">Atom feed (keepassxc, en)</a>
+
+                        
+            <a href="keepassxc.xml" hreflang="en" type="application/rss+xml">RSS feed (keepassxc, en)</a>
+
                 </p>
 
         </div>
@@ -105,9 +103,15 @@
 </div>
 
 
-            <script src="../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+            <script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
     moment.locale("en");
     fancydates(0, "YYYY-MM-DD HH:mm");
-    </script><!-- end fancy dates -->
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
 </body>
 </html>

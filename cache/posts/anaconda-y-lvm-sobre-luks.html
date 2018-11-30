@@ -39,9 +39,9 @@ torrents para su descarga:</p>
 <p>Por lo que deberemos usar el método convencional de descarga directa, para ello
 nos auxiliaremos de la línea de comandos.</p>
 <p>Para sistemas de 32 bits descargar la siguiente imagen:</p>
-<pre class="code console"><a name="rest_code_69526137c8184ed0bd2a21471ddbf399-1"></a><span class="go">wget -N -t 0 -c https://download.fedoraproject.org/pub/fedora/linux/releases/25/Everything/i386/iso/Fedora-Everything-netinst-i386-25-1.3.iso</span>
+<pre class="code console"><a name="rest_code_f4a7e34c4eda4a0d84db345706387263-1"></a><span class="go">wget -N -t 0 -c https://download.fedoraproject.org/pub/fedora/linux/releases/25/Everything/i386/iso/Fedora-Everything-netinst-i386-25-1.3.iso</span>
 </pre><p>Para sistemas de 64 bits descargar la siguiente imagen:</p>
-<pre class="code console"><a name="rest_code_e9e9c8b8df114d6f8fcd85c889978119-1"></a><span class="go">wget -N -t 0 -c https://download.fedoraproject.org/pub/fedora/linux/releases/25/Everything/x86_64/iso/Fedora-Everything-netinst-x86_64-25-1.3.iso</span>
+<pre class="code console"><a name="rest_code_8df6c7c1084843b58460c89d6f6f5f5a-1"></a><span class="go">wget -N -t 0 -c https://download.fedoraproject.org/pub/fedora/linux/releases/25/Everything/x86_64/iso/Fedora-Everything-netinst-x86_64-25-1.3.iso</span>
 </pre><dl class="docutils">
 <dt>Donde:</dt>
 <dd><p class="first"><cite>-N</cite> descarga el archivo con las misma marca de tiempo de dia y hora con la
@@ -58,9 +58,9 @@ una red lo suficiente estable.</p>
 <p>También podemos verificar la integridad de la imagen descargada usando el
 archivo checksum. Solo tenemos que descargar el archivo y guardarlo en el mismo
 directorio que contiene a la imagen ISO:</p>
-<pre class="code console"><a name="rest_code_c79c5965f5ab4bd8b994fe91e1ba56b4-1"></a><span class="go">wget -N -t 0 -c https://alt.fedoraproject.org/es/static/checksums/Fedora-Everything-25-1.3-x86_64-CHECKSUM</span>
+<pre class="code console"><a name="rest_code_19a26ebad68740d88077a84b0b44c070-1"></a><span class="go">wget -N -t 0 -c https://alt.fedoraproject.org/es/static/checksums/Fedora-Everything-25-1.3-x86_64-CHECKSUM</span>
 </pre><p>Luego ejecutamos el siguiente comando:</p>
-<pre class="code console"><a name="rest_code_5dce240ee4384367b712a469faf32af3-1"></a><span class="go">sha256sum -c Fedora-Everything-25-1.3-x86_64-CHECKSUM</span>
+<pre class="code console"><a name="rest_code_740a78c7cbb5443a83810d660c512026-1"></a><span class="go">sha256sum -c Fedora-Everything-25-1.3-x86_64-CHECKSUM</span>
 </pre></div>
 <div class="section" id="grabando-la-imagen-iso-en-una-usb">
 <h2>Grabando la imagen ISO en una USB</h2>
@@ -72,7 +72,7 @@ siguiente enlace:</p>
 <p><a class="reference external" href="https://getfedora.org/fmw/FedoraMediaWriter-osx-4.0.7.dmg">https://getfedora.org/fmw/FedoraMediaWriter-osx-4.0.7.dmg</a></p>
 <p>Si estás usando Fedora 23 o superior puedes instalar Fedora Media Writer con el
 siguinete comando:</p>
-<pre class="code console"><a name="rest_code_e341140398b94e769110dd612a9244f8-1"></a><span class="go">su -c &#39;dnf install mediawriter&#39;</span>
+<pre class="code console"><a name="rest_code_5e850d2c76de41188eed8b3822cf007a-1"></a><span class="go">su -c &#39;dnf install mediawriter&#39;</span>
 </pre><p>Antes de ejecutar Fedora Media Writer es recomendable desconectar cualquier
 otro dispositivo de almacenamiento extraible que pueda estar conectado en
 nuestro equipo, esto para evitar posibles confusiones. Conectamos la memoria
@@ -157,14 +157,14 @@ depende la sección <cite>SOFTWARE SELECTION</cite>:</p>
 <p>En <cite>SOFTWARE SELECTION</cite> yo escogí <cite>Fedora Custom Operating System</cite>, el cual
 representa una selección de paquetes muy mínima, sin entorno gráfico, solo unos
 pocos grupos de paquetes que son los siguientes:</p>
-<pre class="code console"><a name="rest_code_130947c4d92a4ad582a747251d492422-1"></a><span class="go">Environment Group: Fedora Custom Operating System</span>
-<a name="rest_code_130947c4d92a4ad582a747251d492422-2"></a><span class="go"> Environment-Id: custom-environment</span>
-<a name="rest_code_130947c4d92a4ad582a747251d492422-3"></a><span class="go"> Description: Basic building block for a custom Fedora system.</span>
-<a name="rest_code_130947c4d92a4ad582a747251d492422-4"></a><span class="go"> Mandatory Groups:</span>
-<a name="rest_code_130947c4d92a4ad582a747251d492422-5"></a><span class="go">   Core</span>
-<a name="rest_code_130947c4d92a4ad582a747251d492422-6"></a><span class="go"> Optional Groups:</span>
-<a name="rest_code_130947c4d92a4ad582a747251d492422-7"></a><span class="go">   Guest Agents</span>
-<a name="rest_code_130947c4d92a4ad582a747251d492422-8"></a><span class="go">   Standard</span>
+<pre class="code console"><a name="rest_code_e90083c7fd0b43f2aa99de34bfdc7c06-1"></a><span class="go">Environment Group: Fedora Custom Operating System</span>
+<a name="rest_code_e90083c7fd0b43f2aa99de34bfdc7c06-2"></a><span class="go"> Environment-Id: custom-environment</span>
+<a name="rest_code_e90083c7fd0b43f2aa99de34bfdc7c06-3"></a><span class="go"> Description: Basic building block for a custom Fedora system.</span>
+<a name="rest_code_e90083c7fd0b43f2aa99de34bfdc7c06-4"></a><span class="go"> Mandatory Groups:</span>
+<a name="rest_code_e90083c7fd0b43f2aa99de34bfdc7c06-5"></a><span class="go">   Core</span>
+<a name="rest_code_e90083c7fd0b43f2aa99de34bfdc7c06-6"></a><span class="go"> Optional Groups:</span>
+<a name="rest_code_e90083c7fd0b43f2aa99de34bfdc7c06-7"></a><span class="go">   Guest Agents</span>
+<a name="rest_code_e90083c7fd0b43f2aa99de34bfdc7c06-8"></a><span class="go">   Standard</span>
 </pre><p>Finalmente hemos llegado a la sección <cite>SYSTEM</cite>, seleccionamos <cite>INSTALLATION
 DESTINATION</cite>. En <cite>Device Selection</cite>, en <cite>Local Stardard Disk</cite> selecionamos el
 disco duro en el que tenemos la instalación de Fedora del cual queremos

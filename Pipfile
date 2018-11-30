@@ -7,6 +7,7 @@ verify_ssl = true
 
 [packages]
 nikola = {extras = ["extras"],version = "*"}
+pygments = "*"
 
 [requires]
 python_version = "3.7"

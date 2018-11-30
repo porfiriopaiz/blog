@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="es">
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="description" content="Etiquetas y Categorías">
@@ -8,13 +8,13 @@
 <link href="../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <meta name="theme-color" content="#5670d4">
 <meta name="generator" content="Nikola (getnikola.com)">
-<link rel="alternate" type="application/atom+xml" title="Atom (en)" href="../en/index.atom">
-<link rel="alternate" type="application/rss+xml" title="RSS (en)" href="../en/rss.xml">
-<link rel="alternate" type="application/atom+xml" title="Atom (es)" href="../index.atom">
-<link rel="alternate" type="application/rss+xml" title="RSS (es)" href="../rss.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS (en)" hreflang="en" href="../en/rss.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS (es)" hreflang="es" href="../rss.xml">
+<link rel="alternate" type="application/atom+xml" title="Atom (en)" hreflang="en" href="../en/index.atom">
+<link rel="alternate" type="application/atom+xml" title="Atom (es)" hreflang="es" href="../index.atom">
 <link rel="canonical" href="https://porfiriopaiz.github.io/blog/categories/index.html">
 <link rel="icon" href="../favicon.png" sizes="16x16">
-<!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]-->
+<!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><link rel="alternate" hreflang="en" href="../en/categories/index.html">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Ir al contenido principal</a>
@@ -36,7 +36,7 @@
             </a>
         </div>
 <!-- /.navbar-header -->
-        <div class="collapse navbar-collapse" id="bs-navbar" role="navigation" aria-expanded="false">
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
             <ul class="nav navbar-nav">
 <li>
 <a href="../archive.html">Archivo</a>
@@ -70,10 +70,23 @@
             
             
 <h1>Etiquetas y Categorías</h1>
+<div class="metadata">
+    
+        <div class="translationslist translations">
+            <h3 class="translationslist-intro">También disponible en:</h3>
+            <p>
+        <a href="../en/categories/index.html" hreflang="en" rel="alternate">English</a>
+</p>
+        </div>
+
+</div>
         <h2>Categorías</h2>
             <ul class="list-inline">
 <li>
 <a class="reference badge" href="cat_floss.html">floss</a>
+            </li>
+        <li>
+<a class="reference badge" href="cat_posts.html">posts</a>
             </li>
             </ul>
 <h2>Etiquetas</h2>
@@ -90,6 +103,7 @@
             <li><a class="reference badge" href="fc25.html">fc25</a></li>
             <li><a class="reference badge" href="fc26.html">fc26</a></li>
             <li><a class="reference badge" href="fc27.html">fc27</a></li>
+            <li><a class="reference badge" href="fc29.html">fc29</a></li>
             <li><a class="reference badge" href="fedora.html">fedora</a></li>
             <li><a class="reference badge" href="irc.html">irc</a></li>
             <li><a class="reference badge" href="keepassxc.html">keepassxc</a></li>
@@ -113,9 +127,15 @@
 </div>
 
 
-            <script src="../assets/js/all-nocdn.js"></script><script src="../assets/js/colorbox-i18n/jquery.colorbox-es.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+            <script src="../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
     moment.locale("es");
     fancydates(0, "YYYY-MM-DD HH:mm");
-    </script><!-- end fancy dates -->
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
 </body>
 </html>

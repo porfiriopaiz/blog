@@ -1,3 +1,11 @@
+<!-- title: Fedora 26 Custom Operating System post install -->
+<!-- slug: fedora-26-custom-operating-system-post-install -->
+<!-- date: 2017-08-31 16:26:39 UTC-06:00 -->
+<!-- tags: dnf, fc26, fedora, postinstall -->
+<!-- category: floss -->
+<!-- link: -->
+<!-- description: -->
+<!-- type: text -->
 <p>En la última publicación expliqué cómo hacer una instalación mínima de Fedora
 25, han pasado varios meses desde entonces y Fedora 26 ya salió, siguiendo los
 mismos pasos lo instalé en mi laptop y a continuación documentaré mi &quot;post
@@ -13,17 +21,17 @@ debo conectar mi laptop a una red cableada.</p>
 <p>Luego de verificar la conexión de red cableada, lo primero que hice fue editar
 el archivo de configuración de <tt class="docutils literal">dnf</tt> y agregué las siguientes líneas al
 archivo de configuración de <tt class="docutils literal">dnf</tt> con los siguientes comando:</p>
-<pre class="code console"><a name="rest_code_2398ba5afd6e4dc19803f39c30ea0eff-1"></a><span class="go">echo &#39;fastestmirror=true&#39; &gt;&gt; /etc/dnf/dnf.conf</span>
-<a name="rest_code_2398ba5afd6e4dc19803f39c30ea0eff-2"></a>
-<a name="rest_code_2398ba5afd6e4dc19803f39c30ea0eff-3"></a><span class="go">echo &#39;deltarpm=false&#39; &gt;&gt; /etc/dnf/dnf.conf</span>
-<a name="rest_code_2398ba5afd6e4dc19803f39c30ea0eff-4"></a>
-<a name="rest_code_2398ba5afd6e4dc19803f39c30ea0eff-5"></a><span class="go">echo &#39;keepcache=true&#39; &gt;&gt; /etc/dnf/dnf.conf</span>
+<pre class="code console"><a name="rest_code_0afa8209509844608f78a0500a5557c5-1"></a><span class="go">echo &#39;fastestmirror=true&#39; &gt;&gt; /etc/dnf/dnf.conf</span>
+<a name="rest_code_0afa8209509844608f78a0500a5557c5-2"></a>
+<a name="rest_code_0afa8209509844608f78a0500a5557c5-3"></a><span class="go">echo &#39;deltarpm=false&#39; &gt;&gt; /etc/dnf/dnf.conf</span>
+<a name="rest_code_0afa8209509844608f78a0500a5557c5-4"></a>
+<a name="rest_code_0afa8209509844608f78a0500a5557c5-5"></a><span class="go">echo &#39;keepcache=true&#39; &gt;&gt; /etc/dnf/dnf.conf</span>
 </pre><p>De esta forma me aseguro que <tt class="docutils literal">dnf</tt> siempre use el mirror más eficiente; que
 no use use <tt class="docutils literal">*.drpm</tt>'s para realizar las actualizaciones, sino que en su lugar
 siempre descargue <tt class="docutils literal">*.rpm</tt>'s; y que guarde cada paquete que se descargue en la
 caché.</p>
 <p>A continuación reiniciamos.</p>
-<pre class="code console"><a name="rest_code_72e055e0c4304b7cb218069a34bbe49a-1"></a><span class="go">reboot</span>
+<pre class="code console"><a name="rest_code_0a661b877053411fbece511b1e1eab90-1"></a><span class="go">reboot</span>
 </pre></div>
 <div class="section" id="deshabilitando-dnf-makecache-service-y-dnf-makecache-timer">
 <h1>Deshabilitando dnf-makecache.service y dnf-makecache.timer</h1>
@@ -31,11 +39,11 @@ caché.</p>
 aseguran de actualizar la caché de metadatos de paquetes con cierta frecuencia,
 esto es algo que me gusta hacer cuando yo quiero y lo necesito, no cuando a
 <tt class="docutils literal">dnf</tt> se le antoje, así que eso se corrije de la siguiente forma:</p>
-<pre class="code console"><a name="rest_code_3d1c5230cfba4968b83195ddde9bcd6e-1"></a><span class="go">su -c &#39;systemctl disable dnf-makecache.service&#39;</span>
-<a name="rest_code_3d1c5230cfba4968b83195ddde9bcd6e-2"></a>
-<a name="rest_code_3d1c5230cfba4968b83195ddde9bcd6e-3"></a><span class="go">su -c &#39;systemctl disable dnf-makecache.timer&#39;</span>
+<pre class="code console"><a name="rest_code_5fa3e487ab754369a002332fec1d4601-1"></a><span class="go">su -c &#39;systemctl disable dnf-makecache.service&#39;</span>
+<a name="rest_code_5fa3e487ab754369a002332fec1d4601-2"></a>
+<a name="rest_code_5fa3e487ab754369a002332fec1d4601-3"></a><span class="go">su -c &#39;systemctl disable dnf-makecache.timer&#39;</span>
 </pre><p>Reiniciamos.</p>
-<pre class="code console"><a name="rest_code_76c65b51fc224ee6a0a31d3e3822b0ef-1"></a><span class="go">reboot</span>
+<pre class="code console"><a name="rest_code_77e4c5defbc64bbfa8e39c09513192c3-1"></a><span class="go">reboot</span>
 </pre></div>
 <div class="section" id="reconstruyendo-la-cache-de-metadatos-de-paquetes">
 <h1>Reconstruyendo la caché de metadatos de paquetes</h1>
@@ -44,24 +52,24 @@ los molestos servicios y timer, procedo a limpiar la caché y a regenerarla,
 esta vez, todos los comandos los ejecutaré como usuario normal, pasándole
 dichos comandos a root como un parámetro:</p>
 <p>Este crea la caché de metadatos de paquetes para mi usuario <cite>mortal</cite>:</p>
-<pre class="code console"><a name="rest_code_f49861b07ff94ea59d43f8ad0354fd81-1"></a><span class="go">dnf clean all</span>
-<a name="rest_code_f49861b07ff94ea59d43f8ad0354fd81-2"></a>
-<a name="rest_code_f49861b07ff94ea59d43f8ad0354fd81-3"></a><span class="go">dnf makecache</span>
+<pre class="code console"><a name="rest_code_64123470bcbc4837b2d26f42c96857f1-1"></a><span class="go">dnf clean all</span>
+<a name="rest_code_64123470bcbc4837b2d26f42c96857f1-2"></a>
+<a name="rest_code_64123470bcbc4837b2d26f42c96857f1-3"></a><span class="go">dnf makecache</span>
 </pre><p>Este crea la caché de metadatos de paquetes para mi usuario <cite>dios</cite>:</p>
-<pre class="code console"><a name="rest_code_b991c410afc241e98ff3969b663db7ea-1"></a><span class="go">su -c &#39;dnf clean all&#39;</span>
-<a name="rest_code_b991c410afc241e98ff3969b663db7ea-2"></a>
-<a name="rest_code_b991c410afc241e98ff3969b663db7ea-3"></a><span class="go">su -c &#39;dnf makecache&#39;</span>
+<pre class="code console"><a name="rest_code_f889e96a648843b69f2f992fa821a460-1"></a><span class="go">su -c &#39;dnf clean all&#39;</span>
+<a name="rest_code_f889e96a648843b69f2f992fa821a460-2"></a>
+<a name="rest_code_f889e96a648843b69f2f992fa821a460-3"></a><span class="go">su -c &#39;dnf makecache&#39;</span>
 </pre></div>
 <div class="section" id="actualizaciones-disponibles">
 <h1>Actualizaciones disponibles</h1>
 <p>Existe la posibilidad de que durante la instalación no haya marcado la opción
 de descargar las versión más reciente de los paquetes a instalar, para
 verificar si hay actualizaciones disponibles:</p>
-<pre class="code console"><a name="rest_code_95e57106316b44cf88c215caa6d7c874-1"></a><span class="go">su -c &#39;dnf --refresh check-update&#39;</span>
+<pre class="code console"><a name="rest_code_fa09493acdb24840bf8bbf293073fb9d-1"></a><span class="go">su -c &#39;dnf --refresh check-update&#39;</span>
 </pre><p>Para descargar e instalar las actualizaciones:</p>
-<pre class="code console"><a name="rest_code_cd5928cbefc5423383c2796aedd7f739-1"></a><span class="go">su -c &#39;dnf upgrade&#39;</span>
+<pre class="code console"><a name="rest_code_6ba96f3c915746d784a35783b8a1a7ad-1"></a><span class="go">su -c &#39;dnf upgrade&#39;</span>
 </pre><p>Y reiniciamos:</p>
-<pre class="code console"><a name="rest_code_91a995973559461891fb66c4ebc54ec3-1"></a><span class="go">reboot</span>
+<pre class="code console"><a name="rest_code_a2deba3a0ddb4e01a308ca3b0aeecfd2-1"></a><span class="go">reboot</span>
 </pre></div>
 <div class="section" id="instalacion-de-workstation-product-environment">
 <h1>Instalación de Workstation Product Environment</h1>
@@ -69,7 +77,7 @@ verificar si hay actualizaciones disponibles:</p>
 instalarlo usando un grupo de paquetes especifico que provee las colección de
 paquetes necesaria para hacer de mi Fedora Custom Operating System un Fedora
 Workstation:</p>
-<pre class="code console"><a name="rest_code_38009714cdcd4f7397a8d58985368c76-1"></a><span class="go">su -c &#39;dnf groups install workstation-product-environment&#39;</span>
+<pre class="code console"><a name="rest_code_2eba7afbf37344d0b9b17265c291b871-1"></a><span class="go">su -c &#39;dnf groups install workstation-product-environment&#39;</span>
 </pre></div>
 <div class="section" id="arranque-en-modo-grafico">
 <h1>Arranque en modo gráfico</h1>
@@ -78,11 +86,11 @@ defecto de <cite>multi-user.tarjet</cite> a <cite>graphical.tarjet</cite>, de lo
 reiniciemos no arrancará en modo gráfico.</p>
 <p>También debemos habilitar el servicio de <cite>login</cite> gráfico, si no, aunque hayamos
 habilitado el modo gráfico el login seguirá siendo en modo texto:</p>
-<pre class="code console"><a name="rest_code_3e68d43f4afb4c5d912d8de41a2c459a-1"></a><span class="go">su -c &#39;systemctl set-default graphical.target&#39;</span>
-<a name="rest_code_3e68d43f4afb4c5d912d8de41a2c459a-2"></a>
-<a name="rest_code_3e68d43f4afb4c5d912d8de41a2c459a-3"></a><span class="go">su -c &#39;systemctl enable gdm.service&#39;</span>
-<a name="rest_code_3e68d43f4afb4c5d912d8de41a2c459a-4"></a>
-<a name="rest_code_3e68d43f4afb4c5d912d8de41a2c459a-5"></a><span class="go">reboot</span>
+<pre class="code console"><a name="rest_code_d89fc31efa1d4e7cb6da91f8d8521fed-1"></a><span class="go">su -c &#39;systemctl set-default graphical.target&#39;</span>
+<a name="rest_code_d89fc31efa1d4e7cb6da91f8d8521fed-2"></a>
+<a name="rest_code_d89fc31efa1d4e7cb6da91f8d8521fed-3"></a><span class="go">su -c &#39;systemctl enable gdm.service&#39;</span>
+<a name="rest_code_d89fc31efa1d4e7cb6da91f8d8521fed-4"></a>
+<a name="rest_code_d89fc31efa1d4e7cb6da91f8d8521fed-5"></a><span class="go">reboot</span>
 </pre><p>Si todo ha salido bien, ya debes estar corriendo Fedora 26 Workstation con
 GNOME Shell.</p>
 </div>
@@ -91,7 +99,7 @@ GNOME Shell.</p>
 <p>Antes de abrir cualquier otra aplicación, corrijo la configuración por defecto
 de Nautilus sobre como ordena los archivos, yo prefiero que los muestre
 ordenados por tipo o extensión:</p>
-<pre class="code console"><a name="rest_code_030063e55d484ecb9de9ca1a16a456b6-1"></a><span class="go">gsettings set org.gnome.nautilus.preferences default-sort-order type</span>
+<pre class="code console"><a name="rest_code_02b8c70e78874df49e693677c3a425b2-1"></a><span class="go">gsettings set org.gnome.nautilus.preferences default-sort-order type</span>
 </pre><p>De esta forma cuando abra <tt class="docutils literal">Nautilus</tt> me mostrará todos los archivos ordenados
 por externsión.</p>
 </div>
@@ -99,10 +107,10 @@ por externsión.</p>
 <h1>Repositorios</h1>
 <div class="section" id="habilitamos-el-repositio-rpmfusion">
 <h2>Habilitamos el repositio RPMFusion:</h2>
-<pre class="code console"><a name="rest_code_6c1e7312659e4ee18c27a0fbd77943f1-1"></a><span class="go">su -c &#39;dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm&#39;</span>
+<pre class="code console"><a name="rest_code_1065cce14a414f9b9faa14fb9c38d282-1"></a><span class="go">su -c &#39;dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm&#39;</span>
 </pre><p>Refrescamos la caché, esto solo descargará los metadatos del repositorio de
 RPMFusion:</p>
-<pre class="code console"><a name="rest_code_9c62a06b005046bca16ac0372da5debe-1"></a><span class="go">su -c &#39;dnf check-update&#39;</span>
+<pre class="code console"><a name="rest_code_911f268a74764de388ed8f57031f102d-1"></a><span class="go">su -c &#39;dnf check-update&#39;</span>
 </pre></div>
 <div class="section" id="habilitamos-el-repositio-de-google-chrome">
 <h2>Habilitamos el repositio de Google Chrome:</h2>
@@ -113,36 +121,36 @@ post del siguiente enlace:</p>
 el paquete <tt class="docutils literal">rpm</tt> de Google Chrome, instalarlo desde la línea de comandos
 indicando la ruta del archivo <tt class="docutils literal">rpm</tt> y este por sí solo, agrega el archivo
 <tt class="docutils literal">*.repo</tt> a <tt class="docutils literal">/etc/yum.repos.d/</tt>.</p>
-<pre class="code console"><a name="rest_code_a31b66deb90043efbbe3d405f6343c57-1"></a><span class="go">cd ~/Downloads</span>
-<a name="rest_code_a31b66deb90043efbbe3d405f6343c57-2"></a><span class="go">wget -N -t 0 -c https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm</span>
-<a name="rest_code_a31b66deb90043efbbe3d405f6343c57-3"></a><span class="go">su -c &#39;dnf install google-chrome-stable_current_x86_64.rpm&#39;</span>
-<a name="rest_code_a31b66deb90043efbbe3d405f6343c57-4"></a><span class="go">su -c &#39;dnf check-update&#39;</span>
+<pre class="code console"><a name="rest_code_37b110a75cd74992a29e3efa5f7929c0-1"></a><span class="go">cd ~/Downloads</span>
+<a name="rest_code_37b110a75cd74992a29e3efa5f7929c0-2"></a><span class="go">wget -N -t 0 -c https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm</span>
+<a name="rest_code_37b110a75cd74992a29e3efa5f7929c0-3"></a><span class="go">su -c &#39;dnf install google-chrome-stable_current_x86_64.rpm&#39;</span>
+<a name="rest_code_37b110a75cd74992a29e3efa5f7929c0-4"></a><span class="go">su -c &#39;dnf check-update&#39;</span>
 </pre></div>
 </div>
 <div class="section" id="deshabilitando-tracker">
 <h1>Deshabilitando <tt class="docutils literal">tracker</tt></h1>
 <p>Antes de copiar cualquier archivo desde mis respaldos, debo reconfigurar el
 molesto <tt class="docutils literal">tracker</tt> y a todos sus amigos:</p>
-<pre class="code console"><a name="rest_code_b4857c206aa741ad92db21eb4166aeee-1"></a><span class="go">su -c &#39;dnf install tracker-preferences&#39;</span>
-<a name="rest_code_b4857c206aa741ad92db21eb4166aeee-2"></a>
-<a name="rest_code_b4857c206aa741ad92db21eb4166aeee-3"></a><span class="go">mkdir ~/.config/autostart</span>
-<a name="rest_code_b4857c206aa741ad92db21eb4166aeee-4"></a>
-<a name="rest_code_b4857c206aa741ad92db21eb4166aeee-5"></a><span class="go">cp /etc/xdg/autostart/tracker* ~/.config/autostart</span>
-<a name="rest_code_b4857c206aa741ad92db21eb4166aeee-6"></a>
-<a name="rest_code_b4857c206aa741ad92db21eb4166aeee-7"></a><span class="go">cd ~/.config/autostart</span>
-<a name="rest_code_b4857c206aa741ad92db21eb4166aeee-8"></a>
-<a name="rest_code_b4857c206aa741ad92db21eb4166aeee-9"></a><span class="go">sed -i &#39;s/X-GNOME-Autostart-enabled=true/X-GNOME-Autostart-enabled=false/&#39; tracker*</span>
+<pre class="code console"><a name="rest_code_fa7e2ee034894a9698a5df92e02dc41a-1"></a><span class="go">su -c &#39;dnf install tracker-preferences&#39;</span>
+<a name="rest_code_fa7e2ee034894a9698a5df92e02dc41a-2"></a>
+<a name="rest_code_fa7e2ee034894a9698a5df92e02dc41a-3"></a><span class="go">mkdir ~/.config/autostart</span>
+<a name="rest_code_fa7e2ee034894a9698a5df92e02dc41a-4"></a>
+<a name="rest_code_fa7e2ee034894a9698a5df92e02dc41a-5"></a><span class="go">cp /etc/xdg/autostart/tracker* ~/.config/autostart</span>
+<a name="rest_code_fa7e2ee034894a9698a5df92e02dc41a-6"></a>
+<a name="rest_code_fa7e2ee034894a9698a5df92e02dc41a-7"></a><span class="go">cd ~/.config/autostart</span>
+<a name="rest_code_fa7e2ee034894a9698a5df92e02dc41a-8"></a>
+<a name="rest_code_fa7e2ee034894a9698a5df92e02dc41a-9"></a><span class="go">sed -i &#39;s/X-GNOME-Autostart-enabled=true/X-GNOME-Autostart-enabled=false/&#39; tracker*</span>
 </pre><p>Verificamos el estado de <tt class="docutils literal">tracker</tt>:</p>
-<pre class="code console"><a name="rest_code_ff5e7a6d15f1453b95d8c5a7ae7a4417-1"></a><span class="go">tracker status</span>
+<pre class="code console"><a name="rest_code_63a4688357d240fa9c83e94dcaf49134-1"></a><span class="go">tracker status</span>
 </pre><p>Y le hacemos un <cite>hard reset</cite>:</p>
-<pre class="code console"><a name="rest_code_5cc9ff37ed4840b8955b7a97df489f77-1"></a><span class="go">tracker reset --hard</span>
+<pre class="code console"><a name="rest_code_60af477565494b0e86988a17b9e31c47-1"></a><span class="go">tracker reset --hard</span>
 </pre></div>
 <div class="section" id="deshabilitando-gnome-software-y-packagekit-download-updates">
 <h1>Deshabilitando GNOME Software y PackageKit download-updates</h1>
 <p>GNOME Software suele descargar metadatos y actualizaciones del sistema en
 <cite>background</cite>, para deshabilitarlo ejecutamos los siguientes comandos:</p>
-<pre class="code console"><a name="rest_code_691c8c1f771c4c3cb35ef61f09d7f6ff-1"></a><span class="go">gsettings set org.gnome.software download-updates false</span>
-<a name="rest_code_691c8c1f771c4c3cb35ef61f09d7f6ff-2"></a><span class="go">su -c &#39;systemctl mask packagekit.service&#39;</span>
+<pre class="code console"><a name="rest_code_6b6f80b7629348c39805f59775081ef0-1"></a><span class="go">gsettings set org.gnome.software download-updates false</span>
+<a name="rest_code_6b6f80b7629348c39805f59775081ef0-2"></a><span class="go">su -c &#39;systemctl mask packagekit.service&#39;</span>
 </pre><p>Esto debería detener las autodescargas de actualizaciones y el programa de
 revisiones de PackageKit.</p>
 </div>
@@ -151,49 +159,49 @@ revisiones de PackageKit.</p>
 <p>A continuación instalo grupos de paquetes que proveen librerías necesarias para
 la construcción de otros programas, o bien para hacer de <tt class="docutils literal">vim</tt> un <cite>IDE</cite>, en
 otro post explicaré por qué es útil tenerlas:</p>
-<pre class="code console"><a name="rest_code_9f2228f94e614c53bdada68efe97741f-1"></a><span class="go">su -c &#39;dnf -y groups install c-development&#39;</span>
-<a name="rest_code_9f2228f94e614c53bdada68efe97741f-2"></a>
-<a name="rest_code_9f2228f94e614c53bdada68efe97741f-3"></a><span class="go">su -c &#39;dnf -y groups install development-libs&#39;</span>
-<a name="rest_code_9f2228f94e614c53bdada68efe97741f-4"></a>
-<a name="rest_code_9f2228f94e614c53bdada68efe97741f-5"></a><span class="go">su -c &#39;dnf -y groups install development-tools&#39;</span>
-<a name="rest_code_9f2228f94e614c53bdada68efe97741f-6"></a>
-<a name="rest_code_9f2228f94e614c53bdada68efe97741f-7"></a><span class="go">su -c &#39;dnf -y groups install fedora-packager&#39;</span>
-<a name="rest_code_9f2228f94e614c53bdada68efe97741f-8"></a>
-<a name="rest_code_9f2228f94e614c53bdada68efe97741f-9"></a><span class="go">su -c &#39;dnf -y groups install rpm-development-tools&#39;</span>
-<a name="rest_code_9f2228f94e614c53bdada68efe97741f-10"></a>
-<a name="rest_code_9f2228f94e614c53bdada68efe97741f-11"></a><span class="go">su -c &#39;dnf install automake gcc gcc-c++ kernel-devel cmake&#39;</span>
-<a name="rest_code_9f2228f94e614c53bdada68efe97741f-12"></a>
-<a name="rest_code_9f2228f94e614c53bdada68efe97741f-13"></a><span class="go">su -c &#39;dnf install python-devel python3-devel&#39;</span>
-<a name="rest_code_9f2228f94e614c53bdada68efe97741f-14"></a>
-<a name="rest_code_9f2228f94e614c53bdada68efe97741f-15"></a><span class="go">su -c &#39;dnf install monodevelop&#39;</span>
-<a name="rest_code_9f2228f94e614c53bdada68efe97741f-16"></a>
-<a name="rest_code_9f2228f94e614c53bdada68efe97741f-17"></a><span class="go">su -c &#39;dnf install golang&#39;</span>
-<a name="rest_code_9f2228f94e614c53bdada68efe97741f-18"></a>
-<a name="rest_code_9f2228f94e614c53bdada68efe97741f-19"></a><span class="go">su -c &#39;dnf install nodejs&#39;</span>
-<a name="rest_code_9f2228f94e614c53bdada68efe97741f-20"></a>
-<a name="rest_code_9f2228f94e614c53bdada68efe97741f-21"></a><span class="go">su -c &#39;dnf install rust&#39;</span>
-<a name="rest_code_9f2228f94e614c53bdada68efe97741f-22"></a>
-<a name="rest_code_9f2228f94e614c53bdada68efe97741f-23"></a><span class="go">su -c &#39;dnf install cargo&#39;</span>
-<a name="rest_code_9f2228f94e614c53bdada68efe97741f-24"></a>
-<a name="rest_code_9f2228f94e614c53bdada68efe97741f-25"></a><span class="go">su -c &#39;dnf install python3-virtualenv&#39;</span>
-<a name="rest_code_9f2228f94e614c53bdada68efe97741f-26"></a>
-<a name="rest_code_9f2228f94e614c53bdada68efe97741f-27"></a><span class="go">su -c &#39;dnf install python3-pip&#39;</span>
+<pre class="code console"><a name="rest_code_c4b3e095968f4204869774204dc6f8ee-1"></a><span class="go">su -c &#39;dnf -y groups install c-development&#39;</span>
+<a name="rest_code_c4b3e095968f4204869774204dc6f8ee-2"></a>
+<a name="rest_code_c4b3e095968f4204869774204dc6f8ee-3"></a><span class="go">su -c &#39;dnf -y groups install development-libs&#39;</span>
+<a name="rest_code_c4b3e095968f4204869774204dc6f8ee-4"></a>
+<a name="rest_code_c4b3e095968f4204869774204dc6f8ee-5"></a><span class="go">su -c &#39;dnf -y groups install development-tools&#39;</span>
+<a name="rest_code_c4b3e095968f4204869774204dc6f8ee-6"></a>
+<a name="rest_code_c4b3e095968f4204869774204dc6f8ee-7"></a><span class="go">su -c &#39;dnf -y groups install fedora-packager&#39;</span>
+<a name="rest_code_c4b3e095968f4204869774204dc6f8ee-8"></a>
+<a name="rest_code_c4b3e095968f4204869774204dc6f8ee-9"></a><span class="go">su -c &#39;dnf -y groups install rpm-development-tools&#39;</span>
+<a name="rest_code_c4b3e095968f4204869774204dc6f8ee-10"></a>
+<a name="rest_code_c4b3e095968f4204869774204dc6f8ee-11"></a><span class="go">su -c &#39;dnf install automake gcc gcc-c++ kernel-devel cmake&#39;</span>
+<a name="rest_code_c4b3e095968f4204869774204dc6f8ee-12"></a>
+<a name="rest_code_c4b3e095968f4204869774204dc6f8ee-13"></a><span class="go">su -c &#39;dnf install python-devel python3-devel&#39;</span>
+<a name="rest_code_c4b3e095968f4204869774204dc6f8ee-14"></a>
+<a name="rest_code_c4b3e095968f4204869774204dc6f8ee-15"></a><span class="go">su -c &#39;dnf install monodevelop&#39;</span>
+<a name="rest_code_c4b3e095968f4204869774204dc6f8ee-16"></a>
+<a name="rest_code_c4b3e095968f4204869774204dc6f8ee-17"></a><span class="go">su -c &#39;dnf install golang&#39;</span>
+<a name="rest_code_c4b3e095968f4204869774204dc6f8ee-18"></a>
+<a name="rest_code_c4b3e095968f4204869774204dc6f8ee-19"></a><span class="go">su -c &#39;dnf install nodejs&#39;</span>
+<a name="rest_code_c4b3e095968f4204869774204dc6f8ee-20"></a>
+<a name="rest_code_c4b3e095968f4204869774204dc6f8ee-21"></a><span class="go">su -c &#39;dnf install rust&#39;</span>
+<a name="rest_code_c4b3e095968f4204869774204dc6f8ee-22"></a>
+<a name="rest_code_c4b3e095968f4204869774204dc6f8ee-23"></a><span class="go">su -c &#39;dnf install cargo&#39;</span>
+<a name="rest_code_c4b3e095968f4204869774204dc6f8ee-24"></a>
+<a name="rest_code_c4b3e095968f4204869774204dc6f8ee-25"></a><span class="go">su -c &#39;dnf install python3-virtualenv&#39;</span>
+<a name="rest_code_c4b3e095968f4204869774204dc6f8ee-26"></a>
+<a name="rest_code_c4b3e095968f4204869774204dc6f8ee-27"></a><span class="go">su -c &#39;dnf install python3-pip&#39;</span>
 </pre><p>Y finalmente, los correctores ortográficos:</p>
-<pre class="code console"><a name="rest_code_6f591b67abf24748a45d38fcb8f60f29-1"></a><span class="go">su -c &#39;dnf install hunspell&#39;</span>
-<a name="rest_code_6f591b67abf24748a45d38fcb8f60f29-2"></a>
-<a name="rest_code_6f591b67abf24748a45d38fcb8f60f29-3"></a><span class="go">su -c &#39;dnf install hunspell-en&#39;</span>
-<a name="rest_code_6f591b67abf24748a45d38fcb8f60f29-4"></a>
-<a name="rest_code_6f591b67abf24748a45d38fcb8f60f29-5"></a><span class="go">su -c &#39;dnf install hunspell-es&#39;</span>
-<a name="rest_code_6f591b67abf24748a45d38fcb8f60f29-6"></a>
-<a name="rest_code_6f591b67abf24748a45d38fcb8f60f29-7"></a><span class="go">su -c &#39;dnf install aspell&#39;</span>
-<a name="rest_code_6f591b67abf24748a45d38fcb8f60f29-8"></a>
-<a name="rest_code_6f591b67abf24748a45d38fcb8f60f29-9"></a><span class="go">su -c &#39;dnf install aspell-es&#39;</span>
-<a name="rest_code_6f591b67abf24748a45d38fcb8f60f29-10"></a>
-<a name="rest_code_6f591b67abf24748a45d38fcb8f60f29-11"></a><span class="go">su -c &#39;dnf install aspell-en&#39;</span>
-<a name="rest_code_6f591b67abf24748a45d38fcb8f60f29-12"></a>
-<a name="rest_code_6f591b67abf24748a45d38fcb8f60f29-13"></a><span class="go">su -c &#39;dnf install autocorr-es&#39;</span>
-<a name="rest_code_6f591b67abf24748a45d38fcb8f60f29-14"></a>
-<a name="rest_code_6f591b67abf24748a45d38fcb8f60f29-15"></a><span class="go">su -c &#39;dnf install autocorr-en&#39;</span>
+<pre class="code console"><a name="rest_code_8d91f128fd114ff4ad498dfa5f5927c7-1"></a><span class="go">su -c &#39;dnf install hunspell&#39;</span>
+<a name="rest_code_8d91f128fd114ff4ad498dfa5f5927c7-2"></a>
+<a name="rest_code_8d91f128fd114ff4ad498dfa5f5927c7-3"></a><span class="go">su -c &#39;dnf install hunspell-en&#39;</span>
+<a name="rest_code_8d91f128fd114ff4ad498dfa5f5927c7-4"></a>
+<a name="rest_code_8d91f128fd114ff4ad498dfa5f5927c7-5"></a><span class="go">su -c &#39;dnf install hunspell-es&#39;</span>
+<a name="rest_code_8d91f128fd114ff4ad498dfa5f5927c7-6"></a>
+<a name="rest_code_8d91f128fd114ff4ad498dfa5f5927c7-7"></a><span class="go">su -c &#39;dnf install aspell&#39;</span>
+<a name="rest_code_8d91f128fd114ff4ad498dfa5f5927c7-8"></a>
+<a name="rest_code_8d91f128fd114ff4ad498dfa5f5927c7-9"></a><span class="go">su -c &#39;dnf install aspell-es&#39;</span>
+<a name="rest_code_8d91f128fd114ff4ad498dfa5f5927c7-10"></a>
+<a name="rest_code_8d91f128fd114ff4ad498dfa5f5927c7-11"></a><span class="go">su -c &#39;dnf install aspell-en&#39;</span>
+<a name="rest_code_8d91f128fd114ff4ad498dfa5f5927c7-12"></a>
+<a name="rest_code_8d91f128fd114ff4ad498dfa5f5927c7-13"></a><span class="go">su -c &#39;dnf install autocorr-es&#39;</span>
+<a name="rest_code_8d91f128fd114ff4ad498dfa5f5927c7-14"></a>
+<a name="rest_code_8d91f128fd114ff4ad498dfa5f5927c7-15"></a><span class="go">su -c &#39;dnf install autocorr-en&#39;</span>
 </pre><p>En las siguientes publicaciones haré pequeñas reseñas de las demás herramientas
 que uso en Fedora.</p>
 </div>

@@ -1,0 +1,472 @@
+.. title: i3
+.. slug: i3
+.. date: 2018-11-29 02:53:25 UTC-06:00
+.. tags: dnf, fc29, fedora, postinstall
+.. category: floss
+.. link:
+.. description:
+.. type: text
+
+En este post explicaré cómo hacer una instalación de Fedora 29 con el manejador
+de ventanas ``i3``. Es común ver guías de instalación de ``i3``, pero éstas
+asumen que ya tienes otro entorno de escritorio previamente instalado.
+
+En este post veremos como construir un entorno de trabajo a partir de una
+instalción mínima a como he explicado en otras publicaciones.
+
+.. TEASER_END
+
+Creando un medio de instalación
+===============================
+
+Descargar el ISO `Fedora Everything Netinstall`
+-----------------------------------------------
+
+Desde el sitio: https://alt.fedoraproject.org/ descargar el archivo de la
+sección `Todo`, este es un ISO que funciona como medio de instalación por red,
+que descarga todos los paquetes que serán parte de la isntalación desde
+Internet, además de darnos la opción de qué colecciones de paquetes instalar,
+a diferencia de los medios lives cuya selección de software ha sido previamente
+definida.
+
+Descarga con ``wget``:
+
+.. code-block:: console
+
+   wget -N -t 0 -c https://download.fedoraproject.org/pub/fedora/linux/releases/29/Everything/x86_64/iso/Fedora-Everything-netinst-x86_64-29-1.2.iso
+
+Descargamos el archivo de comprobación de integridad:
+
+.. code-block:: console
+
+   wget -N -t 0 -c https://download.fedoraproject.org/pub/fedora/linux/releases/29/Everything/x86_64/iso/Fedora-Everything-29-1.2-x86_64-CHECKSUM
+
+Comprobar la integridad del archivo
+-----------------------------------
+
+.. code-block:: console
+
+   sha256sum -c Fedora-Everything-29-1.2-x86_64-CHECKSUM
+
+Crear el medio de instalación con Fedora Media Writer
+-----------------------------------------------------
+
+Fedora Media Writer está disponible para diferentes sistemas operativos,
+descargar el que corresponda.
+
+Es muy importante crear el medio de instalación con `Fedora Media Writer` ya
+que esta herramienta garantiza que el medio de instalación tendrá soporte para
+arrancar en equipos que cuentan tanto con UEFI o BIOS.
+
+De qué modo arrancará, quedará en dependencia de cual de los dos tenga mayor
+prioridad durante el arranque.
+
+https://github.com/FedoraQt/MediaWriter/releases/tag/4.1.1
+
+Conectamos nuestra memoria USB, ejecutamos Fedora Media Writer y usar la opción
+`Custom Image`, navegamos hasta la ruta en la que se encuentra la ISO que
+acabamos de descargar.
+
+Instalación
+===========
+
+He seguido los pasos de instalación descritos en este post anterior:
+
+https://porfiriopaiz.github.io/blog/posts/anaconda-y-lvm-sobre-luks.html
+
+Asegurándome de tener acceso a una red inalambrica o una red cableada. En esta
+ocasión me he tenido que auxiliar de mi teléfono móvil, si bien es cierto tenía
+acceso a una red inalambrica durante la instalación del sistema base (Fedora
+Custom Install), luego de la instalación la colección de paquetes no consta de
+los controladores de red necesarios para poder acceder a redes inalámbricas ya
+que no se incluyen los controladores de red.
+
+Por eso he creado una red cableada via USB con mi teléfono móvil. Para que
+funcione hay que asegurarse de los siguiente luego del primer arranque después
+de la instalación:
+
+1. Loguearse en el sistema.
+2. Conectar el cable USB al equipo.
+3. Conectar el otro extremo al teléfono móvil.
+4. Asegurarse que el teléfono está conectado a una red inalámbrica o bien que
+   los esté activado el plan de datos. Como nota, considera que son necesarios
+   al menos unos 800MB de datos en paquetes RPM los que se deben descargar para
+   una instalación mínima de Fedora con soporte para entorno gráfico con i3wm.
+5. Asegurarse de que el teléfono está en modo de transferencias de dato USB o
+   MTP.
+6. Activar una red cableada o Tethered Wired Network.
+
+Luego de lo cual deberías tener acceso a Internet, compruébalo hacien ping
+Google:
+
+.. code-block:: console
+
+   ping 8.8.8.8
+
+Requerimientos mínimos
+======================
+
+Configurando ``dnf``
+--------------------
+
+El siguiente paso es opcional, como `root`, lo primero que hago es configurar
+``dnf``, para que use los espejos de paquetes más eficientes:
+
+.. code-block:: console
+
+   echo 'fastestmirror=true' >> /etc/dnf/dnf.conf
+
+Luego desabilito el uso de `deltarpm's` para las futuras actualizaciones. Si
+prefieres reducir la cantidad de datos a descargar en cada una de las futuras
+actualizacones que vayas a descargar omite este paso:
+
+.. code-block:: console
+
+   echo 'deltarpm=false' >> /etc/dnf/dnf.conf
+
+Siempre conservo cada uno de los paquetes desde donde se instala cualquier
+programa de mi sistema, incluidos los que se descargan como parte de las
+actualizaciones, para mantener la cache de paquetes a lo largo del periodo que
+usemos Fedora 29, ejecuta el siguinte comando, este paso es opcional y puedes
+omitirlo si te parece:
+
+.. code-block:: console
+
+   echo 'keepcache=true' >> /etc/dnf/dnf.conf
+
+Ahora procedo a deshabilitar un servicio y `timer` de ``dnf``. El servicio se
+asegura de refrescar la cache de metadatos para poder hacer comprobaciones
+sobre las versiones de los paquetes que están en los repos y así posteriormente
+comprobar si hay actualizaciones disponibles. El `timer` se encargar de
+ejecutar el servicio de manera periódica y sistemática.
+
+Simpre deshabilito ambos para evitar molestos consumos de anchos de bandas y
+bloqueos de ``dnf`` mientras se refresca la cache. Si contás un límitado ancho
+de banda y pland de datos esto te ayudará a reducir el consumo del mismo.
+
+.. code-block:: console
+
+   systemctl disable dnf-makecache.service
+   systemctl disable dnf-makecache.timer
+
+Finalmente para asegurarnos que no los cambios tendrán efecto debemos
+reiniciar:
+
+.. code-block:: console
+
+   reboot
+
+Regenerar la cache e instalar actualizaciones disponibles
+---------------------------------------------------------
+
+Durante la instalación es posible que hayas omitido marcar la opción que
+permite instalar la versión más reciente de paquetes de los espejos, por lo que
+tu sistema podría estar desactualizado incluso habiendo hecho uso del medio de
+instalación por red.
+
+Para aplicar las actualizaciones más recientes y usar los espejos más
+eficientes es necesario regenerar la cache de metadatos.
+
+Fedora mantiene dos cachés distintas, una para el usuario `root` otra para el
+usuario normal, en mi caso `pionen`, por lo que debemos regenerar ambas cachés
+en caso de querer realizar tareas como administrador o simples consultas que no
+requieren privilegios de administrador:
+
+Como usuario normal no-root:
+
+.. code-block:: console
+
+   dnf clean all
+
+   dnf makecache
+
+Luego, siempre como usuario normal no-root ejecutamos los siguientes comandos,
+donde pasamos la instrución como parámetro al usuario `root`:
+
+.. code-block:: console
+
+   su -c 'dnf clean all'
+
+   su -c 'dnf makecache'
+
+Consultamos si hay actualizaciones disponibles e ingresamos nuestra contraseña
+de `root`:
+
+.. code-block:: console
+
+   su -c 'dnf --refresh check-upgrade'
+
+En caso de haber actualizacones disponibles, las aplicamos con:
+
+.. code-block:: console
+
+   su -c 'dnf upgrade'
+
+De haberse aplicado actualizaciones es recomendable actualizar para poder hacer
+uso de la versión más reciente de todos lo programas, por ejemplo el kernel:
+
+.. code-block:: console
+
+   reboot
+
+Instalación de i3
+=================
+
+A continuación el paso a paso de todo lo necesario para poder tener nuestra
+instalación mínima de Fedora 29 con i3wm.
+
+Para ello haremos uso de colecciones de paquetes que han sido agrupados en
+grupos especializados. Los siguientes comandos deben ser ejecutados como
+usuario `root`.
+
+Submódulos comunes de NetworkManager
+------------------------------------
+
+Este grupo contiene los submódulos de NetworkManager que se usan comúnmente,
+pero es posible que no se deseen en algunas configuraciones simplificadas.
+
+.. code-block:: console
+
+   dnf -y group install networkmanager-submodules
+
+Core
+----
+
+Grupo de paquetes para una instalación más pequeña posible, solo contiene los
+paquetes mínimos requeridos para fucionar. Podría estar ya instalado...
+
+.. code-block:: console
+
+   dnf -y group install core
+
+Soporte de acceso telefónico a redes
+------------------------------------
+
+.. code-block:: console
+
+   dnf -y group install dial-up
+
+Fuentes tipográficas
+--------------------
+
+Paquetes de fuentes para renderizar texto en el escritorio.
+
+.. code-block:: console
+
+   dnf -y group install fonts
+
+Guest Desktop Agents
+--------------------
+
+Agentes utilizados cuando se ejecuta como un escritorio virtualizado.
+
+.. code-block:: console
+
+   dnf -y group install guest-desktop-agents
+
+Soporte de hardware
+-------------------
+
+Este grupo es una colección de herramientas para varias utilidades específicas
+de hardware. Provee los controladores de red necesarios para hacer funcionar
+una amplia variedad de tarjetas de red inalámbricas.
+
+.. code-block:: console
+
+   dnf -y group install hardware-support
+
+Multimedia
+----------
+
+Este grupo provee un conjuto de programas y codecs de audio y video esenciales
+para un entorno de escritorio. Esta colección no incluye códecs de audio y
+video propietarios o bajo patentes. Únicamente se incluye software, códecs y
+librerías libres.
+
+.. code-block:: console
+
+   dnf -y group install multimedia
+
+Standard
+--------
+
+Conjunto común de utilidades que amplían la instalación mínima.
+
+.. code-block:: console
+
+   dnf -y group install standard
+
+base-x
+------
+
+Servidor de pantalla local de X.org
+
+.. code-block:: console
+
+   dnf -y group install base-x
+
+Métodos de entrada
+------------------
+
+Paquetes de método de entrada para la entrada de texto internacional.
+
+.. code-block:: console
+
+   dnf -y group install input-methods
+
+Tema de íconos de Fedora
+------------------------
+
+Este paquete contiene el tema del icono de Fedora.
+
+.. code-block:: console
+
+   dnf -y install fedora-icon-theme
+
+Tema de íconos de GNOME
+-----------------------
+
+Este paquete contiene el tema de iconos predeterminado utilizado por el
+escritorio de GNOME.
+
+.. code-block:: console
+
+   dnf -y install gnome-icon-theme
+
+Tema de íconos extras de GNOME
+------------------------------
+
+Este paquete contiene iconos adicionales de tipo mime y dispositivo para uso en
+el escritorio de GNOME.
+
+.. code-block:: console
+
+   dnf -y install gnome-icon-theme-extras
+
+i3 Manejador de Ventanas
+------------------------
+
+Finalmente podemos instalar el manejador de ventanas i3.
+
+.. code-block:: console
+
+   dnf -y install i3
+
+Instalando login gráfico
+------------------------
+
+Necesitarmos un login gráfico desde el cual poder ingresar nuestro usuario y
+contraseña para autenticarnos en el sistema. Desde este también podremos
+seleccionar otros entornos gráfito que instalemos a futuro.
+
+LightDM es un dispositivo de bienvenida que utiliza el kit de herramientas
+GTK3.
+
+.. code-block:: console
+
+   dnf -y install lightdm-gtk
+
+xdg-user-dirs
+-------------
+
+Contiene xdg-user-dirs-update que actualiza las carpetas en un directorio de
+inicio, el ``/home/`` según los valores predeterminados configurados por el
+administrador.
+
+.. code-block:: console
+
+   dnf -y install xdg-user-dirs
+
+Habilitar el arranque en modo gráfico
+=====================================
+
+Nuestro sistema ya tiene instalado todo lo necesario para funcionar como un
+entorno de escritorio usando el manejador de ventanas i3. Pero es necesario
+cambiar ciertas configuraciones que hacen que el sistema arranque en modo
+`runlevel 3` o `multi-user.target` para que en su lugar arranque en `runlevel
+5` o `graphical.target`.
+
+Con el siguiente comando corregimos eso:
+
+.. code-block:: console
+
+   systemctl set-default graphical.target
+
+También debemos habilitar el servicio que provee la opción de acceder al
+sistema desde el login gráfico que hemos instalado, `lightdm`:
+
+.. code-block:: console
+
+   systemctl enable lightdm.service
+
+Finalmente podemos reiniciar nuestro sistema y luego de esto deberiamos poder
+acceder al logín gráfico y hacer uso de nuestro equipo con el manejador de
+ventanas i3.
+
+.. code-block:: console
+
+   reboot
+
+Primer inicio de sesión gráfico
+===============================
+
+Luego de seleccionar nuestro usuario e ingresar nuestra contraseña, en nuestra
+primer sesión gráfica, ``i3`` nos consulta sobre si queremos generar un archivo
+de configuración nuevo, presionamos `Enter` para responder de manera
+afirmativa.
+
+A continuación nos consulta qué tecla queremos usar como principal para
+accionar los atajos de teclado de i3, yo siempre selecciono `Win` o `Windows
+Key`, también conociddad como `Meta Key` o `Tecla de Inicio de Windows`.
+
+Terminal de comandos
+====================
+
+Esta instalación no cuenta con ningún programa por defecto preinstalado para
+navegar en Internet, manejador de archivos, visor de imagenes, lector de
+archivos PDF.
+
+Queda a criterio de cada quién que usar.
+
+― Pero, ¿Cómo puedo instalar más programas?
+
+Si seleccionaste la tecla Windows para accionar los atajos de teclado de i3,
+presionando:
+
+<Inicio> + Enter
+
+Podrás ejecutar la terminal de comandos. Yo prefiero usar GNOME Terminal, por
+lo que siempre la instalo.
+
+.. code-block:: console
+
+   su -c 'dnf install gnome-terminal'
+
+Luego presionando:
+
+<Inicio> + d
+
+Acciono ``dmenu`` desde donde puedo invocar GNOME Terminal escribiendo
+``gnome-terminal``.
+
+En el siguiente post documentaré mi post-install de i3wm.
+
+Salir y apagar el sistema
+=========================
+
+Para salir de i3 debemos presionar:
+
+<Inicio> + <Shift> + e
+
+Esto accionará un diálogo que nos consultará si queremos finalizar nuestra
+sesión de i3. Damos clic en ``Yes, exite i3`` y luego estando en `lightdm`
+podemos presionar:
+
+<Alt> + <F4>
+
+Para apagar nuestro equipo.
+
+Espero que esta guía te sea de utilidad. Con esto puedes montar máquinas
+virtuales super ligeras para hacer todo tipo de pruebas, sin consumir recursos
+de manera excesiva :) o bien como entorno de escritorio para equipos con
+recursos mínimos.
