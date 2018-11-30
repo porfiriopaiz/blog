@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="es">
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="description" content="Un administrador de contraseñas libre y seguro.">
@@ -8,14 +8,15 @@
 <link href="../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <meta name="theme-color" content="#5670d4">
 <meta name="generator" content="Nikola (getnikola.com)">
-<link rel="alternate" type="application/atom+xml" title="Atom (en)" href="../en/index.atom">
-<link rel="alternate" type="application/rss+xml" title="RSS (en)" href="../en/rss.xml">
-<link rel="alternate" type="application/atom+xml" title="Atom (es)" href="../index.atom">
-<link rel="alternate" type="application/rss+xml" title="RSS (es)" href="../rss.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS (en)" hreflang="en" href="../en/rss.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS (es)" hreflang="es" href="../rss.xml">
+<link rel="alternate" type="application/atom+xml" title="Atom (en)" hreflang="en" href="../en/index.atom">
+<link rel="alternate" type="application/atom+xml" title="Atom (es)" hreflang="es" href="../index.atom">
 <link rel="canonical" href="https://porfiriopaiz.github.io/blog/posts/keepassxc-el-administrador-de-contrasenas.html">
 <link rel="icon" href="../favicon.png" sizes="16x16">
 <!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><meta name="author" content="porfirio">
 <link rel="prev" href="fedora-26-custom-operating-system-post-install.html" title="Fedora 26 Custom Operating System post install" type="text/html">
+<link rel="next" href="i3.html" title="i3" type="text/html">
 <meta property="og:site_name" content="el blog de porfirio">
 <meta property="og:title" content="KeePassXC, el administrador de contraseñas">
 <meta property="og:url" content="https://porfiriopaiz.github.io/blog/posts/keepassxc-el-administrador-de-contrasenas.html">
@@ -49,7 +50,7 @@
             </a>
         </div>
 <!-- /.navbar-header -->
-        <div class="collapse navbar-collapse" id="bs-navbar" role="navigation" aria-expanded="false">
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
             <ul class="nav navbar-nav">
 <li>
 <a href="../archive.html">Archivo</a>
@@ -92,7 +93,10 @@
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                     porfirio
             </span></p>
-            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2017-11-17T19:10:32-06:00" itemprop="datePublished" title="2017-11-17 19:10">2017-11-17 19:10</time></a></p>
+            <p class="dateline">
+            <a href="#" rel="bookmark">
+            <time class="published dt-published" datetime="2017-11-17T19:10:32-06:00" itemprop="datePublished" title="2017-11-17 19:10">2017-11-17 19:10</time></a>
+            </p>
                 <p class="commentline">
         
     <a href="keepassxc-el-administrador-de-contrasenas.html#disqus_thread" data-disqus-identifier="cache/posts/keepassxc-el-administrador-de-contrasenas.html">Comments</a>
@@ -118,12 +122,12 @@ más altos niveles de entropía.</p>
 <h2>Instalación</h2>
 <div class="section" id="fedora">
 <h3>Fedora</h3>
-<pre class="code console"><a name="rest_code_671c6873dbf74ee8980fe71076a22901-1"></a><span class="go">su -c 'dnf install keepassxc'</span>
+<pre class="code console"><a name="rest_code_3fdb80d2c48f4854bfca52aa5c425496-1"></a><span class="go">su -c 'dnf install keepassxc'</span>
 </pre>
 </div>
 <div class="section" id="debian">
 <h3>Debian</h3>
-<pre class="code console"><a name="rest_code_09486b5b3c7f4529bf19cbe7bb7acccb-1"></a><span class="go">su -c 'apt-get install keepassxc'</span>
+<pre class="code console"><a name="rest_code_811afdc44d6348009784956c7049e641-1"></a><span class="go">su -c 'apt-get install keepassxc'</span>
 </pre>
 </div>
 </div>
@@ -270,6 +274,9 @@ finalmente y de forma automática "presione" <tt class="docutils literal">Log In
 <li class="previous">
                 <a href="fedora-26-custom-operating-system-post-install.html" rel="prev" title="Fedora 26 Custom Operating System post install">Publicación anterior</a>
             </li>
+            <li class="next">
+                <a href="i3.html" rel="next" title="i3">Siguiente publicación</a>
+            </li>
         </ul></nav></aside><section class="comments hidden-print"><h2>Comentarios</h2>
         
         
@@ -307,9 +314,15 @@ finalmente y de forma automática "presione" <tt class="docutils literal">Log In
 </div>
 
 
-            <script src="../assets/js/all-nocdn.js"></script><script src="../assets/js/colorbox-i18n/jquery.colorbox-es.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+            <script src="../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
     moment.locale("es");
     fancydates(0, "YYYY-MM-DD HH:mm");
-    </script><!-- end fancy dates -->
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
 </body>
 </html>

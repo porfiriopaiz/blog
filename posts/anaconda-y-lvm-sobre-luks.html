@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="es">
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="description" content="Reutilizando LUKS y VG en una instalación cifrada de Fedora.">
@@ -8,10 +8,10 @@
 <link href="../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <meta name="theme-color" content="#5670d4">
 <meta name="generator" content="Nikola (getnikola.com)">
-<link rel="alternate" type="application/atom+xml" title="Atom (en)" href="../en/index.atom">
-<link rel="alternate" type="application/rss+xml" title="RSS (en)" href="../en/rss.xml">
-<link rel="alternate" type="application/atom+xml" title="Atom (es)" href="../index.atom">
-<link rel="alternate" type="application/rss+xml" title="RSS (es)" href="../rss.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS (en)" hreflang="en" href="../en/rss.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS (es)" hreflang="es" href="../rss.xml">
+<link rel="alternate" type="application/atom+xml" title="Atom (en)" hreflang="en" href="../en/index.atom">
+<link rel="alternate" type="application/atom+xml" title="Atom (es)" hreflang="es" href="../index.atom">
 <link rel="canonical" href="https://porfiriopaiz.github.io/blog/posts/anaconda-y-lvm-sobre-luks.html">
 <link rel="icon" href="../favicon.png" sizes="16x16">
 <!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><meta name="author" content="porfirio">
@@ -50,7 +50,7 @@
             </a>
         </div>
 <!-- /.navbar-header -->
-        <div class="collapse navbar-collapse" id="bs-navbar" role="navigation" aria-expanded="false">
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
             <ul class="nav navbar-nav">
 <li>
 <a href="../archive.html">Archivo</a>
@@ -93,7 +93,10 @@
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                     porfirio
             </span></p>
-            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2017-02-03T16:59:06-06:00" itemprop="datePublished" title="2017-02-03 16:59">2017-02-03 16:59</time></a></p>
+            <p class="dateline">
+            <a href="#" rel="bookmark">
+            <time class="published dt-published" datetime="2017-02-03T16:59:06-06:00" itemprop="datePublished" title="2017-02-03 16:59">2017-02-03 16:59</time></a>
+            </p>
                 <p class="commentline">
         
     <a href="anaconda-y-lvm-sobre-luks.html#disqus_thread" data-disqus-identifier="cache/posts/anaconda-y-lvm-sobre-luks.html">Comments</a>
@@ -149,10 +152,10 @@ torrents para su descarga:</p>
 <p>Por lo que deberemos usar el método convencional de descarga directa, para ello
 nos auxiliaremos de la línea de comandos.</p>
 <p>Para sistemas de 32 bits descargar la siguiente imagen:</p>
-<pre class="code console"><a name="rest_code_69526137c8184ed0bd2a21471ddbf399-1"></a><span class="go">wget -N -t 0 -c https://download.fedoraproject.org/pub/fedora/linux/releases/25/Everything/i386/iso/Fedora-Everything-netinst-i386-25-1.3.iso</span>
+<pre class="code console"><a name="rest_code_f4a7e34c4eda4a0d84db345706387263-1"></a><span class="go">wget -N -t 0 -c https://download.fedoraproject.org/pub/fedora/linux/releases/25/Everything/i386/iso/Fedora-Everything-netinst-i386-25-1.3.iso</span>
 </pre>
 <p>Para sistemas de 64 bits descargar la siguiente imagen:</p>
-<pre class="code console"><a name="rest_code_e9e9c8b8df114d6f8fcd85c889978119-1"></a><span class="go">wget -N -t 0 -c https://download.fedoraproject.org/pub/fedora/linux/releases/25/Everything/x86_64/iso/Fedora-Everything-netinst-x86_64-25-1.3.iso</span>
+<pre class="code console"><a name="rest_code_8df6c7c1084843b58460c89d6f6f5f5a-1"></a><span class="go">wget -N -t 0 -c https://download.fedoraproject.org/pub/fedora/linux/releases/25/Everything/x86_64/iso/Fedora-Everything-netinst-x86_64-25-1.3.iso</span>
 </pre>
 <dl class="docutils">
 <dt>Donde:</dt>
@@ -171,10 +174,10 @@ una red lo suficiente estable.</p>
 <p>También podemos verificar la integridad de la imagen descargada usando el
 archivo checksum. Solo tenemos que descargar el archivo y guardarlo en el mismo
 directorio que contiene a la imagen ISO:</p>
-<pre class="code console"><a name="rest_code_c79c5965f5ab4bd8b994fe91e1ba56b4-1"></a><span class="go">wget -N -t 0 -c https://alt.fedoraproject.org/es/static/checksums/Fedora-Everything-25-1.3-x86_64-CHECKSUM</span>
+<pre class="code console"><a name="rest_code_19a26ebad68740d88077a84b0b44c070-1"></a><span class="go">wget -N -t 0 -c https://alt.fedoraproject.org/es/static/checksums/Fedora-Everything-25-1.3-x86_64-CHECKSUM</span>
 </pre>
 <p>Luego ejecutamos el siguiente comando:</p>
-<pre class="code console"><a name="rest_code_5dce240ee4384367b712a469faf32af3-1"></a><span class="go">sha256sum -c Fedora-Everything-25-1.3-x86_64-CHECKSUM</span>
+<pre class="code console"><a name="rest_code_740a78c7cbb5443a83810d660c512026-1"></a><span class="go">sha256sum -c Fedora-Everything-25-1.3-x86_64-CHECKSUM</span>
 </pre>
 </div>
 <div class="section" id="grabando-la-imagen-iso-en-una-usb">
@@ -187,7 +190,7 @@ siguiente enlace:</p>
 <p><a class="reference external" href="https://getfedora.org/fmw/FedoraMediaWriter-osx-4.0.7.dmg">https://getfedora.org/fmw/FedoraMediaWriter-osx-4.0.7.dmg</a></p>
 <p>Si estás usando Fedora 23 o superior puedes instalar Fedora Media Writer con el
 siguinete comando:</p>
-<pre class="code console"><a name="rest_code_e341140398b94e769110dd612a9244f8-1"></a><span class="go">su -c 'dnf install mediawriter'</span>
+<pre class="code console"><a name="rest_code_5e850d2c76de41188eed8b3822cf007a-1"></a><span class="go">su -c 'dnf install mediawriter'</span>
 </pre>
 <p>Antes de ejecutar Fedora Media Writer es recomendable desconectar cualquier
 otro dispositivo de almacenamiento extraible que pueda estar conectado en
@@ -266,14 +269,14 @@ depende la sección <cite>SOFTWARE SELECTION</cite>:</p>
 <img alt="/images/anaconda-screenshots/0011.png" class="align-center" src="../images/anaconda-screenshots/0011.png"><p>En <cite>SOFTWARE SELECTION</cite> yo escogí <cite>Fedora Custom Operating System</cite>, el cual
 representa una selección de paquetes muy mínima, sin entorno gráfico, solo unos
 pocos grupos de paquetes que son los siguientes:</p>
-<pre class="code console"><a name="rest_code_130947c4d92a4ad582a747251d492422-1"></a><span class="go">Environment Group: Fedora Custom Operating System</span>
-<a name="rest_code_130947c4d92a4ad582a747251d492422-2"></a><span class="go"> Environment-Id: custom-environment</span>
-<a name="rest_code_130947c4d92a4ad582a747251d492422-3"></a><span class="go"> Description: Basic building block for a custom Fedora system.</span>
-<a name="rest_code_130947c4d92a4ad582a747251d492422-4"></a><span class="go"> Mandatory Groups:</span>
-<a name="rest_code_130947c4d92a4ad582a747251d492422-5"></a><span class="go">   Core</span>
-<a name="rest_code_130947c4d92a4ad582a747251d492422-6"></a><span class="go"> Optional Groups:</span>
-<a name="rest_code_130947c4d92a4ad582a747251d492422-7"></a><span class="go">   Guest Agents</span>
-<a name="rest_code_130947c4d92a4ad582a747251d492422-8"></a><span class="go">   Standard</span>
+<pre class="code console"><a name="rest_code_e90083c7fd0b43f2aa99de34bfdc7c06-1"></a><span class="go">Environment Group: Fedora Custom Operating System</span>
+<a name="rest_code_e90083c7fd0b43f2aa99de34bfdc7c06-2"></a><span class="go"> Environment-Id: custom-environment</span>
+<a name="rest_code_e90083c7fd0b43f2aa99de34bfdc7c06-3"></a><span class="go"> Description: Basic building block for a custom Fedora system.</span>
+<a name="rest_code_e90083c7fd0b43f2aa99de34bfdc7c06-4"></a><span class="go"> Mandatory Groups:</span>
+<a name="rest_code_e90083c7fd0b43f2aa99de34bfdc7c06-5"></a><span class="go">   Core</span>
+<a name="rest_code_e90083c7fd0b43f2aa99de34bfdc7c06-6"></a><span class="go"> Optional Groups:</span>
+<a name="rest_code_e90083c7fd0b43f2aa99de34bfdc7c06-7"></a><span class="go">   Guest Agents</span>
+<a name="rest_code_e90083c7fd0b43f2aa99de34bfdc7c06-8"></a><span class="go">   Standard</span>
 </pre>
 <p>Finalmente hemos llegado a la sección <cite>SYSTEM</cite>, seleccionamos <cite>INSTALLATION
 DESTINATION</cite>. En <cite>Device Selection</cite>, en <cite>Local Stardard Disk</cite> selecionamos el
@@ -387,9 +390,15 @@ veremos en el siguiente post.</p>
 </div>
 
 
-            <script src="../assets/js/all-nocdn.js"></script><script src="../assets/js/colorbox-i18n/jquery.colorbox-es.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+            <script src="../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
     moment.locale("es");
     fancydates(0, "YYYY-MM-DD HH:mm");
-    </script><!-- end fancy dates -->
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
 </body>
 </html>
