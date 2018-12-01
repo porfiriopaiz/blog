@@ -11,8 +11,8 @@ En este post explicaré cómo hacer una instalación de Fedora 29 con el manejad
 de ventanas ``i3``. Es común ver guías de instalación de ``i3``, pero éstas
 asumen que ya tienes otro entorno de escritorio previamente instalado.
 
-En este post veremos como construir un entorno de trabajo a partir de una
-instalción mínima a como he explicado en otras publicaciones.
+En este post veremos cómo construir un entorno de trabajo a partir de una
+instalación mínima a como he explicado en otras publicaciones.
 
 .. TEASER_END
 
@@ -23,19 +23,19 @@ Descargar el ISO `Fedora Everything Netinstall`
 -----------------------------------------------
 
 Desde el sitio: https://alt.fedoraproject.org/ descargar el archivo de la
-sección `Todo`, este es un ISO que funciona como medio de instalación por red,
-que descarga todos los paquetes que serán parte de la instalación desde
-Internet, además de darnos la opción de qué colecciones de paquetes instalar, a
-diferencia de los medios Lives cuya selección de software ha sido previamente
+sección `Todo`, este es un ISO que funciona como medio de instalación por red
+que descarga desde Internet todos los paquetes que serán parte de la sistema,
+además nos da la opción de escoger qué colecciones de paquetes instalar, a
+diferencia de los medios Lives cuya selección de software ha sido préviamente
 definida.
 
-Descarga con ``wget``:
+Descargamos el ISO con ``wget``:
 
 .. code-block:: console
 
    wget -N -t 0 -c https://download.fedoraproject.org/pub/fedora/linux/releases/29/Everything/x86_64/iso/Fedora-Everything-netinst-x86_64-29-1.2.iso
 
-Descargamos el archivo de comprobación de integridad:
+También descargamos el archivo de comprobación de integridad:
 
 .. code-block:: console
 
@@ -58,21 +58,23 @@ Es muy importante crear el medio de instalación con `Fedora Media Writer` ya
 que esta herramienta garantiza que el medio de instalación tendrá soporte para
 arrancar en equipos que cuentan tanto con UEFI o BIOS.
 
-De qué modo arrancará, quedará en dependencia de cual de los dos tenga mayor
-prioridad durante el arranque.
+De qué modo arrancará quedará en dependencia de cual de los dos tenga mayor
+prioridad durante el arranque. Yo siempre uso `UEFI only`, de manera que todos
+mis sistemas están instalados en modo UEFI.
 
 https://github.com/FedoraQt/MediaWriter/releases/tag/4.1.1
 
-Conectamos nuestra memoria USB, ejecutamos Fedora Media Writer y usamos la
-opción `Custom Image`, navegamos hasta la ruta en la que se encuentra la ISO
-que acabamos de descargar, lo seleccionamos y grabamos la imagen en la memoria
-USB.
+Cuando Fedora Media Writer esté instalado en nuestro equipo, conectamos nuestra
+memoria USB, ejecutamos Fedora Media Writer y usamos la opción `Custom Image`
+para navegar hasta la ruta en la que se encuentra la ISO que acabamos de
+descargar, lo seleccionamos, seleccionamos cuidadósamente la memoria USB que
+usaremos y grabamos la imagen en la memoria USB.
 
 Instalación
 ===========
 
-He seguido los pasos de instalación descritos en esta publicación anterior
-asegurándome de tener acceso a una red inalambrica o una red cableada.
+He seguido los pasos de instalación descritos en esta publicación anterior,
+asegurándome de tener acceso a una red inalámbrica o a una red cableada.
 
 https://porfiriopaiz.github.io/blog/posts/anaconda-y-lvm-sobre-luks.html
 
@@ -92,12 +94,13 @@ de la instalación:
 4. Asegurarse que el teléfono está conectado a una red inalámbrica o bien que
    esté activado el plan de datos. Como nota, considera que son necesarios al
    menos unos 800MB de datos en paquetes RPM los que se deben descargar para
-   una instalación mínima de Fedora con soporte para entorno gráfico con i3wm.
+   una instalación mínima de Fedora con soporte para el entorno gráfico con
+   i3wm.
 5. Asegurarse de que el teléfono está en modo de transferencia de datos USB o
    MTP.
-6. Activar una red cableada o Tethered Wired Network.
+6. Activar una red cableada o Tethered Wired Network desde el teléfono móvil.
 
-Luego de lo cual deberías tener acceso a Internet, compruébalo hacien ping
+Luego de esto, deberías tener acceso a Internet. Compruébalo haciendo ping
 Google:
 
 .. code-block:: console
@@ -117,7 +120,7 @@ El siguiente paso es opcional, como `root`, lo primero que hago es configurar
 
    echo 'fastestmirror=true' >> /etc/dnf/dnf.conf
 
-Luego desabilito el uso de `deltarpm's` para las futuras actualizaciones. Si
+Luego inhabilito el uso de `deltarpm's` para las futuras actualizaciones. Si
 prefieres reducir la cantidad de datos a descargar en cada una de las futuras
 actualizaciones omite este paso:
 
@@ -126,22 +129,21 @@ actualizaciones omite este paso:
    echo 'deltarpm=false' >> /etc/dnf/dnf.conf
 
 Siempre conservo cada uno de los paquetes desde donde se instala cualquier
-programa de mi sistema, incluidos los que se descargan como parte de las
-actualizaciones, para mantener la caché de paquetes a lo largo del período que
-usemos Fedora 29, ejecuta el siguinte comando. Este paso es opcional y puedes
-omitirlo si te parece:
+programa en mi sistema, incluídos los que se descargan como parte de las
+actualizaciones y para mantener la caché de paquetes a lo largo del período que
+uso un release de Fedora. Este paso es opcional y puedes omitirlo si te parece:
 
 .. code-block:: console
 
    echo 'keepcache=true' >> /etc/dnf/dnf.conf
 
-Ahora procedo a deshabilitar un servicio y un `timer` de ``dnf``. El servicio
-se asegura de refrescar la caché de metadatos para poder hacer comprobaciones
+Ahora procedo a inhabilitar un servicio y un `timer` de ``dnf``. El servicio se
+asegura de refrescar la caché de metadatos para poder hacer comprobaciones
 sobre las versiones de los paquetes que están en los repos y así posteriormente
 comprobar si hay actualizaciones disponibles. El `timer` se encargar de
-ejecutar el servicio de manera periódica y sistemática.
+ejecutar el servicio de manera periódica.
 
-Simpre deshabilito ambos para evitar molestos consumosde ancho de banda y
+Simpre inhabilito ambos para evitar molestos consumos de ancho de banda y
 bloqueos de ``dnf`` mientras se refresca la caché. Si contás con un límitado
 ancho de banda o plan de datos esto te ayudará a reducir el consumo del mismo.
 
@@ -167,10 +169,10 @@ instalación por red.
 Para aplicar las actualizaciones más recientes y usar los espejos más
 eficientes es necesario regenerar la caché de metadatos.
 
-Fedora mantiene dos cachés distintas, una para el usuario `root` otra para el
-usuario normal, en mi caso `pionen`, por lo que debemos regenerar ambas cachés
-en caso de querer realizar tareas como administrador o simples consultas que no
-requieren privilegios de administrador:
+Fedora mantiene una caché por cada usuario, una para el usuario `root` otra
+para el usuario normal, en mi caso `pionen`. Por lo que debemos regenerar ambas
+cachés en caso de querer realizar tareas como administrador o simples consultas
+que no requieren privilegios de administrador:
 
 Como usuario normal no-root:
 
@@ -180,8 +182,8 @@ Como usuario normal no-root:
 
    dnf makecache
 
-Luego, siempre como usuario normal no-root ejecutamos los siguientes comandos,
-donde pasamos la instrucción entre comillas, como parámetro al usuario `root`:
+Luego, siempre como usuario normal no-root, ejecutamos los siguientes comandos,
+donde pasamos la instrucción entre comillas como un parámetro al usuario `root`:
 
 .. code-block:: console
 
@@ -202,8 +204,9 @@ En caso de haber actualizacones disponibles, las aplicamos con:
 
    su -c 'dnf upgrade'
 
-De haberse aplicado actualizaciones es recomendable actualizar para poder hacer
-uso de la versión más reciente de todos lo programas, por ejemplo el kernel:
+De haberse aplicado actualizaciones, es recomendable reiniciar el sistema para
+poder hacer uso de la versión más reciente de todos lo programas, por ejemplo
+el kernel:
 
 .. code-block:: console
 
@@ -215,8 +218,8 @@ Instalación de i3
 A continuación el paso a paso de todo lo necesario para poder tener nuestra
 instalación mínima de Fedora 29 con i3wm.
 
-Para ello haremos uso de colecciones de paquetes que han sido agrupados en
-grupos especializados. Los siguientes comandos deben ser ejecutados como
+Para ello haremos uso de colecciones de paquetes que han sido agrupados de
+manera especializados. Los siguientes comandos deben ser ejecutados como
 usuario `root`.
 
 Submódulos comunes de NetworkManager
@@ -232,14 +235,15 @@ Core
 ----
 
 Grupo de paquetes para una instalación más pequeña posible, solo contiene los
-paquetes mínimos requeridos para fucionar. Podría estar ya instalado...
+paquetes mínimos requeridos para fucionar. Podría ser que ya se encuente
+instalado.
 
 .. code-block:: console
 
    dnf -y group install core
 
-Soporte de acceso telefónico a redes
-------------------------------------
+Soporte de acceso a redes telefónicas
+-------------------------------------
 
 .. code-block:: console
 
@@ -248,7 +252,8 @@ Soporte de acceso telefónico a redes
 Fuentes tipográficas
 --------------------
 
-Paquetes de fuentes para renderizar texto en el escritorio.
+Paquetes de fuentes para renderizar texto en el escritorio y demás herramientas
+gráficas.
 
 .. code-block:: console
 
@@ -257,7 +262,7 @@ Paquetes de fuentes para renderizar texto en el escritorio.
 Guest Desktop Agents
 --------------------
 
-Agentes utilizados cuando se ejecuta como un escritorio virtualizado.
+Agentes utilizados cuando Fedora se ejecuta como un sistema virtualizado.
 
 .. code-block:: console
 
@@ -266,9 +271,9 @@ Agentes utilizados cuando se ejecuta como un escritorio virtualizado.
 Soporte de hardware
 -------------------
 
-Este grupo es una colección de herramientas para varias utilidades específicas
-de hardware. Provee los controladores de red necesarios para hacer funcionar
-una amplia variedad de tarjetas de red inalámbricas.
+Este grupo es una colección de paquetes que provee varios controladores de
+hardware. Provee los controladores de red necesarios para hacer funcionar una
+amplia variedad de tarjetas de red inalámbricas.
 
 .. code-block:: console
 
@@ -277,10 +282,10 @@ una amplia variedad de tarjetas de red inalámbricas.
 Multimedia
 ----------
 
-Este grupo provee un conjuto de programas y codecs de audio y video esenciales
+Este grupo provee un conjuto de programas y codecs de audio/video esenciales
 para un entorno de escritorio. Esta colección no incluye códecs de audio y
 video propietarios o bajo patentes. Únicamente se incluye software, códecs y
-librerías libres.
+librerías Libres.
 
 .. code-block:: console
 
@@ -355,8 +360,8 @@ Finalmente podemos instalar el manejador de ventanas i3.
 Instalando login gráfico
 ------------------------
 
-Necesitaremos un login gráfico desde el cual poder ingresar nuestro usuario y
-contraseña para autenticarnos en el sistema. Desde este también podremos
+Necesitaremos un login gráfico desde el cual poder seleccionar nuestro usuario
+y contraseña para autenticarnos en el sistema. Desde este también podremos
 seleccionar otros entornos gráficos que instalemos a futuro.
 
 LightDM es un dispositivo de bienvenida que utiliza el kit de herramientas
@@ -369,8 +374,8 @@ GTK3.
 xdg-user-dirs
 -------------
 
-Contiene xdg-user-dirs-update que actualiza las carpetas en un directorio de
-inicio, el ``/home/`` según los valores predeterminados configurados por el
+Contiene xdg-user-dirs-update que actualiza las carpetas en el directorio de
+inicio, el ``/home/``, según los valores predeterminados configurados por el
 administrador.
 
 .. code-block:: console
@@ -411,9 +416,8 @@ Primer inicio de sesión gráfico
 ===============================
 
 Luego de seleccionar nuestro usuario e ingresar nuestra contraseña, en nuestra
-primer sesión gráfica, ``i3`` nos consulta sobre si queremos generar un archivo
-de configuración nuevo, presionamos `Enter` para responder de manera
-afirmativa.
+primer sesión gráfica, ``i3`` nos consulta si queremos generar un archivo de
+configuración nuevo, presionamos `Enter` para responder de manera afirmativa.
 
 A continuación nos consulta qué tecla queremos usar como principal para
 accionar los atajos de teclado de i3, yo siempre selecciono `Win` o `Windows

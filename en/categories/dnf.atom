@@ -3,7 +3,7 @@
 <feed xml:lang="en" xmlns="http://www.w3.org/2005/Atom">
   <title>el blog de porfirio (Posts about dnf)</title>
   <id>https://porfiriopaiz.github.io/blog/en/categories/dnf.atom</id>
-  <updated>2018-11-30T09:45:54Z</updated>
+  <updated>2018-12-01T08:25:25Z</updated>
   <author>
     <name>porfirio</name>
   </author>
@@ -22,8 +22,8 @@
     <summary type="html">&lt;div&gt;&lt;p&gt;En este post explicaré cómo hacer una instalación de Fedora 29 con el manejador
 de ventanas &lt;tt class="docutils literal"&gt;i3&lt;/tt&gt;. Es común ver guías de instalación de &lt;tt class="docutils literal"&gt;i3&lt;/tt&gt;, pero éstas
 asumen que ya tienes otro entorno de escritorio previamente instalado.&lt;/p&gt;
-&lt;p&gt;En este post veremos como construir un entorno de trabajo a partir de una
-instalción mínima a como he explicado en otras publicaciones.&lt;/p&gt;
+&lt;p&gt;En este post veremos cómo construir un entorno de trabajo a partir de una
+instalación mínima a como he explicado en otras publicaciones.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://porfiriopaiz.github.io/blog/en/posts/i3.html"&gt;Read more…&lt;/a&gt; (8 min remaining to read)&lt;/p&gt;&lt;/div&gt;</summary>
     <category term="dnf" label="dnf"/>
     <category term="fc29" label="fc29"/>
