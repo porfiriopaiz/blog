@@ -1,0 +1,110 @@
+<!-- title: i3 post-install -->
+<!-- slug: i3-post-install -->
+<!-- date: 2018-12-09 21:26:18 UTC-06:00 -->
+<!-- tags: dnf, fc29, fedora, postinstall -->
+<!-- category: floss -->
+<!-- link: -->
+<!-- description: Fedora 29 i3 window manager post-install -->
+<!-- type: text -->
+<p>Luego de instalar Fedora 29 con i3 window manager, es necesario instalar otros
+programas que facilitarán nuestra experiencia de usuario.</p>
+<!-- TEASER_END -->
+<p>El primer problema que debemos resolver es cómo nos vamos a conectar a
+Internet, ya habrás notado que no tenemos ningún programa o applet que nos
+permita activar nuestra tarjeta de red o gestionar las diferentes redes que
+estén a nuestro alcance.</p>
+<p>Suponiendo que ya estás logueado y que tu hardware está soportado por Fedora,
+la tarjeta de red inalámbrica debería estar activada, pero ¿Cómo nos
+conectamos a alguna de las redes que tenemos disponibles?</p>
+<div class="section" id="nmcli">
+<h1>nmcli</h1>
+<p>En el post anterior instalamos la colección de paquetes provisto por el grupo
+&quot;Soporte de Hardware&quot;, este grupo provee una amplia variedad de cotroladores de
+red. También instalamos el grupo de paquetes correspondientes a NetworkManager.</p>
+<p><tt class="docutils literal">nmcli</tt> es un programa de línea de comandos que nos permitirá activar por
+software el hardware de red de nuestro equipo, escanear las redes que están a
+nuestro alrededor y conectarnos a las mismas.</p>
+<p>Necesitaremos una terminal, presionando &lt;Inicio&gt; + &lt;Enter&gt; obtenemos una
+Terminal.</p>
+<p>Si nuestro equipo cuenta con un switch que permite activar o desactivar la
+tarjeta de red, nos aseguramos de que esté activado.</p>
+<p>Luego en la terminal ejecutamos el siguente comando para verficar que esté
+activado por software:</p>
+<pre class="code console"><a name="rest_code_9fb776e4828a43e98ffa5ac6c54c66c7-1"></a><span class="go">nmcli networking on</span>
+</pre><p>Esto debería activar la conexión de red cableada de nuestro equipo en caso que
+estuvieramos acceso a una y desearamos usarla.</p>
+<p>Para activar el hardware de red inalámbrico desde la terminal, ejecutamos el
+siguiente comando:</p>
+<pre class="code console"><a name="rest_code_42ec9bd0c754425aaebfb647226aefd2-1"></a><span class="go">nmcli radio wifi on</span>
+</pre><p>Esto debería activar nuestra tarjeta de red, a continuación verificamos cuáles
+son las redes que tenemos disponibles a nuestro alcance:</p>
+<pre class="code console"><a name="rest_code_2c61d009ea3746f391cd7fd3007afdb7-1"></a><span class="go">nmcli device wifi list</span>
+</pre><pre class="code console"><a name="rest_code_94946d62960a4f1b93108a7c88bec7d2-1"></a><span class="go">IN-USE  SSID           MODE   CHAN  RATE        SIGNAL  BARS  SECURITY</span>
+<a name="rest_code_94946d62960a4f1b93108a7c88bec7d2-2"></a><span class="go">        RED_WIFI_2     Infra  5     130 Mbit/s  100     ▂▄▆█  WPA2</span>
+<a name="rest_code_94946d62960a4f1b93108a7c88bec7d2-3"></a><span class="go">        RED_WIFI_2     Infra  1     130 Mbit/s  29      ▂___  WPA2</span>
+<a name="rest_code_94946d62960a4f1b93108a7c88bec7d2-4"></a><span class="go">        RED_WIFI_3     Infra  1     54 Mbit/s   17      ▂___  WPA1</span>
+</pre><p>En caso de necesitar escanear nuevamente para verificar otras conexiones:</p>
+<pre class="code console"><a name="rest_code_d613493188a5499c8658aeee1149a9b9-1"></a><span class="go">nmcli device wifi rescan</span>
+</pre><p>Suponiendo que <tt class="docutils literal">RED_WIFI_1</tt> no requiere contraseña de acceso, para
+conectarnos solo debemos ejecutar el siguiente comando:</p>
+<pre class="code console"><a name="rest_code_4b78335d874c46eea018a64c2e9c086e-1"></a><span class="go">nmcli device wifi connect RED_WIFI_1</span>
+</pre><p>En caso de requerir una contraseña de acceso:</p>
+<pre class="code console"><a name="rest_code_4be7d28e59124f0bae692c0125aba784-1"></a><span class="go">nmcli device wifi connect RED_WIFI_1 password 1234567890</span>
+</pre><p>Donde:</p>
+<blockquote>
+<p><tt class="docutils literal">connect</tt> es un parámetro.</p>
+<p><tt class="docutils literal">RED_WIFI_1</tt> es el argumento que indica a qué red nos queremos conectar.</p>
+<p><tt class="docutils literal">password</tt> es un parámetro.</p>
+<p><tt class="docutils literal">1234567890</tt> es el argumento que el parámetro anterior recibe como
+contraseña. Debe usar la contraseña de la red a la que desea conectarse.</p>
+</blockquote>
+<p>Ya debería estar conectado a su red. Procedemos a instalar los programas que
+nos ayudarán a facilitar nuestra experiencia de usuario con i3.</p>
+</div>
+<div class="section" id="redes">
+<h1>Redes</h1>
+<div class="section" id="nm-applet">
+<h2>nm-applet</h2>
+<p><tt class="docutils literal"><span class="pre">nm-applet</span></tt> es un simple applet de NetworkManager que nos permite hacer lo
+mismo que hicimos con <tt class="docutils literal">nmcli</tt>, pero de manera gráfica.</p>
+<pre class="code console"><a name="rest_code_f884773bd71546b38186790a6228096b-1"></a><span class="go">su -c &#39;dnf install nm-applet&#39;</span>
+</pre><p>Para ejecutar <tt class="docutils literal"><span class="pre">nm-applet</span></tt> presionamos &lt;Inicio&gt; + &lt;d&gt; y escribimos <cite>nm-applet</cite>
+y presionamos &lt;Enter&gt;. En la esquina inferior derecha de nuestra pantalla
+debería aparecer un ícono correspondiente a este <cite>applet</cite> desde donde podemos
+gestionar nuestra conexión a las diferentes redes que tengamos disponibles a
+nuestro alrededor.</p>
+</div>
+<div class="section" id="networkmanager-tui">
+<h2>NetworkManager-tui</h2>
+<p>Esta es una alternativa a <tt class="docutils literal"><span class="pre">nm-applet</span></tt> que hace uso de <tt class="docutils literal">ncurses</tt> para
+generar una <cite>Text User Interface</cite>.</p>
+<pre class="code console"><a name="rest_code_199182568c5c49abbca6ad151dcefff0-1"></a><span class="go">su -c &#39;dnf install NetworkManager-tui&#39;</span>
+</pre></div>
+<div class="section" id="nm-connection-editor">
+<h2>nm-connection-editor</h2>
+<p><cite>NetworkManager Connection Editor</cite> nos permite editar de manera amigable e
+intuitiva la configuración de las diferentes redes a las que hemos accedido, o
+bien, crear Hotspots en caso que nuestra tarjeta de red lo soporte.</p>
+<pre class="code console"><a name="rest_code_aecd349cd0614361b55e0de01392266e-1"></a><span class="go">su -c &#39;dnf install nm-connection-editor&#39;</span>
+</pre></div>
+</div>
+<div class="section" id="emulador-de-terminal">
+<h1>Emulador de Terminal</h1>
+<p>Ya habrás notado que el emulador que se instala por defecto con i3 es
+<tt class="docutils literal"><span class="pre">rxvt-unicode</span></tt> y que no es muy amigable que digamos, no es muy intuitivo a
+primera vista y tiene cierta curva de aprendizaje que no queremos recorrer,
+posiblemente...</p>
+<p>Irónicamente mi emulador de terminal preferido es GNOME Terminal, puedes
+instalar el que prefieras.</p>
+<pre class="code console"><a name="rest_code_7154affa1b0a4088a24d7ece109e8080-1"></a><span class="go">su -c &#39;dnf install gnome-terminal&#39;</span>
+</pre><p><tt class="docutils literal">i3</tt> tiene asignada la combinación de teclas &lt;Inicio&gt; + &lt;Enter&gt; al emulador
+<tt class="docutils literal">urxvt</tt>, para lanzar GNOME Terminal en su lugar hace falta editar el archivo
+de configuración de <tt class="docutils literal">i3</tt> (<tt class="docutils literal"><span class="pre">~/.config/i3/config</span></tt>), buscar la línea:</p>
+<pre class="code console"><a name="rest_code_7aa4dee3c16f428ab4bd4c0818985eb6-1"></a><span class="go">bindsym $mod+Return exec i3-sensible-terminal</span>
+</pre><p>Y sustituir por el comando que llama a nuestro emulador de terminal, en mi
+caso, <tt class="docutils literal"><span class="pre">gnome-terminal</span></tt>:</p>
+<pre class="code console"><a name="rest_code_f4367d03f80f40c68911282b6f8e4cd3-1"></a><span class="go">bindsym $mod+Return exec gnome-terminal</span>
+</pre><p>En los siguientes post iré compartiendo que otros programas uso en mi setup de
+Fedora 29 con i3wm. Por el momento ya tienes los necesario para instalar otros
+programas de interés como navegador Web y demás.</p>
+</div>
