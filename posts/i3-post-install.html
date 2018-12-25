@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Fedora 29 i3 window manager post-install">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>i3 post-install | el blog de porfirio</title>
+<link href="../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS (en)" hreflang="en" href="../en/rss.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS (es)" hreflang="es" href="../rss.xml">
+<link rel="alternate" type="application/atom+xml" title="Atom (en)" hreflang="en" href="../en/index.atom">
+<link rel="alternate" type="application/atom+xml" title="Atom (es)" hreflang="es" href="../index.atom">
+<link rel="canonical" href="https://porfiriopaiz.github.io/blog/posts/i3-post-install.html">
+<link rel="icon" href="../favicon.png" sizes="16x16">
+<!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><meta name="author" content="porfirio">
+<link rel="prev" href="i3.html" title="i3" type="text/html">
+<meta property="og:site_name" content="el blog de porfirio">
+<meta property="og:title" content="i3 post-install">
+<meta property="og:url" content="https://porfiriopaiz.github.io/blog/posts/i3-post-install.html">
+<meta property="og:description" content="Fedora 29 i3 window manager post-install">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2018-12-09T21:26:18-06:00">
+<meta property="article:tag" content="dnf">
+<meta property="article:tag" content="fc29">
+<meta property="article:tag" content="fedora">
+<meta property="article:tag" content="postinstall">
+<link rel="alternate" hreflang="en" href="../en/posts/i3-post-install.html">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Ir al contenido principal</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Mostrar navegación</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://porfiriopaiz.github.io/blog/">
+
+                <span id="blog-title">el blog de porfirio</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../archive.html">Archivo</a>
+                </li>
+<li>
+<a href="../categories/index.html">Etiquetas</a>
+                </li>
+<li>
+<a href="../rss.xml">Canal RSS</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+            </li>
+<li><a href="https://porfiriopaiz.github.io/blog/en/" rel="alternate" hreflang="en">English</a></li>
+
+                
+                    
+    <li>
+    <a href="i3-post-install.rst" id="sourcelink">Código fuente</a>
+    </li>
+
+                
+            </ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">i3 post-install</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                    porfirio
+            </span></p>
+            <p class="dateline">
+            <a href="#" rel="bookmark">
+            <time class="published dt-published" datetime="2018-12-09T21:26:18-06:00" itemprop="datePublished" title="2018-12-09 21:26">2018-12-09 21:26</time></a>
+            </p>
+                <p class="commentline">
+        
+    <a href="i3-post-install.html#disqus_thread" data-disqus-identifier="cache/posts/i3-post-install.html">Comments</a>
+
+
+            
+        </p>
+<p class="sourceline"><a href="i3-post-install.rst" class="sourcelink">Código fuente</a></p>
+
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>Luego de instalar Fedora 29 con i3 window manager, es necesario instalar otros
+programas que facilitarán nuestra experiencia de usuario.</p>
+<!-- TEASER_END -->
+<p>El primer problema que debemos resolver es cómo nos vamos a conectar a
+Internet, ya habrás notado que no tenemos ningún programa o applet que nos
+permita activar nuestra tarjeta de red o gestionar las diferentes redes que
+estén a nuestro alcance.</p>
+<p>Suponiendo que ya estás logueado y que tu hardware está soportado por Fedora,
+la tarjeta de red inalámbrica debería estar activada, pero ¿Cómo nos
+conectamos a alguna de las redes que tenemos disponibles?</p>
+<div class="section" id="nmcli">
+<h2>nmcli</h2>
+<p>En el post anterior instalamos la colección de paquetes provisto por el grupo
+"Soporte de Hardware", este grupo provee una amplia variedad de cotroladores de
+red. También instalamos el grupo de paquetes correspondientes a NetworkManager.</p>
+<p><tt class="docutils literal">nmcli</tt> es un programa de línea de comandos que nos permitirá activar por
+software el hardware de red de nuestro equipo, escanear las redes que están a
+nuestro alrededor y conectarnos a las mismas.</p>
+<p>Necesitaremos una terminal, presionando &lt;Inicio&gt; + &lt;Enter&gt; obtenemos una
+Terminal.</p>
+<p>Si nuestro equipo cuenta con un switch que permite activar o desactivar la
+tarjeta de red, nos aseguramos de que esté activado.</p>
+<p>Luego en la terminal ejecutamos el siguente comando para verficar que esté
+activado por software:</p>
+<pre class="code console"><a name="rest_code_8cedbdd635ac444a90368e3849529055-1"></a><span class="go">nmcli networking on</span>
+</pre>
+<p>Esto debería activar la conexión de red cableada de nuestro equipo en caso que
+estuvieramos acceso a una y desearamos usarla.</p>
+<p>Para activar el hardware de red inalámbrico desde la terminal, ejecutamos el
+siguiente comando:</p>
+<pre class="code console"><a name="rest_code_285ba961808d48edbd43dc7115a4c009-1"></a><span class="go">nmcli radio wifi on</span>
+</pre>
+<p>Esto debería activar nuestra tarjeta de red, a continuación verificamos cuáles
+son las redes que tenemos disponibles a nuestro alcance:</p>
+<pre class="code console"><a name="rest_code_dfcadb928a794ba08bc7275cb6120d36-1"></a><span class="go">nmcli device wifi list</span>
+</pre>
+<pre class="code console"><a name="rest_code_9c8112e05e94441b8f6551062986cef1-1"></a><span class="go">IN-USE  SSID           MODE   CHAN  RATE        SIGNAL  BARS  SECURITY</span>
+<a name="rest_code_9c8112e05e94441b8f6551062986cef1-2"></a><span class="go">        RED_WIFI_2     Infra  5     130 Mbit/s  100     ▂▄▆█  WPA2</span>
+<a name="rest_code_9c8112e05e94441b8f6551062986cef1-3"></a><span class="go">        RED_WIFI_2     Infra  1     130 Mbit/s  29      ▂___  WPA2</span>
+<a name="rest_code_9c8112e05e94441b8f6551062986cef1-4"></a><span class="go">        RED_WIFI_3     Infra  1     54 Mbit/s   17      ▂___  WPA1</span>
+</pre>
+<p>En caso de necesitar escanear nuevamente para verificar otras conexiones:</p>
+<pre class="code console"><a name="rest_code_343a0d93384b4aff9b24b8cc85d6b945-1"></a><span class="go">nmcli device wifi rescan</span>
+</pre>
+<p>Suponiendo que <tt class="docutils literal">RED_WIFI_1</tt> no requiere contraseña de acceso, para
+conectarnos solo debemos ejecutar el siguiente comando:</p>
+<pre class="code console"><a name="rest_code_a1aa727ebe1149669ff2ad9484c4c979-1"></a><span class="go">nmcli device wifi connect RED_WIFI_1</span>
+</pre>
+<p>En caso de requerir una contraseña de acceso:</p>
+<pre class="code console"><a name="rest_code_ebedd95d00b54edc9f031ac254f103a1-1"></a><span class="go">nmcli device wifi connect RED_WIFI_1 password 1234567890</span>
+</pre>
+<p>Donde:</p>
+<blockquote>
+<p><tt class="docutils literal">connect</tt> es un parámetro.</p>
+<p><tt class="docutils literal">RED_WIFI_1</tt> es el argumento que indica a qué red nos queremos conectar.</p>
+<p><tt class="docutils literal">password</tt> es un parámetro.</p>
+<p><tt class="docutils literal">1234567890</tt> es el argumento que el parámetro anterior recibe como
+contraseña. Debe usar la contraseña de la red a la que desea conectarse.</p>
+</blockquote>
+<p>Ya debería estar conectado a su red. Procedemos a instalar los programas que
+nos ayudarán a facilitar nuestra experiencia de usuario con i3.</p>
+</div>
+<div class="section" id="redes">
+<h2>Redes</h2>
+<div class="section" id="nm-applet">
+<h3>nm-applet</h3>
+<p><tt class="docutils literal"><span class="pre">nm-applet</span></tt> es un simple applet de NetworkManager que nos permite hacer lo
+mismo que hicimos con <tt class="docutils literal">nmcli</tt>, pero de manera gráfica.</p>
+<pre class="code console"><a name="rest_code_66e639c4056e4c6682dec5ba44f34b5d-1"></a><span class="go">su -c 'dnf install nm-applet'</span>
+</pre>
+<p>Para ejecutar <tt class="docutils literal"><span class="pre">nm-applet</span></tt> presionamos &lt;Inicio&gt; + &lt;d&gt; y escribimos <cite>nm-applet</cite>
+y presionamos &lt;Enter&gt;. En la esquina inferior derecha de nuestra pantalla
+debería aparecer un ícono correspondiente a este <cite>applet</cite> desde donde podemos
+gestionar nuestra conexión a las diferentes redes que tengamos disponibles a
+nuestro alrededor.</p>
+</div>
+<div class="section" id="networkmanager-tui">
+<h3>NetworkManager-tui</h3>
+<p>Esta es una alternativa a <tt class="docutils literal"><span class="pre">nm-applet</span></tt> que hace uso de <tt class="docutils literal">ncurses</tt> para
+generar una <cite>Text User Interface</cite>.</p>
+<pre class="code console"><a name="rest_code_a4b5666cc3304ad98a00f9fc8ea80c0b-1"></a><span class="go">su -c 'dnf install NetworkManager-tui'</span>
+</pre>
+</div>
+<div class="section" id="nm-connection-editor">
+<h3>nm-connection-editor</h3>
+<p><cite>NetworkManager Connection Editor</cite> nos permite editar de manera amigable e
+intuitiva la configuración de las diferentes redes a las que hemos accedido, o
+bien, crear Hotspots en caso que nuestra tarjeta de red lo soporte.</p>
+<pre class="code console"><a name="rest_code_8ca488b31d0f408fafd2985fcc227892-1"></a><span class="go">su -c 'dnf install nm-connection-editor'</span>
+</pre>
+</div>
+</div>
+<div class="section" id="emulador-de-terminal">
+<h2>Emulador de Terminal</h2>
+<p>Ya habrás notado que el emulador que se instala por defecto con i3 es
+<tt class="docutils literal"><span class="pre">rxvt-unicode</span></tt> y que no es muy amigable que digamos, no es muy intuitivo a
+primera vista y tiene cierta curva de aprendizaje que no queremos recorrer,
+posiblemente...</p>
+<p>Irónicamente mi emulador de terminal preferido es GNOME Terminal, puedes
+instalar el que prefieras.</p>
+<pre class="code console"><a name="rest_code_081245209ff2431fbcf310b687320938-1"></a><span class="go">su -c 'dnf install gnome-terminal'</span>
+</pre>
+<p><tt class="docutils literal">i3</tt> tiene asignada la combinación de teclas &lt;Inicio&gt; + &lt;Enter&gt; al emulador
+<tt class="docutils literal">urxvt</tt>, para lanzar GNOME Terminal en su lugar hace falta editar el archivo
+de configuración de <tt class="docutils literal">i3</tt> (<tt class="docutils literal"><span class="pre">~/.config/i3/config</span></tt>), buscar la línea:</p>
+<pre class="code console"><a name="rest_code_62f0caa3d654406e9bd4a3618bb528ac-1"></a><span class="go">bindsym $mod+Return exec i3-sensible-terminal</span>
+</pre>
+<p>Y sustituir por el comando que llama a nuestro emulador de terminal, en mi
+caso, <tt class="docutils literal"><span class="pre">gnome-terminal</span></tt>:</p>
+<pre class="code console"><a name="rest_code_be016099956e47f5909721369c43c837-1"></a><span class="go">bindsym $mod+Return exec gnome-terminal</span>
+</pre>
+<p>En los siguientes post iré compartiendo que otros programas uso en mi setup de
+Fedora 29 con i3wm. Por el momento ya tienes los necesario para instalar otros
+programas de interés como navegador Web y demás.</p>
+</div>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../categories/dnf.html" rel="tag">dnf</a></li>
+            <li><a class="tag p-category" href="../categories/fc29.html" rel="tag">fc29</a></li>
+            <li><a class="tag p-category" href="../categories/fedora.html" rel="tag">fedora</a></li>
+            <li><a class="tag p-category" href="../categories/postinstall.html" rel="tag">postinstall</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="i3.html" rel="prev" title="i3">Publicación anterior</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comentarios</h2>
+        
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="porfiriopaizblog",
+            disqus_url="https://porfiriopaiz.github.io/blog/posts/i3-post-install.html",
+        disqus_title="i3 post-install",
+        disqus_identifier="cache/posts/i3-post-install.html",
+        disqus_config = function () {
+            this.language = "es_ES";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="porfiriopaizblog";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            Contents © 2018         <a href="mailto:porfiriopaiz@gmail.com">porfirio</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"></a>
+
+            
+        </footer>
+</div>
+</div>
+
+
+            <script src="../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("es");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>
