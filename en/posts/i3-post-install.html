@@ -131,34 +131,34 @@ nuestro alrededor y conectarnos a las mismas.</p>
 Terminal.</p>
 <p>Si nuestro equipo cuenta con un switch que permite activar o desactivar la
 tarjeta de red, nos aseguramos de que esté activado.</p>
-<p>Luego en la terminal ejecutamos el siguente comando para verficar que esté
+<p>Luego en la terminal ejecutamos el siguiente comando para verficar que esté
 activado por software:</p>
-<pre class="code console"><a name="rest_code_8cedbdd635ac444a90368e3849529055-1"></a><span class="go">nmcli networking on</span>
+<pre class="code console"><a name="rest_code_e60005bb69a1483fb3450669694c8f66-1"></a><span class="go">nmcli networking on</span>
 </pre>
 <p>Esto debería activar la conexión de red cableada de nuestro equipo en caso que
 estuvieramos acceso a una y desearamos usarla.</p>
 <p>Para activar el hardware de red inalámbrico desde la terminal, ejecutamos el
 siguiente comando:</p>
-<pre class="code console"><a name="rest_code_285ba961808d48edbd43dc7115a4c009-1"></a><span class="go">nmcli radio wifi on</span>
+<pre class="code console"><a name="rest_code_0827d65dd4c448aab436d6954a982aef-1"></a><span class="go">nmcli radio wifi on</span>
 </pre>
 <p>Esto debería activar nuestra tarjeta de red, a continuación verificamos cuáles
 son las redes que tenemos disponibles a nuestro alcance:</p>
-<pre class="code console"><a name="rest_code_dfcadb928a794ba08bc7275cb6120d36-1"></a><span class="go">nmcli device wifi list</span>
+<pre class="code console"><a name="rest_code_8b8469d2180740438b19381646542e39-1"></a><span class="go">nmcli device wifi list</span>
 </pre>
-<pre class="code console"><a name="rest_code_9c8112e05e94441b8f6551062986cef1-1"></a><span class="go">IN-USE  SSID           MODE   CHAN  RATE        SIGNAL  BARS  SECURITY</span>
-<a name="rest_code_9c8112e05e94441b8f6551062986cef1-2"></a><span class="go">        RED_WIFI_2     Infra  5     130 Mbit/s  100     ▂▄▆█  WPA2</span>
-<a name="rest_code_9c8112e05e94441b8f6551062986cef1-3"></a><span class="go">        RED_WIFI_2     Infra  1     130 Mbit/s  29      ▂___  WPA2</span>
-<a name="rest_code_9c8112e05e94441b8f6551062986cef1-4"></a><span class="go">        RED_WIFI_3     Infra  1     54 Mbit/s   17      ▂___  WPA1</span>
+<pre class="code console"><a name="rest_code_12344f7ef24c4838994ecf2109c0424e-1"></a><span class="go">IN-USE  SSID           MODE   CHAN  RATE        SIGNAL  BARS  SECURITY</span>
+<a name="rest_code_12344f7ef24c4838994ecf2109c0424e-2"></a><span class="go">        RED_WIFI_2     Infra  5     130 Mbit/s  100     ▂▄▆█  WPA2</span>
+<a name="rest_code_12344f7ef24c4838994ecf2109c0424e-3"></a><span class="go">        RED_WIFI_2     Infra  1     130 Mbit/s  29      ▂___  WPA2</span>
+<a name="rest_code_12344f7ef24c4838994ecf2109c0424e-4"></a><span class="go">        RED_WIFI_3     Infra  1     54 Mbit/s   17      ▂___  WPA1</span>
 </pre>
 <p>En caso de necesitar escanear nuevamente para verificar otras conexiones:</p>
-<pre class="code console"><a name="rest_code_343a0d93384b4aff9b24b8cc85d6b945-1"></a><span class="go">nmcli device wifi rescan</span>
+<pre class="code console"><a name="rest_code_e076709fd6064efe978698a37f90f7a1-1"></a><span class="go">nmcli device wifi rescan</span>
 </pre>
 <p>Suponiendo que <tt class="docutils literal">RED_WIFI_1</tt> no requiere contraseña de acceso, para
 conectarnos solo debemos ejecutar el siguiente comando:</p>
-<pre class="code console"><a name="rest_code_a1aa727ebe1149669ff2ad9484c4c979-1"></a><span class="go">nmcli device wifi connect RED_WIFI_1</span>
+<pre class="code console"><a name="rest_code_ee118648cfb14394aee5812b033732af-1"></a><span class="go">nmcli device wifi connect RED_WIFI_1</span>
 </pre>
 <p>En caso de requerir una contraseña de acceso:</p>
-<pre class="code console"><a name="rest_code_ebedd95d00b54edc9f031ac254f103a1-1"></a><span class="go">nmcli device wifi connect RED_WIFI_1 password 1234567890</span>
+<pre class="code console"><a name="rest_code_e9e209802bb84643ab20627667a20ede-1"></a><span class="go">nmcli device wifi connect RED_WIFI_1 password 1234567890</span>
 </pre>
 <p>Donde:</p>
 <blockquote>
@@ -177,7 +177,7 @@ nos ayudarán a facilitar nuestra experiencia de usuario con i3.</p>
 <h3>nm-applet</h3>
 <p><tt class="docutils literal"><span class="pre">nm-applet</span></tt> es un simple applet de NetworkManager que nos permite hacer lo
 mismo que hicimos con <tt class="docutils literal">nmcli</tt>, pero de manera gráfica.</p>
-<pre class="code console"><a name="rest_code_66e639c4056e4c6682dec5ba44f34b5d-1"></a><span class="go">su -c 'dnf install nm-applet'</span>
+<pre class="code console"><a name="rest_code_cde1608f1be4481589c829a487bdb424-1"></a><span class="go">su -c 'dnf install nm-applet'</span>
 </pre>
 <p>Para ejecutar <tt class="docutils literal"><span class="pre">nm-applet</span></tt> presionamos &lt;Inicio&gt; + &lt;d&gt; y escribimos <cite>nm-applet</cite>
 y presionamos &lt;Enter&gt;. En la esquina inferior derecha de nuestra pantalla
@@ -189,7 +189,7 @@ nuestro alrededor.</p>
 <h3>NetworkManager-tui</h3>
 <p>Esta es una alternativa a <tt class="docutils literal"><span class="pre">nm-applet</span></tt> que hace uso de <tt class="docutils literal">ncurses</tt> para
 generar una <cite>Text User Interface</cite>.</p>
-<pre class="code console"><a name="rest_code_a4b5666cc3304ad98a00f9fc8ea80c0b-1"></a><span class="go">su -c 'dnf install NetworkManager-tui'</span>
+<pre class="code console"><a name="rest_code_989355d89837418e9f9d2e7d5505ec9a-1"></a><span class="go">su -c 'dnf install NetworkManager-tui'</span>
 </pre>
 </div>
 <div class="section" id="nm-connection-editor">
@@ -197,7 +197,7 @@ generar una <cite>Text User Interface</cite>.</p>
 <p><cite>NetworkManager Connection Editor</cite> nos permite editar de manera amigable e
 intuitiva la configuración de las diferentes redes a las que hemos accedido, o
 bien, crear Hotspots en caso que nuestra tarjeta de red lo soporte.</p>
-<pre class="code console"><a name="rest_code_8ca488b31d0f408fafd2985fcc227892-1"></a><span class="go">su -c 'dnf install nm-connection-editor'</span>
+<pre class="code console"><a name="rest_code_9d324a671d6043abab0ad5f6643c024a-1"></a><span class="go">su -c 'dnf install nm-connection-editor'</span>
 </pre>
 </div>
 </div>
@@ -209,16 +209,16 @@ primera vista y tiene cierta curva de aprendizaje que no queremos recorrer,
 posiblemente...</p>
 <p>Irónicamente mi emulador de terminal preferido es GNOME Terminal, puedes
 instalar el que prefieras.</p>
-<pre class="code console"><a name="rest_code_081245209ff2431fbcf310b687320938-1"></a><span class="go">su -c 'dnf install gnome-terminal'</span>
+<pre class="code console"><a name="rest_code_851346e7335c4513810d5ea64451d56a-1"></a><span class="go">su -c 'dnf install gnome-terminal'</span>
 </pre>
 <p><tt class="docutils literal">i3</tt> tiene asignada la combinación de teclas &lt;Inicio&gt; + &lt;Enter&gt; al emulador
 <tt class="docutils literal">urxvt</tt>, para lanzar GNOME Terminal en su lugar hace falta editar el archivo
 de configuración de <tt class="docutils literal">i3</tt> (<tt class="docutils literal"><span class="pre">~/.config/i3/config</span></tt>), buscar la línea:</p>
-<pre class="code console"><a name="rest_code_62f0caa3d654406e9bd4a3618bb528ac-1"></a><span class="go">bindsym $mod+Return exec i3-sensible-terminal</span>
+<pre class="code console"><a name="rest_code_ba7b232b808e4e6fb872b27bdb5f4412-1"></a><span class="go">bindsym $mod+Return exec i3-sensible-terminal</span>
 </pre>
 <p>Y sustituir por el comando que llama a nuestro emulador de terminal, en mi
 caso, <tt class="docutils literal"><span class="pre">gnome-terminal</span></tt>:</p>
-<pre class="code console"><a name="rest_code_be016099956e47f5909721369c43c837-1"></a><span class="go">bindsym $mod+Return exec gnome-terminal</span>
+<pre class="code console"><a name="rest_code_748d0606bd984ddbab06099d1dbf1b17-1"></a><span class="go">bindsym $mod+Return exec gnome-terminal</span>
 </pre>
 <p>En los siguientes post iré compartiendo que otros programas uso en mi setup de
 Fedora 29 con i3wm. Por el momento ya tienes los necesario para instalar otros
