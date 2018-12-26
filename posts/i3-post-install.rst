@@ -38,7 +38,7 @@ Terminal.
 Si nuestro equipo cuenta con un switch que permite activar o desactivar la
 tarjeta de red, nos aseguramos de que esté activado.
 
-Luego en la terminal ejecutamos el siguente comando para verficar que esté
+Luego en la terminal ejecutamos el siguiente comando para verficar que esté
 activado por software:
 
 .. code-block:: console
