@@ -17,4 +17,6 @@ Chromium Web Browser.
 Instalar Chromium
 =================
 
+Muchas cosas han cambiado desde que decidí escribir este post, por ejemplo, Google planea remover algunas funcionalidades que permiten hacer uso de bloqueadores de publicidad y otras formas de seguimiento que violan el derecho a la privacidad del usuario. Ojalá que esto no afecte a Chromium, para que los cambios tengan efecto en Google Chrome primeramente tienen que llegar a Chromium, espero que sea algo que los desarrolladores de Google puedan agregar más tarde a su versión de Google Chrome sin que tenga que afectar primeramente a Chromium.
 
+Para Fedora está empaquetado ``chromium`` y ``chromium-vaapi``, la diferencia es que el segundo cuenta con acelaración y decodificiación por hardware, lo que hace la repoducción de audio y video más eficiente. Por esa razón instalo el segundo:
